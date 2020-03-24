@@ -53,22 +53,60 @@
     </div>
 
     <div style="margin-left: 50px">
-        <script type="text/javascript">
-                var clicks = 0;
-                function clickPlus2() {
-                    clicks += 1;
-                    document.getElementById("clicks").innerHTML = clicks;
+        <div class="inline-block">
+            <script type="text/javascript">
+                var adults = 0;
+                function clickPlus() {
+                    adults += 1;
+                    document.getElementById("adults").innerHTML = adults;
                 };
-                function clickMinus2() {
-                    if (clicks>0) {
-                        clicks -= 1;
-                        document.getElementById("clicks").innerHTML = clicks;
+                function clickMinus() {
+                    if (adults>0) {
+                        adults -= 1;
+                        document.getElementById("adults").innerHTML = adults;
                     }
                 };
-        </script>
-        <button type="button" onClick="clickPlus2()">+</button>
-        <p>Adults: <a id="clicks">0</a></p>
-        <button type="button" onClick="clickMinus2()">-</button>
+            </script>
+            <button style="margin-left: 25px" type="button" onClick="clickPlus()">+</button>
+            <p>Adults: <a id="adults">0</a></p>
+            <button style="margin-left: 25px" type="button" onClick="clickMinus()">-</button>
+        </div>
+        <div style="margin-left: 25px" class="inline-block">
+            <script type="text/javascript">
+                    var children = 0;
+                    function clickPlus2() {
+                        children += 1;
+                        document.getElementById("children").innerHTML = children;
+                    };
+                    function clickMinus2() {
+                        if (children>0) {
+                            children -= 1;
+                            document.getElementById("children").innerHTML = children;
+                        }
+                    };
+            </script>
+            <button style="margin-left: 35px" type="button" onClick="clickPlus2()">+</button>
+            <p>Children: <a id="children">0</a></p>
+            <button style="margin-left: 35px" type="button" onClick="clickMinus2()">-</button>
+        </div>
+        <div style="margin-left: 25px" class="inline-block">
+            <script type="text/javascript">
+                    var concession = 0;
+                    function clickPlus3() {
+                        concession += 1;
+                        document.getElementById("concession").innerHTML = concession;
+                    };
+                    function clickMinus3() {
+                        if (concession>0) {
+                            concession -= 1;
+                            document.getElementById("concession").innerHTML = concession;
+                        }
+                    };
+            </script>
+            <button style="margin-left: 45px" type="button" onClick="clickPlus3()">+</button>
+            <p>Concessions: <a id="concession">0</a></p>
+            <button style="margin-left: 45px" type="button" onClick="clickMinus3()">-</button>
+        </div>
 
     </div>
 
