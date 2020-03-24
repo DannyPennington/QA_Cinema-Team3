@@ -16,10 +16,10 @@ import javax.inject.Inject
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 
 @Singleton
-class ReleaseGalleryController @Inject()(cc: ControllerComponents, val mongoService: FutureReleasesMongoService) extends AbstractController(cc) {
+class ReleaseGalleryController @Inject()(cc: ControllerComponents, val mongoService: CurrentMovieMongoService) extends AbstractController(cc) {
 
   def releaseGallery: Action[AnyContent] = Action.async {
-    mongoService.findAll().map(listOfMovieInfo =>
+    mongoService.findFutureMovies().map(listOfMovieInfo =>
       Ok(views.html.releaseGallery(listOfMovieInfo)))
   }
 

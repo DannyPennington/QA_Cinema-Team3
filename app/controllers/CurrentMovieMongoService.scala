@@ -7,29 +7,29 @@ import reactivemongo.play.json.collection.JSONCollection
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.MovieInfo
+import models.{FutureReleaseInfo, MovieInfo}
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import reactivemongo.api.Cursor
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.commands.WriteResult
+
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class CurrentMovieMongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
-  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
+  def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
+  def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
 
-
-
-  def createUser(movieInfo: MovieInfo): Future[WriteResult] = {
-    collection.flatMap(_.insert.one(movieInfo))
+  def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
+    currentCollection.flatMap(_.insert.one(movieInfo))
   }
 
 
-  def findAll(): Future[List[MovieInfo]] = {
-    collection.map {
+  def findCurrentMovies(): Future[List[MovieInfo]] = {
+    currentCollection.map {
       _.find(Json.obj())
         .sort(Json.obj("created" -> -1))
         .cursor[MovieInfo]()
@@ -37,6 +37,24 @@ class CurrentMovieMongoService @Inject()(
       _.collect[List](
         -1,
         Cursor.FailOnError[List[MovieInfo]]()
+      )
+    )
+  }
+
+  def createFuture(futureReleaseInfo: FutureReleaseInfo): Future[WriteResult] = {
+    releaseCollection.flatMap(_.insert.one(futureReleaseInfo))
+  }
+
+
+  def findFutureMovies(): Future[List[FutureReleaseInfo]] = {
+    releaseCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[FutureReleaseInfo]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[FutureReleaseInfo]]()
       )
     )
   }

@@ -20,7 +20,7 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Cu
   }
 
   def listingGallery: Action[AnyContent] = Action.async {
-    mongoService.findAll().map(listOfMovieInfo =>
+    mongoService.findCurrentMovies().map(listOfMovieInfo =>
       Ok(views.html.listingGallery(listOfMovieInfo))
     )
   }
