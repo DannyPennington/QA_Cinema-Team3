@@ -1,0 +1,10 @@
+@(futureReleaseInfos: List[FutureReleaseInfo])
+
+@main("Release Gallery") {
+    <h2> New Releases Gallery</h2>
+
+    @for(movieInfo <- futureReleaseInfos) {
+        <div> @movieInfo.title, @movieInfo.url </div>
+    }
+
+}
