@@ -1,40 +1,46 @@
 package controllers
 
 import javax.inject.Inject
-import play.api.libs.json.Json
-import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
-import reactivemongo.api.Cursor
-import reactivemongo.api.commands.WriteResult
-import reactivemongo.play.json._
-import reactivemongo.play.json.collection.{JSONCollection, _}
+import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
+import reactivemongo.play.json.collection.JSONCollection
 
+import scala.concurrent.{ExecutionContext, Future}
+import reactivemongo.play.json._
+import collection._
+import models.MovieInfo
+import models.JsonFormats._
+import play.api.libs.json.{JsValue, Json}
+import reactivemongo.api.Cursor
+import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
+import reactivemongo.api.commands.WriteResult
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 
 class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
-  //  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("persons"))
+  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
 
 
 
-//  def createUser(user: User): Future[WriteResult] = {
-//    collection.flatMap(_.insert.one(user))
-//  }
-//
-//  def findAll(): Future[List[User]] = {
-//    collection.map {
-//      _.find(Json.obj())
-//        .sort(Json.obj("created" -> -1))
-//        .cursor[User]()
-//    }.flatMap(
-//      _.collect[List](
-//        -1,
-//        Cursor.FailOnError[List[User]]()
-//      )
-//    )
-//  }
+  def createUser(movieInfo: MovieInfo): Future[WriteResult] = {
+    collection.flatMap(_.insert.one(movieInfo))
+  }
+
+
+  def findAll(): Future[List[MovieInfo]] = {
+    collection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[MovieInfo]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[MovieInfo]]()
+      )
+    )
+  }
+
 //
 //  def doesNotExist(username: String): Future[Boolean] = {
 //    findByUsername(username).map(user => user.isEmpty)

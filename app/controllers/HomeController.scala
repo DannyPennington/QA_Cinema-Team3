@@ -9,9 +9,4 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
   def index:Action[AnyContent] = Action {
     Ok(views.html.index("Your new application is ready."))
   }
-
-  def listingGallery: Action[AnyContent] = Action {
-    Ok(views.html.listingGallery())
-  }
-
 }

@@ -1,8 +1,10 @@
-@()
+@(movieInfos: List[MovieInfo])
 
 @main("Listing Gallery") {
     <h2> Listing Gallery</h2>
 
-    <div> picture, information, etc</div>
+    @for(movieInfo <- movieInfos) {
+        <div> @movieInfo.title, @movieInfo.url </div>
+    }
 
 }
