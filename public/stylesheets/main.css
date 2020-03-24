@@ -1,3 +1,7 @@
+body {
+    font-family: Verdana, serif;
+}
+
 input[type=text], select, textarea {
     width: 25%;
     padding: 12px;
@@ -7,11 +11,11 @@ input[type=text], select, textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-    font-family: Verdana;
+    font-family: Verdana, serif;
 }
 
 label {
-    font-family: Verdana;
+    font-family: Verdana, serif;
 }
 .container input:checked ~ .checkmark {
     background-color: darkgrey;
