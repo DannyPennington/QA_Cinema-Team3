@@ -4,7 +4,7 @@ GET         /                      controllers.HomeController.index
 
 GET         /listingGallery        controllers.GalleryController.listingGallery
 
-GET         /releaseGallery        controllers.ReleaseGalleryController.releaseGallery
+GET         /releaseGallery        controllers.GalleryController.releaseGallery
 
 
 #GET         /readAll               controllers.GalleryController.readAll

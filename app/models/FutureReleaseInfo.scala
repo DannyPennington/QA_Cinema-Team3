@@ -3,13 +3,13 @@ package models
 import play.api.libs.json.OFormat
 import reactivemongo.bson.BSONObjectID
 
-object FutureReleaseInfo {
+object FutureReleaseInfo{
   def apply(title: String,
             url: String
-           ) = new MovieInfo(BSONObjectID.generate(), title, url)
+           ) = new FutureReleaseInfo(BSONObjectID.generate(), title, url)
 }
 
-case class FutureReleaseInfo(
+case class FutureReleaseInfo (
                               _id: BSONObjectID,
                               title: String,
                               url: String,

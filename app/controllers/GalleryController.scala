@@ -25,6 +25,11 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Cu
     )
   }
 
+  def releaseGallery: Action[AnyContent] = Action.async {
+    mongoService.findFutureMovies().map(listOfMovieInfo =>
+      Ok(views.html.releaseGallery(listOfMovieInfo)))
+  }
+
 //  def create(): Action[AnyContent] = Action {
 //    mongoService.createUser(MovieInfo("hello","www.google.co.uk"))
 //    Ok(views.html.listingGallery())

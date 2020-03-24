@@ -15,12 +15,12 @@ import scala.concurrent.Future
 import javax.inject.Inject
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 
-@Singleton
-class ReleaseGalleryController @Inject()(cc: ControllerComponents, val mongoService: CurrentMovieMongoService) extends AbstractController(cc) {
-
-  def releaseGallery: Action[AnyContent] = Action.async {
-    mongoService.findFutureMovies().map(listOfMovieInfo =>
-      Ok(views.html.releaseGallery(listOfMovieInfo)))
-  }
-
-}
+//@Singleton
+//class ReleaseGalleryController @Inject()(cc: ControllerComponents, val mongoService: CurrentMovieMongoService) extends AbstractController(cc) {
+//
+//  def releaseGallery: Action[AnyContent] = Action.async {
+//    mongoService.findFutureMovies().map(listOfMovieInfo =>
+//      Ok(views.html.releaseGallery(listOfMovieInfo)))
+//  }
+//
+//}
