@@ -5,3 +5,4 @@ GET     /                           controllers.HomeController.index
 GET     /listingGallery             controllers.HomeController.listingGallery
 
 GET     /booking                    controllers.BookingController.booking
+POST    /booking                    controllers.BookingController.parseDetails
