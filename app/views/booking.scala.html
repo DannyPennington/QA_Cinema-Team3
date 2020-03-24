@@ -52,5 +52,24 @@
         </form>
     </div>
 
+    <div style="margin-left: 50px">
+        <script type="text/javascript">
+                var clicks = 0;
+                function clickPlus2() {
+                    clicks += 1;
+                    document.getElementById("clicks").innerHTML = clicks;
+                };
+                function clickMinus2() {
+                    if (clicks>0) {
+                        clicks -= 1;
+                        document.getElementById("clicks").innerHTML = clicks;
+                    }
+                };
+        </script>
+        <button type="button" onClick="clickPlus2()">+</button>
+        <p>Adults: <a id="clicks">0</a></p>
+        <button type="button" onClick="clickMinus2()">-</button>
+
+    </div>
 
 }
