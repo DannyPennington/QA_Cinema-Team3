@@ -2,4 +2,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /                           controllers.HomeController.index
 
-GET     /listingGallery             controllers.HomeController.listingGallery
+GET     /payment             controllers.payment.payment
