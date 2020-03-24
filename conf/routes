@@ -17,3 +17,5 @@ GET        /releaseGallery         controllers.ReleaseController.releaseGallery
 GET        /createRelease          controllers.ReleaseController.createRelease
 
 GET        /openingTimes           controllers.OpeningTime.opening
+
+POST    /booking                    controllers.BookingController.parseDetails
