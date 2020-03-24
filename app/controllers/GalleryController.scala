@@ -8,6 +8,9 @@ import models.MovieInfo
 import play.api.http.MimeTypes
 import play.api.mvc._
 import play.api.routing._
+import java.time._
+
+import reactivemongo.api.commands.WriteResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -24,6 +27,14 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Cu
       Ok(views.html.listingGallery(listOfMovieInfo))
     )
   }
+
+//  def create(): Action[AnyContent] = Action.async{
+//    val actors = List("Ana", "Bobby", "Charlie")
+//    val showtimes = List(LocalDateTime.now())
+//    val futureResult = mongoService.createUser(MovieInfo("Finding Dory", "Quentin Tarantino", actors,showtimes,"www.findingDory.com"))
+//
+//    futureResult.map(_ => Ok("User inserted"))
+//  }
 
   def releaseGallery: Action[AnyContent] = Action.async {
     mongoService.findFutureMovies().map(listOfMovieInfo =>

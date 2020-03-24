@@ -8,4 +8,4 @@ GET         /releaseGallery        controllers.GalleryController.releaseGallery
 
 
 #GET         /readAll               controllers.GalleryController.readAll
-#POST        /create                controllers.GalleryController.create
+GET        /create                controllers.GalleryController.create
