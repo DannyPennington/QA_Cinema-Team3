@@ -7,7 +7,7 @@ import play.api.mvc._
 class classifications @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   def classifications:Action[AnyContent] = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.classifications())
   }
 
 }
