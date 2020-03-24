@@ -15,7 +15,7 @@ import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMo
 import reactivemongo.api.commands.WriteResult
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class MongoService @Inject()(
+class CurrentMovieMongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 

@@ -13,7 +13,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
-class GalleryController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
+class GalleryController @Inject()(cc: ControllerComponents, val mongoService: CurrentMovieMongoService) extends AbstractController(cc) {
 
   def index:Action[AnyContent] = Action {
     Ok(views.html.index("Your new application is ready."))
