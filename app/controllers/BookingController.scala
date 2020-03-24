@@ -16,7 +16,8 @@ class BookingController@Inject()(cc: ControllerComponents, val mongoService: Mon
     val date = body.get("date").head
     val time = body.get("time").head
     val user = body.get("user").head
-    Ok(views.html.details(film,user,time,date))
+    val screen = body.get("screen_type").head
+    Ok(views.html.details(film,user,time,date,screen))
 
   }
 }
