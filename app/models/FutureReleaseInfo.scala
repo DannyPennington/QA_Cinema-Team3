@@ -15,11 +15,3 @@ case class FutureReleaseInfo (
                               url: String,
                             )
 
-//object JsonFormats {
-//
-//  import play.api.libs.json.Json
-//  import reactivemongo.play.json._
-//  import reactivemongo.play.json.collection.JSONCollection
-
-
-//}
