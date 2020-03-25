@@ -1,13 +1,17 @@
 package controllers
 
 import javax.inject.Inject
+import models.MovieInfo
 import play.api.mvc.{AbstractController, ControllerComponents}
 import play.api.mvc._
+
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
 
 class BookingController@Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
 
   def booking:Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
-    Ok(views.html.booking())
+    Ok(views.html.booking(currentMovieList))
   }
 
   def parseDetails:Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
@@ -21,6 +25,9 @@ class BookingController@Inject()(cc: ControllerComponents, val mongoService: Mon
     val children = body.get("childrenFinal").head
     val concession = body.get("concessionFinal").head
     Ok(views.html.details(film,user,time,date,screen,adult,children,concession))
+  }
 
+  def currentMovieList: List[MovieInfo] = {
+    Await.result(mongoService.findCurrentMovies(),Duration.Inf)
   }
 }
