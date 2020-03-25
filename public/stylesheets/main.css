@@ -1,3 +1,299 @@
-.inline-block {
+body {
+    background-color: white;
+    font-family: 'Lora', serif;
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+header {
+    padding: 30px 0px;
+    width: 100%;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-decoration: none !important;
+
+}
+
+
+header nav ul li {
+    border-right: 1px solid firebrick;
+    display: inline;
+    padding: 20px 20px;
+
+
+}
+
+header nav ul li:last-child {
+    border-right: none;
+
+
+}
+
+
+header li a {
+    color: white;
+    font-family: 'Courgette', cursive;
+    font-size: 1.5em;
+    color: navy;
+    text-decoration: none !important;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+
+}
+a{
+    text-decoration: none !important;
+}
+
+
+header li a:hover {
+    color: white;
+    font-size: 1.55em;
+    color: firebrick;
+    opacity: 0.8;
+
+
+}
+
+.icons {
+    text-align: right;
+    padding-right: 20px;
+}
+
+
+.escalator {
+    background-image: -webkit-gradient(linear,
+    left top, left bottom,
+    from(rgba(0, 0, 0, 0)),
+    to(rgba(0, 0, 0, 100))), url(/assets/images/escalator.jpg);
+    background-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    font-family: 'ZCOOL XiaoWei', serif;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+    border-top: none;
+    border-bottom: none;
+
+
+}
+
+.view_height {
+    min-height: 80vh;
+}
+
+.movie_pic {
+    background-image: -webkit-gradient(linear,
+    left top, left bottom,
+    from(rgba(0, 0, 0, 0)),
+    to(rgba(0, 0, 0, 70))), url(/assets/images/movie.png);
+    background-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/movie.png);
+    background-position-y: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: 'ZCOOL XiaoWei', serif;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+}
+
+.cinema_building {
+    background-image: -webkit-gradient(linear,
+    left top, left bottom,
+    from(rgba(0, 0, 0, 0)),
+    to(rgba(0, 0, 0, 70))), url(/assets/images/cinema.jpg);
+    background-image: linear-gradient(to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-family: 'ZCOOL XiaoWei', serif;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.para {
+    font-family: 'Courgette', cursive;
+    font-size: 1.5em;
+    text-align: center;
+    color: white;
+
+}
+
+.about_body {
+    max-width: 60%;
+}
+
+.title {
+    color: white;
+    font-size: 2.4em;
+
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+
+}
+
+.border {
+    height: 5px;
+    width: 120px;
+    background-color: white;
+
+}
+
+#about_section {
+    background-color: navy !important;
+}
+
+.box {
     display: inline-block;
+    width: 48%;
+    text-align: center;
+}
+
+
+.card {
+    max-width: 50%;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0px 0px 10px 0px;
+}
+
+.card img {
+    border-radius: 5px;
+}
+
+.cardHeader {
+    font-family: 'Old Standard TT', serif;
+    font-size: 1.7em;
+    text-align: center;
+
+}
+
+.para2 {
+    font-family: 'Courgette', cursive;
+    padding: 0px 10px 0px 10px !important;
+    font-size: 1.3em;
+    text-align: center;
+    color: dimgrey;
+
+}
+
+.allCards {
+    padding: 70px 0px;
+}
+
+.secondRowCard {
+    position: absolute;
+}
+
+#latest_releases {
+    margin: -32px 0px;
+    padding: 40px 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.5))),
+    url(/assets/images/filler.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/filler.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+footer {
+    padding-top: 50px;
+}
+
+footer ul {
+    list-style-type: none !important;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+
+
+    text-align: center;
+}
+
+footer ul li {
+    border-right: 1px solid firebrick;
+    display: inline;
+    padding: 20px 20px;
+
+}
+
+footer li a {
+    font-family: 'Courgette', cursive;
+    font-size: 1em;
+    color: navy;
+    text-decoration: none !important;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+footer li:last-child {
+    border-right: none;
+}
+
+footer li a:hover {
+    font-size: 1.05em;
+    color: firebrick;
+    opacity: 0.8;
+
+
+}
+
+.footerText {
+    color: navy;
+    text-align: center;
+    margin-top: 50px;
 }

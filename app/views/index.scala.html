@@ -1,7 +1,119 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Homepage") {
+    <div id="homepage">
+        <div class="container-fluid">
+            <section id="image_display" class="pt-5">
+                <div class="row view_height bg-danger">
+                    <div class=" col  text-center cinema_building py-lg-0 text-white">
+                        <h1 class="display-5">Unique</h1>
+                        <p class="lead text-white"> One of a kind; special; remarkable </p>
+                    </div>
+                    <div class=" col text-center escalator  py-lg-0 text-white ">
+                        <h1 class="display-5  ">Architecture</h1>
+                        <p class="lead text-white "> Offer the best cinematic experience </p>
+                    </div>
+                    <div class="col  text-center movie_pic   py-lg-0">
+                        <h1 class="display-5 text-white ">Quality Service</h1>
+                        <p class="lead text-white"> Quality service is our recipe. Expect the best. </p>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-    @message
+        <section id="about_section" class="py-5">
+            <h1 class="title"> About </h1>
+            <center>
+                <div class="border"></div>
+            </center>
+            <center>
+                <div class="about_body" style="padding: 40px 0px">
+                    <p class="para">
+                        Welcoming over 200 million guests each year, QA cinema is Europe's largest cinema group having over 500 cinemas around Europe. We aim to create an amazing and inspiring cinematic experience for visitors.
+                        <br />
+                        ..............................................................................................................
+                        <br />
+                        <br />
+                        <br />
+                        We provide a variety of up-to-date films with different classifications to choose from which are shown on different screens and also make available huge space for parking. Also, bookings can be made. Our values are centered around trust, fun, quality service and accountability.
+                        <br />
+                        ..............................................................................................................
+                        <br />
+                    </p>
+
+                </div>
+            </center>
+        </section>
+
+        <section id="latest_releases" class="py-5" >
+            <h1 class="title">Latest releases</h1>
+            <center>
+                <div class="border"></div>
+            </center>
+            <div class="allCards">
+                <div class="box ">
+                    <center>
+                        <div class="card">
+                            <img src="@routes.Assets.versioned("images/Findingdory.jpg")" alt="finding Dory image" width="100%">
+                            <div style="border-bottom: 1px solid black">
+                                <h1 class="cardHeader"> Finding Dory </h1>
+                            </div>
+                            <center>
+                                <p class="para2 mt-2">
+                                    Starring Ellen DeGeneres and Ty Burrell </p>
+                            </center>
+                        </div>
+                    </center>
+                </div>
+                <div class="box secondRowCard">
+                    <center>
+                        <div class="card">
+                            <img src="@routes.Assets.versioned("images/bloodshot.jpg")" alt="Bloodshot image" width="100%">
+                            <div style="border-bottom: 1px solid black">
+                                <h1 class="cardHeader"> Bloodshot </h1>
+                            </div>
+                            <center>
+                                <p class="para2 mt-2">
+                                    Starring Vin Diesel and Eiza González </p>
+                            </center>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <div class="allCards">
+                <div class="box">
+                    <center>
+                        <div class="card">
+                            <img src="@routes.Assets.versioned("images/Dolittle.png")" alt="Dolittle image" width="100%">
+                            <div style="border-bottom: 1px solid black">
+                                <h1 class="cardHeader"> Dolittle </h1>
+                            </div>
+                            <center>
+                                <p class="para2 mt-2">
+                                    Starring Robert Downey, Jr. and Tom Holland
+                                </p>
+                            </center>
+                        </div>
+                    </center>
+                </div>
+                <div class="box secondRowCard">
+                    <center>
+                        <div class="card">
+                            <img src="@routes.Assets.versioned("images/TheWayBack.jpeg")" alt="The way back image" width="100%">
+                            <div style="border-bottom: 1px solid black">
+                                <h1 class="cardHeader"> The way back </h1>
+                            </div>
+                            <center>
+                                <p class="para2 mt-2">
+                                    Starring  Ben Affleck and Janina Gavankar
+                                </p>
+                            </center>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </section>
+    </div>
+
 
 }
