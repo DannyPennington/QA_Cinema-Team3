@@ -15,7 +15,7 @@ header nav ul {
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
-    text-decoration: none !important;
+    text-decoration: none;
 
 }
 
@@ -40,7 +40,7 @@ header li a {
     font-family: 'Courgette', cursive;
     font-size: 1.5em;
     color: navy;
-    text-decoration: none !important;
+    text-decoration: none;
     -webkit-transition: 0.1s;
     transition: 0.1s;
 
@@ -73,6 +73,16 @@ header li a:hover {
     background-image: linear-gradient(to bottom,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0),
+rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0),
+rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -113,6 +123,15 @@ header li a:hover {
     background-image: linear-gradient(to bottom,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 70)), url(/assets/images/movie.png);
+    background-image: -moz-linear-gradient( top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/movie.png); /* FF3.6+ */
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/movie.png); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/movie.png); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/movie.png);
     background-position-y: center;
     background-size: cover;
     background-attachment: fixed;
@@ -142,6 +161,18 @@ header li a:hover {
     background-image: linear-gradient(to bottom,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+
+    background-image: -moz-linear-gradient(top,rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+
+    background-image: -webkit-linear-gradient(top,rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+    background-image: -o-linear-gradient(top,rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+    background-image: -ms-linear-gradient(top,rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 70)), url(/assets/images/cinema.jpg);
+
+
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -191,7 +222,7 @@ header li a:hover {
 }
 
 #about_section {
-    background-color: navy !important;
+    background-color: navy;
 }
 
 .box {
@@ -223,7 +254,7 @@ header li a:hover {
 
 .para2 {
     font-family: 'Courgette', cursive;
-    padding: 0px 10px 0px 10px !important;
+    padding: 0px 10px 0px 10px;
     font-size: 1.3em;
     text-align: center;
     color: dimgrey;
@@ -245,6 +276,15 @@ header li a:hover {
     url(/assets/images/filler.jpeg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
     url(/assets/images/filler.jpeg);
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/filler.jpeg);
+    background-image: -o-linear-gradient( top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/filler.jpeg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/filler.jpeg);
+    background-image: -moz-linear-gradient(top,rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/filler.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -256,12 +296,10 @@ footer {
 }
 
 footer ul {
-    list-style-type: none !important;
+    list-style-type: none;
     margin: 0 auto;
     padding-left: 0;
     padding-right: 0;
-
-
     text-align: center;
 }
 
@@ -276,7 +314,7 @@ footer li a {
     font-family: 'Courgette', cursive;
     font-size: 1em;
     color: navy;
-    text-decoration: none !important;
+    text-decoration: none;
     -webkit-transition: 0.1s;
     transition: 0.1s;
 }
