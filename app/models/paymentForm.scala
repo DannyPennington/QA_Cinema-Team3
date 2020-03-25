@@ -18,14 +18,6 @@ object paymentForm
     )(paymentForm.apply)(paymentForm.unapply)
   )
 
-  object JsonFormats {
-
-    import play.api.libs.json.Json
-    import reactivemongo.play.json._
-    import reactivemongo.play.json.collection.JSONCollection
-
-    implicit val paymentFormat: OFormat[paymentForm] = Json.format[paymentForm]
-  }
 
 
 }
