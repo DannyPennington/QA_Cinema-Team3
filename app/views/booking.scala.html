@@ -1,8 +1,6 @@
 @()
 
 @main("Booking") {
-    <h1 style="background-color: lightblue; font-family: Verdana">*Placeholder for nav bar*</h1> <br>
-
     <div style="font-family: Verdana">
         <h2>
             Booking time
@@ -10,7 +8,7 @@
         <br> <br>
     </div>
 
-    <form id="booking" name="booking" action="/booking" method="post">
+    <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
             <select id="film" name="film">
