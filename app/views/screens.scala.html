@@ -1,0 +1,43 @@
+@()
+
+@main("Screen information") {
+    <h1 style="background-color: lightblue; font-family: Verdana">*Placeholder for nav bar*</h1> <br><br>
+    <div style="font-family: Verdana">
+        <h2>
+            Screen information
+        </h2>
+        <p>
+            Here at QA cinema we deliver only the best of cinema experiences. That's why we offer two kinds of screen for your viewing pleasure
+        </p>
+    </div>
+
+    <h2>
+        Standard:
+    </h2>
+    <div id="standard-screens" style="overflow: hidden; display: inline-block">
+        <div class="inline-block">
+            <img src="@routes.Assets.versioned("images/standard_seating_plan.jpg")" alt="Standard seating plan" width="502" height="300" style="margin-left:200px">
+        </div>
+        <div class="inline-block">
+            <img src="@routes.Assets.versioned("images/standard_cinema_deco.jpg")" alt="Standard decor " width="502" height="300" style="margin-left:200px">
+        </div>
+    </div>
+    <p style="margin-left:150px; font-family: Verdana">
+        Here's some info about these sweet screens, they are seriously sweet. I mean, look at that - wow. Amazing screens, really, really great. These are the only screens I ever use. Perfect
+    </p>
+    <br>
+    <h2>
+        Deluxe:
+    </h2>
+    <div id="deluxe-screens" style="overflow: hidden; display: inline-block">
+        <div class="inline-block">
+            <img src="@routes.Assets.versioned("images/deluxe_seating_plan.jpg")" alt="Deluxe seating plan" width="502" height="300" style="margin-left:200px">
+        </div>
+        <div class="inline-block">
+            <img src="@routes.Assets.versioned("images/deluxe_cinema_deco.jfif")" alt="Deluxe decor " width="502" height="300" style="margin-left:200px">
+        </div>
+    </div>
+    <p style="margin-left:150px; font-family: Verdana">
+        And if you weren't impressed before, check out these puppies. Oh my they are quite something. Fully reclining seats, 24/7 chair service with full open bar.
+    </p>
+}
