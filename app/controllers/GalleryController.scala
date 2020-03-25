@@ -28,22 +28,14 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Cu
     )
   }
 
-//  def create(): Action[AnyContent] = Action.async{
-//    val actors = List("Ana", "Bobby", "Charlie")
-//    val showtimes = List(LocalDateTime.now())
-//    val futureResult = mongoService.createUser(MovieInfo("Finding Dory", "Quentin Tarantino", actors,showtimes,"www.findingDory.com"))
-//
-//    futureResult.map(_ => Ok("User inserted"))
-//  }
-
+  def create(): Action[AnyContent] = Action.async {
+    val actors = List("Derek", "Edna", "Freddy")
+    val showtimes = List(LocalDateTime.now().toString, LocalDateTime.now().toString)
+    val futureResult = mongoService.createUser(MovieInfo("Lord of the Necklaces", "Boris Johnson", actors, showtimes, "www.banter.com"))
+  }
   def releaseGallery: Action[AnyContent] = Action.async {
     mongoService.findFutureMovies().map(listOfMovieInfo =>
       Ok(views.html.releaseGallery(listOfMovieInfo)))
   }
-
-//  def create(): Action[AnyContent] = Action {
-//    mongoService.createUser(MovieInfo("hello","www.google.co.uk"))
-//    Ok(views.html.listingGallery())
-//  }
 
 }
