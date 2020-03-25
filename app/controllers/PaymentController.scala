@@ -2,6 +2,9 @@ package controllers
 
 import javax.inject._
 import models.paymentForm
+import models.JsonFormats
+import scala.concurrent.ExecutionContext.Implicits.global
+
 import play.api.mvc._
 import scala.concurrent.{Await, ExecutionContext, Future}
 
@@ -14,6 +17,23 @@ class PaymentController @Inject()(cc: ControllerComponents, val mongoService: Mo
     implicit request: Request[AnyContent] =>
       Ok(views.html.payment(paymentForm.payments))
   }
+
+
+  def createPayment(name: String, number: String, expDate :String, cvc :String): Action[AnyContent] = Action.async {
+    val futureResult = mongoService.createPayment(paymentForm(name, number, expDate, cvc))
+    futureResult.map(_ => Ok("Payment created"))
+  }
+
+
+//  def createPayment( name :String, number :String, expDate :String, cvc :String )
+//  :Action[AnyContent] = Action.async { implicit request :Request[AnyContent] =>
+//
+//    val payment = JsonFormats(name, number, expDate, cvc)
+//
+//    val futureResult = paymentCollection().map(_.insert.one(payment))
+//    futureResult.map( _ => Ok("submitted") )
+//  }
+//}
 
 //
 //  def createSong = Action.async { implicit request: Request[AnyContent] =>
