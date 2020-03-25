@@ -4,5 +4,5 @@ GET     /                           controllers.HomeController.index
 
 GET     /listingGallery             controllers.HomeController.listingGallery
 
-GET     /classifications             controllers.classifications.classifications
+GET     /classifications             controllers.classifications.createClassifications
 

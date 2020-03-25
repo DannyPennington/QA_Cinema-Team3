@@ -6,7 +6,7 @@ import play.api.mvc._
 @Singleton
 class classifications @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
-  def classifications:Action[AnyContent] = Action {
+  def createClassifications:Action[AnyContent] = Action {
     Ok(views.html.classifications())
   }
 
