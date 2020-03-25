@@ -1,6 +1,8 @@
 package controllers
 
 import javax.inject.Inject
+import models.JsonFormats._
+import models.{FutureReleaseInfo, MovieInfo}
 import play.api.libs.json.Json
 import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.Cursor
@@ -15,26 +17,46 @@ class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
-  //  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("persons"))
+  def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
+  def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
+
+  def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
+    currentCollection.flatMap(_.insert.one(movieInfo))
+  }
 
 
+  def findCurrentMovies(): Future[List[MovieInfo]] = {
+    currentCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[MovieInfo]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[MovieInfo]]()
+      )
+    )
+  }
 
-//  def createUser(user: User): Future[WriteResult] = {
-//    collection.flatMap(_.insert.one(user))
-//  }
-//
-//  def findAll(): Future[List[User]] = {
-//    collection.map {
-//      _.find(Json.obj())
-//        .sort(Json.obj("created" -> -1))
-//        .cursor[User]()
-//    }.flatMap(
-//      _.collect[List](
-//        -1,
-//        Cursor.FailOnError[List[User]]()
-//      )
-//    )
-//  }
+
+  def createFuture(futureReleaseInfo: FutureReleaseInfo): Future[WriteResult] = {
+    releaseCollection.flatMap(_.insert.one(futureReleaseInfo))
+  }
+
+
+  def findFutureMovies(): Future[List[FutureReleaseInfo]] = {
+    releaseCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[FutureReleaseInfo]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[FutureReleaseInfo]]()
+      )
+    )
+  }
+
 //
 //  def doesNotExist(username: String): Future[Boolean] = {
 //    findByUsername(username).map(user => user.isEmpty)
