@@ -14,7 +14,7 @@ object paymentForm
       "name" -> nonEmptyText,
       "number" -> nonEmptyText,
       "expDate" -> nonEmptyText,
-      "cvc" -> nonEmptyText,
+      "cvc" -> nonEmptyText
     )(paymentForm.apply)(paymentForm.unapply)
   )
 
