@@ -1,0 +1,7 @@
+@(movieInfo: MovieInfo)
+
+@main("Movie") {
+    @movieInfo.title
+    @movieInfo.director
+    <img src="@movieInfo.url" alt="poster">
+}

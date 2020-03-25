@@ -57,6 +57,26 @@ class MongoService @Inject()(
     )
   }
 
+    def findByTitle(title: String): Future[List[MovieInfo]] =  {
+      val cursor: Future[Cursor[MovieInfo]] = currentCollection.map {
+        _.find(Json.obj("title" -> title)).
+          sort(Json.obj("created" -> -1)).
+          cursor[MovieInfo]()
+      }
+
+      val futureUsersList: Future[List[MovieInfo]] =
+        cursor.flatMap(
+          _.collect[List](
+            -1,
+            Cursor.FailOnError[List[MovieInfo]]()
+          )
+        )
+
+      futureUsersList
+    }
+
+
+
 //
 //  def doesNotExist(username: String): Future[Boolean] = {
 //    findByUsername(username).map(user => user.isEmpty)
@@ -74,21 +94,5 @@ class MongoService @Inject()(
 //    }
 //  }
 //
-//  def findByUsername(username: String): Future[List[User]] =  {
-//    val cursor: Future[Cursor[User]] = collection.map {
-//      _.find(Json.obj("username" -> username)).
-//        sort(Json.obj("created" -> -1)).
-//        cursor[User]()
-//    }
-//
-//    val futureUsersList: Future[List[User]] =
-//      cursor.flatMap(
-//        _.collect[List](
-//          -1,
-//          Cursor.FailOnError[List[User]]()
-//        )
-//      )
-//
-//    futureUsersList
-//  }
+
 }
