@@ -6,21 +6,22 @@
     @for(movieInfo <- movieInfos) {
         <div onclick="window.location.href='@routes.MovieController.movie(movieInfo.title)';">
             <h4>@movieInfo.title</h4>
-            <img src="@{movieInfo.url}" alt="poster">
-            <h5>Director: @movieInfo.director</h5>
-            <h5>Actors: </h5>
-            <ul>
-                @for(actor <- movieInfo.actors) {
-                    <li>@actor</li>
-                }
-            </ul>
+            <img src="@{movieInfo.url}" alt="poster" style="width: 236px;
+                height: 350px;">
+@*            <h5>Director: @movieInfo.director</h5>*@
+@*            <h5>Actors: </h5>*@
+@*            <ul>*@
+@*                @for(actor <- movieInfo.actors) {*@
+@*                    <li>@actor</li>*@
+@*                }*@
+@*            </ul>*@
 
-            <h5>Show Times: </h5>
-            <ul>
-            @for(showTime <- movieInfo.showTimes) {
-                <li>@showTime</li>
-            }
-            </ul>
+@*            <h5>Show Times: </h5>*@
+@*            <ul>*@
+@*            @for(showTime <- movieInfo.showTimes) {*@
+@*                <li>@showTime</li>*@
+@*            }*@
+@*            </ul>*@
 
         </div>
     }
