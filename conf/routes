@@ -1,11 +1,8 @@
-GET         /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)
+GET        /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)
 
-GET         /                      controllers.HomeController.index
+GET        /                      controllers.HomeController.index
 
-GET         /listingGallery        controllers.GalleryController.listingGallery
-
-GET         /releaseGallery        controllers.GalleryController.releaseGallery
-
-
-#GET         /readAll               controllers.GalleryController.readAll
-GET        /create                controllers.GalleryController.create
+GET        /listingGallery        controllers.GalleryController.listingGallery
+GET        /releaseGallery        controllers.GalleryController.releaseGallery
+GET        /createMovie           controllers.GalleryController.createMovie
+GET        /createRelease         controllers.GalleryController.createRelease

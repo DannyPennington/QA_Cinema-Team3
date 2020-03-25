@@ -6,7 +6,7 @@
     @for(movieInfo <- movieInfos) {
         <div>
             <h4>@movieInfo.title</h4>
-            <img src="@movieInfo.url" alt="">
+            <img src="@{movieInfo.url}" alt="poster">
             <h5>Director: @movieInfo.director</h5>
             <h5>Actors: </h5>
             <ul>

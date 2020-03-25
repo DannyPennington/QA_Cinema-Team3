@@ -5,13 +5,18 @@ import reactivemongo.bson.BSONObjectID
 
 object FutureReleaseInfo{
   def apply(title: String,
-            url: String
-           ) = new FutureReleaseInfo(BSONObjectID.generate(), title, url)
+            director: String,
+            actors: List[String],
+            releaseDate: String,
+            url: String) = new FutureReleaseInfo(BSONObjectID.generate(), title, director, actors, releaseDate, url)
 }
 
 case class FutureReleaseInfo (
-                              _id: BSONObjectID,
-                              title: String,
-                              url: String,
+                               _id: BSONObjectID,
+                               title: String,
+                               director: String,
+                               actors: List[String],
+                               releaseDate: String,
+                               url: String
                             )
 

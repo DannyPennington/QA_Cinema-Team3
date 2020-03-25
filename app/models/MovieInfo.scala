@@ -19,13 +19,3 @@ case class MovieInfo(
                       showTimes: List[String],
                       url: String
                     )
-
-object JsonFormats {
-
-  import play.api.libs.json.Json
-  import reactivemongo.play.json._
-  import reactivemongo.play.json.collection.JSONCollection
-
-
-  implicit val movieInfoFormat: OFormat[MovieInfo] = Json.format[MovieInfo]
-}

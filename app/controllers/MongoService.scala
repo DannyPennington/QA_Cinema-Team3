@@ -16,7 +16,7 @@ import reactivemongo.api.commands.WriteResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class CurrentMovieMongoService @Inject()(
+class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
@@ -40,6 +40,7 @@ class CurrentMovieMongoService @Inject()(
       )
     )
   }
+
 
   def createFuture(futureReleaseInfo: FutureReleaseInfo): Future[WriteResult] = {
     releaseCollection.flatMap(_.insert.one(futureReleaseInfo))
