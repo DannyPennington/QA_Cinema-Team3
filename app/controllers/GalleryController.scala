@@ -23,15 +23,4 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Mo
     val futureResult = mongoService.createMovie(MovieInfo("Distant Sun Wars", "Lord Voldemort", actors, showtimes, "https://i.pinimg.com/originals/dd/c4/1a/ddc41ad6bb9725d050cbcd08984c5fa1.jpg"))
     Ok("Movie created")
   }
-
-  def releaseGallery(): Action[AnyContent] = Action.async {
-    mongoService.findFutureMovies().map(listOfMovieInfo =>
-      Ok(views.html.releaseGallery(listOfMovieInfo)))
-  }
-
-  def createRelease(): Action[AnyContent] = Action {
-    val actors = List("Mongo", "Noobs", "Orange")
-    val futureResult = mongoService.createFuture(FutureReleaseInfo("Kingsman III", "Me", actors, "22/04/2020", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Heraldic_Royal_Crown_of_the_King_of_the_Romans_%281486-c.1700%29.svg/1200px-Heraldic_Royal_Crown_of_the_King_of_the_Romans_%281486-c.1700%29.svg.png"))
-    Ok("Future created")
-  }
 }
