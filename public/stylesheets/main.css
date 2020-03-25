@@ -391,6 +391,6 @@ label {
 .sub:hover {
     background-color: #45a049;
 }
-label {
+label, select {
     font-family: 'Lora', serif
 }
