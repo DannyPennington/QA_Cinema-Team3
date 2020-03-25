@@ -391,3 +391,6 @@ label {
 .sub:hover {
     background-color: #45a049;
 }
+label {
+    font-family: 'Lora', serif
+}
