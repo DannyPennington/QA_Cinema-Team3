@@ -2,8 +2,8 @@ GET        /assets/*file          controllers.Assets.versioned(path="/public", f
 
 GET        /                      controllers.HomeController.index
 
-GET        /listingGallery        controllers.GalleryController.listingGallery
-GET        /createMovie           controllers.GalleryController.createMovie
+GET        /listingGallery        controllers.ListingController.listingGallery
+GET        /createMovie           controllers.ListingController.createMovie
 
 GET        /releaseGallery        controllers.ReleaseController.releaseGallery
 GET        /createRelease         controllers.ReleaseController.createRelease
