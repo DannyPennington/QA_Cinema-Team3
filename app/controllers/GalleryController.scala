@@ -1,19 +1,12 @@
 package controllers
 
-import javax.inject._
-import play.api.mvc._
-import play.api.routing.JavaScriptReverseRouter
-import javax.inject.Inject
-import models.{FutureReleaseInfo, MovieInfo}
-import play.api.http.MimeTypes
-import play.api.mvc._
-import play.api.routing._
 import java.time._
 
-import reactivemongo.api.commands.WriteResult
+import javax.inject.{Inject, _}
+import models.{FutureReleaseInfo, MovieInfo}
+import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 
 @Singleton
 class GalleryController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {

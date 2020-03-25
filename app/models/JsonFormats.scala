@@ -8,6 +8,7 @@ object JsonFormats {
   import reactivemongo.play.json._
   import reactivemongo.play.json.collection.JSONCollection
 
+
   implicit val movieInfoFormat: OFormat[MovieInfo] = Json.format[MovieInfo]
   implicit val futureReleaseInfoFormat: OFormat[FutureReleaseInfo] = Json.format[FutureReleaseInfo]
 
