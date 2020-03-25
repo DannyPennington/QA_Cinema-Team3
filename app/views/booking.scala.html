@@ -1,4 +1,4 @@
-@(currentMovieList:List[MovieInfo])
+@(currentMovieList:List[MovieInfo])(implicit request: Request[AnyContent])
 
 @main("Booking") {
     <div style="margin-left: 50px; margin-top: 50px">
@@ -35,14 +35,17 @@
             <span class="checkmark"></span>
         </label>
     </div>
-
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
-            <select id="time" name="time">
-                <option value="time1">time1</option>
-                <option value="time2">time2</option>
-                <option value="time3">time3</option>
-                <option value="time4">time4</option>
+            <select id="time" name="time" onclick="getFilm()">
+                @{for(film <- currentMovieList) {
+                    if(film.title.contains(request.session.get("selectedFilm").getOrElse(""))) {
+                        for(time <- film.showTimes) {
+                                <option value="@times">@time</option>
+                        }
+                    } else {}
+                }
+                }
             </select>
     </div>
 
@@ -86,6 +89,10 @@
     </form>
 
     <script type="text/javascript">
+            function getFilm() {
+                sessionStorage.setItem("selectedFilm",document.getElementById("film").value)
+            }
+
             var adults = 0;
             var children = 0;
             var concession = 0;
