@@ -1,4 +1,4 @@
-@()
+@(currentMovieList:List[MovieInfo])
 
 @main("Booking") {
     <div style="margin-left: 50px; margin-top: 50px">
@@ -12,10 +12,9 @@
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
             <select id="film" name="film" style="margin-left: 50px">
-                <option value="FILM_TITLE-1">FILM_TITLE-1</option>
-                <option value="FILM_TITLE-2">FILM_TITLE-2</option>
-                <option value="FILM_TITLE-3">FILM_TITLE-3</option>
-                <option value="FILM_TITLE-4">FILM_TITLE-4</option>
+                @for(film <- currentMovieList) {
+                    <option value="@film.title">@film.title</option>
+                }
             </select>
     </div>
 
