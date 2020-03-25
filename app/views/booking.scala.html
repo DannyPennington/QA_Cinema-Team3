@@ -1,7 +1,7 @@
 @()
 
 @main("Booking") {
-    <div style="font-family: Verdana">
+    <div style="margin-left: 50px; margin-top: 50px">
         <h2>
             Booking time
         </h2>
@@ -11,7 +11,7 @@
     <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
-            <select id="film" name="film">
+            <select id="film" name="film" style="margin-left: 50px">
                 <option value="FILM_TITLE-1">FILM_TITLE-1</option>
                 <option value="FILM_TITLE-2">FILM_TITLE-2</option>
                 <option value="FILM_TITLE-3">FILM_TITLE-3</option>
@@ -19,8 +19,8 @@
             </select>
     </div>
 
-    <div style="padding-bottom: 18px; margin-left: 50px; font-family: Verdana">Showing date<span style="color: red;"> *</span><br/>
-        <input type="text" id="date" name="date" style="width : 250px;" class="form-control"/>
+    <div style="padding-bottom: 18px; margin-left: 50px;">Showing date<span style="color: red;"> *</span><br/>
+        <input type="text" id="date" name="date" style="width: 250px" class="form-control"/>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.4.0/pikaday.min.js" type="text/javascript"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.4.0/css/pikaday.min.css" rel="stylesheet" type="text/css" />
@@ -28,11 +28,11 @@
 
     <div style="margin-left: 50px">
         <label class="container">Standard
-            <input type="radio" id="standard" value="standard" checked="checked" name="screen_type">
+            <input type="radio" id="standard" value="Standard" checked="checked" name="screen_type">
             <span class="checkmark"></span>
         </label>
         <label class="container">Deluxe
-            <input type="radio" id="deluxe" value="deluxe" checked="checked" name="screen_type">
+            <input type="radio" id="deluxe" value="Deluxe" checked="checked" name="screen_type">
             <span class="checkmark"></span>
         </label>
     </div>
