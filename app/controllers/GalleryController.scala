@@ -17,10 +17,10 @@ class GalleryController @Inject()(cc: ControllerComponents, val mongoService: Mo
     )
   }
 
-  def createMovie(): Action[AnyContent] = Action {
+  def createMovie(): Action[AnyContent] = Action.async {
     val actors = List("James", "Karen", "Ligma")
     val showtimes = List(LocalDateTime.now().toString, LocalDateTime.now().toString)
     val futureResult = mongoService.createMovie(MovieInfo("Distant Sun Wars", "Lord Voldemort", actors, showtimes, "https://i.pinimg.com/originals/dd/c4/1a/ddc41ad6bb9725d050cbcd08984c5fa1.jpg"))
-    Ok("Movie created")
+    futureResult.map(_ => Ok("Movie created"))
   }
 }
