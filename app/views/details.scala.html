@@ -1,20 +1,18 @@
 @(film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)
 
-@main("Details") {
-    <h1 style="background-color: lightblue; font-family: Verdana">*Placeholder for nav bar*</h1> <br>
-
-    <div style="font-family: Verdana">
+@main("Booking details") {
+    <div style="margin-left: 50px; margin-top: 50px">
         <h2>
             Booking information
         </h2>
         <br>
+        Name: @name <br> <br>
+        Film: @film <br> <br>
+        Showtime: @time <br> <br>
+        Date: @date <br> <br>
+        Screen type: @screen <br> <br>
+        Adults: @adult <br> <br>
+        Children: @children <br> <br>
+        Concession: @concession <br> <br>
     </div>
-    Name: @name <br> <br>
-    Film: @film <br> <br>
-    Showtime: @time <br> <br>
-    Date: @date <br> <br>
-    Screen type: @screen <br> <br>
-    Adults: @adult <br> <br>
-    Children: @children <br> <br>
-    Concession: @concession <br> <br>
 }
