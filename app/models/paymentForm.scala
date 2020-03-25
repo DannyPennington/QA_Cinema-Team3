@@ -4,16 +4,17 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.json.OFormat
 
-case class paymentForm( name :String, number :Int, expDate :Int, cvc :Int )
+
+case class paymentForm(name :String, number :String, expDate :String, cvc :String )
 
 object paymentForm
 {
-  val payform :Form[paymentForm] = Form(
+  val payments : Form[paymentForm] = Form(
     mapping(
       "name" -> nonEmptyText,
-      "number" -> number,
-      "expDate" -> number,
-      "cvc" -> number
+      "number" -> nonEmptyText,
+      "expDate" -> nonEmptyText,
+      "cvc" -> nonEmptyText,
     )(paymentForm.apply)(paymentForm.unapply)
   )
 
@@ -23,7 +24,8 @@ object paymentForm
     import reactivemongo.play.json._
     import reactivemongo.play.json.collection.JSONCollection
 
-    implicit val paymentInfoFormat: OFormat[paymentForm] = Json.format[paymentForm]
+    implicit val paymentFormat: OFormat[paymentForm] = Json.format[paymentForm]
   }
+
 
 }
