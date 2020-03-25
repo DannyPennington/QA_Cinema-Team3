@@ -1,11 +1,14 @@
 @(movieInfo: MovieInfo)
 
 @main("Movie") {
-    <div class="row">
-        <div style="text-align: center;" class="col-6">
-            <img src="@{movieInfo.url}" alt="poster" style="width:200px;height:350px;">
+    <div class="row justify-content-center">
+        <div class="card">
+            <img src="@{
+                movieInfo.url
+            }" alt="poster" style="width: 236px;
+                height: 350px;">
         </div>
-        <div style="text-align: center;" class="col-6">
+        <div class="card">
             <h4>@movieInfo.title</h4>
             <h5>Director: @movieInfo.director</h5>
             <h5>Actors: </h5>
