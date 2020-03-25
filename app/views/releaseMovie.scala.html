@@ -1,0 +1,20 @@
+@(futureReleaseInfo: FutureReleaseInfo)
+
+@main("Movie") {
+    <div class="row">
+        <div style="text-align: center;" class="col-6">
+            <img src="@{futureReleaseInfo.url}" alt="poster" style="width:200px;height:350px;">
+        </div>
+        <div style="text-align: center;" class="col-6">
+            <h4>@futureReleaseInfo.title</h4>
+            <h5>Director: @futureReleaseInfo.director</h5>
+            <h5>Actors: </h5>
+            <ul>
+            @for(actor <- futureReleaseInfo.actors) {
+                <li>@actor</li>
+            }
+            </ul>
+            <h5>Release Date: @futureReleaseInfo.releaseDate</h5>
+        </div>
+    </div>
+}

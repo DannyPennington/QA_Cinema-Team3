@@ -1,7 +1,26 @@
 @(movieInfo: MovieInfo)
 
 @main("Movie") {
-    @movieInfo.title
-    @movieInfo.director
-    <img src="@movieInfo.url" alt="poster">
+    <div class="row">
+        <div style="text-align: center;" class="col-6">
+            <img src="@{movieInfo.url}" alt="poster" style="width:200px;height:350px;">
+        </div>
+        <div style="text-align: center;" class="col-6">
+            <h4>@movieInfo.title</h4>
+            <h5>Director: @movieInfo.director</h5>
+            <h5>Actors: </h5>
+            <ul>
+            @for(actor <- movieInfo.actors) {
+                <li>@actor</li>
+            }
+            </ul>
+
+            <h5>Show Times: </h5>
+            <ul>
+            @for(showTime <- movieInfo.showTimes) {
+                <li>@showTime</li>
+            }
+            </ul>
+        </div>
+    </div>
 }

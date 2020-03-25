@@ -75,6 +75,24 @@ class MongoService @Inject()(
       futureUsersList
     }
 
+  def findByFutureTitle(title: String): Future[List[FutureReleaseInfo]] =  {
+    val cursor: Future[Cursor[FutureReleaseInfo]] = releaseCollection.map {
+      _.find(Json.obj("title" -> title)).
+        sort(Json.obj("created" -> -1)).
+        cursor[FutureReleaseInfo]()
+    }
+
+    val futureUsersList: Future[List[FutureReleaseInfo]] =
+      cursor.flatMap(
+        _.collect[List](
+          -1,
+          Cursor.FailOnError[List[FutureReleaseInfo]]()
+        )
+      )
+
+    futureUsersList
+  }
+
 
 
 //
