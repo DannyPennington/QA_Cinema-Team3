@@ -10,7 +10,7 @@
         <br> <br>
     </div>
 
-    <form action="/booking" method="post">
+    <form id="booking" action="/">
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
             <select id="film" name="film">
@@ -56,13 +56,13 @@
                 function clickPlus() {
                     adults += 1;
                     document.getElementById("adults").innerHTML = adults;
-                };
+                }
                 function clickMinus() {
                     if (adults>0) {
                         adults -= 1;
                         document.getElementById("adults").innerHTML = adults;
                     }
-                };
+                }
             </script>
             <button style="margin-left: 25px" type="button" onClick="clickPlus()">+</button>
             <p>Adults: <a id="adults">0</a></p>
@@ -111,7 +111,9 @@
         <input type="text" id="user" name="user" placeholder="Your name here">
     </div>
 
+
     <div>
+        <input type="hidden" name="adults" id="adults" value="">
         <input type="submit" value="Proceed to payment" class="sub">
     </div>
     </form>
