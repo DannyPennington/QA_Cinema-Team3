@@ -2,9 +2,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /                           controllers.HomeController.index
 
-GET     /listingGallery             controllers.HomeController.listingGallery
-
-GET     /booking                    controllers.BookingController.booking
 GET        /screens                controllers.ScreensController.screens
 
 GET        /classifications        controllers.ClassificationsController.classifications
@@ -18,6 +15,8 @@ GET        /createRelease          controllers.ReleaseController.createRelease
 
 GET        /openingTimes           controllers.OpeningController.opening
 
-POST    /booking                    controllers.BookingController.parseDetails
+GET        /booking                     controllers.BookingController.booking
+POST       /booking                     controllers.BookingController.parseDetails
+
 GET        /movie                  controllers.MovieController.movie(title: String)
 GET        /release                controllers.FutureMovieController.movie(title: String)
