@@ -11,7 +11,7 @@
     <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
-            <select id="film" name="film" style="margin-left: 50px">
+            <select id="film" name="film" style="margin-left: 50px" onchange="getFilm()">
                 @for(film <- currentMovieList) {
                     <option value="@film.title">@film.title</option>
                 }
@@ -38,14 +38,13 @@
 
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
-            <select id="time" name="time" onclick="getFilm()" style="margin-left: 50px">
+            <select id="time" name="time" style="margin-left: 50px">
                 @for(film <- currentMovieList) {
-                    @if(film.title == request.session.get("selectedFilm").getOrElse("")) {
+                    @if(film.title.contains(request.session.get("selectedFilm").getOrElse(""))) {
                         @for(time <- film.showTimes) {
                                 <option value="@time">@time</option>
                         }
                 }}
-
             </select>
     </div>
 
