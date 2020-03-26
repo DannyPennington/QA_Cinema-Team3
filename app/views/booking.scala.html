@@ -35,17 +35,17 @@
             <span class="checkmark"></span>
         </label>
     </div>
+
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
-            <select id="time" name="time" onclick="getFilm()">
-                @{for(film <- currentMovieList) {
-                    if(film.title.contains(request.session.get("selectedFilm").getOrElse(""))) {
-                        for(time <- film.showTimes) {
-                                <option value="@times">@time</option>
+            <select id="time" name="time" onclick="getFilm()" style="margin-left: 50px">
+                @for(film <- currentMovieList) {
+                    @if(film.title == request.session.get("selectedFilm").getOrElse("")) {
+                        @for(time <- film.showTimes) {
+                                <option value="@time">@time</option>
                         }
-                    } else {}
-                }
-                }
+                }}
+
             </select>
     </div>
 
@@ -90,7 +90,7 @@
 
     <script type="text/javascript">
             function getFilm() {
-                sessionStorage.setItem("selectedFilm",document.getElementById("film").value)
+                sessionStorage.setItem("selectedFilm",document.getElementById("film").value);
             }
 
             var adults = 0;
