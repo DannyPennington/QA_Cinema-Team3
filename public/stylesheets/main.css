@@ -19,12 +19,10 @@ header nav ul {
 
 }
 
-
 header nav ul li {
     border-right: 1px solid firebrick;
     display: inline;
     padding: 20px 20px;
-
 
 }
 
@@ -408,7 +406,7 @@ footer li a:hover {
     text-align: left;
 
 }
-label, select {
+label, select, h1 {
     font-family: 'Lora', serif
 }
 input[type=text], select, textarea {

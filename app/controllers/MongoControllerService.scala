@@ -23,22 +23,13 @@ class MongoControllerService @Inject()(
 
   implicit def ec: ExecutionContext = components.executionContext
 
-
   def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
-
-
-  //  def createFromJson: Action[JsValue] = Action.async(parse.json) { request =>
-  //    request.body.validate[UserDetails].map { user =>
-  //      collection.flatMap(_.insert.one(user)).map { _ => Ok("User inserted")
-  //      }
-  //    }.getOrElse(Future.successful(BadRequest("invalid json")))
-  //  }
 
   def createPay = Action.async { implicit request: Request[AnyContent] =>
     paymentForm.payments.bindFromRequest.fold({ formWithErrors =>
       Future {
-        BadRequest(views.html.payment(formWithErrors))
+        BadRequest(views.html.payment(formWithErrors,"film","","","","","","",""))
       }
     }, { payDetails: paymentForm => {
       mongoService.createPaymentDetails(payDetails).map {

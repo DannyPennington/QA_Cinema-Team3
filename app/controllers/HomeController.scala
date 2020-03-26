@@ -14,8 +14,8 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
     Ok(views.html.index())
   }
 
-  def create: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.payment(paymentForm.payments))
-  }
+  //def create: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+  //  Ok(views.html.payment(paymentForm.payments))
+  //}
 
 }
