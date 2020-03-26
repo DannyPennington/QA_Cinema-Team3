@@ -1,14 +1,12 @@
 package controllers
-
 import javax.inject.Inject
 import play.api.mvc._
 import reactivemongo.play.json.collection.JSONCollection
 import reactivemongo.play.json.collection.{JSONCollection, _}
-
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.{JsonFormats, paymentForm}
+import models.paymentForm
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import reactivemongo.api.Cursor
@@ -27,10 +25,18 @@ class MongoService @Inject()(
 //    collection.flatMap(_.insert.one())
 //  }
 
-  def createPayment(paymentInfo: paymentForm): Future[WriteResult] = {
-    paymentCollection.flatMap(_.insert.one(paymentInfo))
-  }
+//  def createPayment(paymentInfo: paymentForm): Future[WriteResult] = {
+//    paymentCollection.flatMap(_.insert.one(paymentInfo))
+//  }
 
+
+//  def createUser(user: User): Future[WriteResult] = {
+//    paymentCollection.flatMap(_.insert.one(user))
+//  }
+
+  def createPaymentDetails(user: paymentForm): Future[WriteResult] = {
+    paymentCollection.flatMap(_.insert.one(user))
+  }
 
 
 

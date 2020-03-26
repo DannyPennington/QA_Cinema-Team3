@@ -2,7 +2,14 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /                           controllers.HomeController.index
 
-GET     /payment             controllers.PaymentController.payment
+#GET     /payment             controllers.PaymentController.payment
+#
+#GET        /createPayment            controllers.PaymentController.createPayment(name: String, number: String, expDate :String, cvc :String)
 
-GET        /createPayment            controllers.PaymentController.createPayment(name: String, number: String, expDate :String, cvc :String)
 
+
+GET           /createPayment                controllers.HomeController.create
+
+POST          /submitPayment                controllers.MongoControllerService.createPay
+
+GET           /create                      controllers.HomeController.create

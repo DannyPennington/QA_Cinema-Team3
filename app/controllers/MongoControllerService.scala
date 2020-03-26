@@ -1,0 +1,53 @@
+package controllers
+
+import javax.inject.Inject
+import models.paymentForm
+import models.JsonFormats
+import play.api.libs.json.{JsValue, Json}
+import play.api.mvc._
+import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
+import reactivemongo.api.Cursor
+import reactivemongo.play.json._
+import reactivemongo.play.json.collection.{JSONCollection, _}
+import models.JsonFormats._
+
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, ExecutionContext, Future}
+
+class MongoControllerService @Inject()(
+                                                    components: ControllerComponents,
+                                                    val reactiveMongoApi: ReactiveMongoApi,
+                                                    val mongoService: MongoService
+                                                  ) extends AbstractController(components)
+  with MongoController with ReactiveMongoComponents with play.api.i18n.I18nSupport {
+
+  implicit def ec: ExecutionContext = components.executionContext
+
+
+  def collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("payments"))
+
+
+
+  //  def createFromJson: Action[JsValue] = Action.async(parse.json) { request =>
+  //    request.body.validate[UserDetails].map { user =>
+  //      collection.flatMap(_.insert.one(user)).map { _ => Ok("User inserted")
+  //      }
+  //    }.getOrElse(Future.successful(BadRequest("invalid json")))
+  //  }
+
+  def createPay = Action.async { implicit request: Request[AnyContent] =>
+    paymentForm.payments.bindFromRequest.fold({ formWithErrors =>
+      Future {
+        BadRequest(views.html.payment(formWithErrors))
+      }
+    }, { payDetails: paymentForm => {
+      mongoService.createPaymentDetails(payDetails).map {
+        _ => Ok("Payment Submitted")
+      }
+    }
+
+    })
+
+  }
+
+}

@@ -13,16 +13,16 @@ import scala.concurrent.Future
 @Singleton
 class PaymentController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) with play.api.i18n.I18nSupport {
 
-  def payment: Action[AnyContent] = Action {
-    implicit request: Request[AnyContent] =>
-      Ok(views.html.payment(paymentForm.payments))
-  }
+//  def payment: Action[AnyContent] = Action {
+//    implicit request: Request[AnyContent] =>
+//      Ok(views.html.payment(paymentForm.payments))
+//  }
 
 
-  def createPayment(name: String, number: String, expDate :String, cvc :String): Action[AnyContent] = Action.async {
-    val futureResult = mongoService.createPayment(paymentForm(name, number, expDate, cvc))
-    futureResult.map(_ => Ok("Payment created"))
-  }
+//  def createPayment(name: String, number: String, expDate :String, cvc :String): Action[AnyContent] = Action.async {
+//    val futureResult = mongoService.createPayment(paymentForm(name, number, expDate, cvc))
+//    futureResult.map(_ => Ok("Payment created"))
+//  }
 
 
 //  def createPayment( name :String, number :String, expDate :String, cvc :String )
