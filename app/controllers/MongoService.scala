@@ -22,7 +22,7 @@ class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
-  def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
+  def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("current"))
 
   def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
 
