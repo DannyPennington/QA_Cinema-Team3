@@ -132,4 +132,4 @@ class MongoService @Inject()(
     createFuture(FutureReleaseInfo("Star Wars: Episode 6", "Tadas", List("Luke Skywalker","Chewie", "Slave Leia"),"06/04/2020","https://images-na.ssl-images-amazon.com/images/I/71fiCHdViHL._AC_SY879_.jpg"))
 
   }
-
+}
