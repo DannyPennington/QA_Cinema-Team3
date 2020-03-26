@@ -10,5 +10,4 @@ class ScreensController @Inject()(cc: ControllerComponents,authAction: Authentic
   def screens:Action[AnyContent] = authAction {implicit request:Request[AnyContent] =>
     Ok(views.html.screens())
   }
-
 }
