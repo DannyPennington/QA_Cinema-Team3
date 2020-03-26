@@ -80,9 +80,9 @@ header li a:hover {
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0),
-rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0),
-rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -353,23 +353,6 @@ footer li a:hover {
     text-align: center;
     margin-top: 50px;
 }
-input[type=text], select, textarea {
-    width: 25%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    font-family: Verdana;
-}
-
-}
-.container input:checked ~ .checkmark {
-    background-color: darkgrey;
-}
-.checkmark:after {
 .background_layout{
     background-color: firebrick;
 }
@@ -425,6 +408,25 @@ input[type=text], select, textarea {
     text-align: left;
 
 }
+label, select {
+    font-family: 'Lora', serif
+}
+input[type=text], select, textarea {
+    width: 25%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-family: Verdana, serif;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: darkgrey;
+}
+.checkmark:after {
 
     content: "";
     position: absolute;
@@ -460,18 +462,4 @@ input[type=text], select, textarea {
 
 .sub:hover {
     background-color: #45a049;
-}
-label, select {
-    font-family: 'Lora', serif
-}
-input[type=text], select, textarea {
-    width: 25%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    font-family: Verdana, serif;
 }
