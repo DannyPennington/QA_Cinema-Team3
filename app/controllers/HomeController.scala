@@ -1,12 +1,12 @@
 package controllers
-
+import authentication.AuthenticationAction
 import javax.inject._
 import play.api.mvc._
 
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents , authAction: AuthenticationAction, val mongoService: MongoService) extends AbstractController(cc) {
 
-  def index:Action[AnyContent] = Action {
+  def index:Action[AnyContent] = authAction {
     Ok(views.html.index())
   }
 
