@@ -1,16 +1,17 @@
 @(futureReleaseInfos: List[FutureReleaseInfo])
 
 @main("Release Gallery") {
-    <div style="text-align: center;">
-    <h2> New Releases Gallery</h2>
-    </div>
+    <h2 style="text-align: center;"> New Releases Gallery</h2>
     <div class="row justify-content-center" >
+
     @for(movieInfo <- futureReleaseInfos) {
-        <div class="card" style="text-align:center" onclick="window.location.href='@routes.FutureMovieController.movie(movieInfo.title)';">
-            <h4>@movieInfo.title</h4>
-            <img src="@{movieInfo.url}" alt="poster" style="width: 400px;
+        <div class="card" style="text-align: center" onclick="window.location.href = '@routes.FutureMovieController.movie(movieInfo.title)';">
+            <h4 class="card-title">@movieInfo.title</h4>
+            <img class="card-img-bottom" src="@{
+                movieInfo.url
+            }" alt="poster" style="width: 400px;
                 height: 600px;">
-            <h5>Release Date: @movieInfo.releaseDate </h5>
+            <footer>Release Date: @movieInfo.releaseDate </footer>
         </div>
     }
     </div>
