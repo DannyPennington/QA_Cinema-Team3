@@ -213,12 +213,29 @@ rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     font-family: 'Kaushan Script', cursive;
 
 }
+.deluxe_title{
+    color: firebrick;
+    font-size: 2.4em;
 
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+}
 .border {
     height: 5px;
     width: 120px;
     background-color: white;
 
+}
+.border_standard {
+    height: 5px;
+    width: 100px;
+    background-color: white;
+
+}
+.border_deluxe{
+    height: 5px;
+    width: 65px;
+    background-color: firebrick;
 }
 
 #about_section {
@@ -335,4 +352,59 @@ footer li a:hover {
     color: navy;
     text-align: center;
     margin-top: 50px;
+}
+.background_layout{
+    background-color: firebrick;
+}
+
+.classification_image{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.5))),
+    url(/assets/images/dark_red_background.jpg)
+;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/dark_red_background.jpg)
+;
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/dark_red_background.jpg)
+;
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/dark_red_background.jpg)
+;
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/dark_red_background.jpg)
+;
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/dark_red_background.jpg)
+;
+    background-repeat: no-repeat
+;
+    background-size: cover
+;
+    background-position: center
+;
+    background-attachment: fixed
+;
+}
+.border_card{
+    height: 1px;
+    min-width: 80%;
+    background-color: gray;
+}
+
+.card_colour{
+    color: black;
+}
+.para_card{
+    font-family: 'Courgette', cursive;
+    text-align: left;
+    font-size: 1em;
+    color: black;
+
+}
+.header_card{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+    text-align: left;
+
 }
