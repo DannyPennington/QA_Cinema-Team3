@@ -40,7 +40,7 @@
             <label for="time">Time of showing: </label>
             <select id="time" name="time" style="margin-left: 50px">
                 @for(film <- currentMovieList) {
-                    @if(film.title.contains(request.session.get("selectedFilm").getOrElse(""))) {
+                    @if(film.title.contains(request.session.data.getOrElse("selectedFilm", ""))) {
                         @for(time <- film.showTimes) {
                                 <option value="@time">@time</option>
                         }
