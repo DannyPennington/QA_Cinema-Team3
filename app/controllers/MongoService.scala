@@ -31,6 +31,8 @@ class MongoService @Inject()(
 
   def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
+  def userCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("users"))
+
   def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
     currentCollection.flatMap(_.insert.one(movieInfo))
   }
