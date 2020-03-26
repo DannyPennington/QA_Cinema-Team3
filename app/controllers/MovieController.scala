@@ -8,7 +8,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 class MovieController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
 
   def movie(title: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    mongoService.findByTitle(title).map{listOfMovie =>
+    mongoService.findCurrentMovieByTitle(title).map{ listOfMovie =>
       Ok(views.html.movie(listOfMovie.head))
     }
   }
