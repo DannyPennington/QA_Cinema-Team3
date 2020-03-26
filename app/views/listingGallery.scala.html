@@ -6,8 +6,8 @@
     @for(movieInfo <- movieInfos) {
         <div class="card" style="text-align:center" onclick="window.location.href = '@routes.MovieController.movie(movieInfo.title)';">
             <h4 class="card-title">@movieInfo.title</h4>
-            <img class="card-img-bottom" src="@{movieInfo.url}" alt="poster" style="width: 236px;
-                height: 350px;">
+            <img class="card-img-bottom" src="@{movieInfo.url}" alt="poster" style="width: 400px;
+                height: 600px;">
         </div>
     }
     </div>
