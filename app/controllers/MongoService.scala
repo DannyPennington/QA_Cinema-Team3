@@ -1,25 +1,35 @@
 package controllers
 
 import javax.inject.Inject
-import models.JsonFormats._
+
 import models.{FutureReleaseInfo, MovieInfo}
+import play.api.mvc._
+import reactivemongo.play.json.collection.{JSONCollection, _}
+import scala.concurrent.{ExecutionContext, Future}
+import reactivemongo.play.json._
+import collection._
+import models.paymentForm
+import models.JsonFormats._
+import play.api.libs.json.{JsValue, Json}
+
 import org.joda.time.LocalDateTime
 import play.api.libs.json.Json
 import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.Cursor
+import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.commands.WriteResult
-import reactivemongo.play.json._
-import reactivemongo.play.json.collection.{JSONCollection, _}
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 
 class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
                             ) extends ReactiveMongoComponents {
 
   def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("current"))
+
   def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
+
+  def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
   def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
     currentCollection.flatMap(_.insert.one(movieInfo))
@@ -37,6 +47,10 @@ class MongoService @Inject()(
         Cursor.FailOnError[List[MovieInfo]]()
       )
     )
+  }
+
+  def createPaymentDetails(user: paymentForm): Future[WriteResult] = {
+    paymentCollection.flatMap(_.insert.one(user))
   }
 
 
@@ -58,25 +72,24 @@ class MongoService @Inject()(
     )
   }
 
-    def findByTitle(title: String): Future[List[MovieInfo]] =  {
-      val cursor: Future[Cursor[MovieInfo]] = currentCollection.map {
-        _.find(Json.obj("title" -> title)).
-          sort(Json.obj("created" -> -1)).
-          cursor[MovieInfo]()
-      }
-
-      val futureUsersList: Future[List[MovieInfo]] =
-        cursor.flatMap(
-          _.collect[List](
-            -1,
-            Cursor.FailOnError[List[MovieInfo]]()
-          )
-        )
-
-      futureUsersList
+  def findByTitle(title: String): Future[List[MovieInfo]] = {
+    val cursor: Future[Cursor[MovieInfo]] = currentCollection.map {
+      _.find(Json.obj("title" -> title)).
+        sort(Json.obj("created" -> -1)).
+        cursor[MovieInfo]()
     }
 
-  def findByFutureTitle(title: String): Future[List[FutureReleaseInfo]] =  {
+    val futureUsersList: Future[List[MovieInfo]] =
+      cursor.flatMap(
+        _.collect[List](
+          -1,
+          Cursor.FailOnError[List[MovieInfo]]()
+        )
+      )
+    futureUsersList
+  }
+
+  def findByFutureTitle(title: String): Future[List[FutureReleaseInfo]] = {
     val cursor: Future[Cursor[FutureReleaseInfo]] = releaseCollection.map {
       _.find(Json.obj("title" -> title)).
         sort(Json.obj("created" -> -1)).
@@ -93,6 +106,7 @@ class MongoService @Inject()(
 
     futureUsersList
   }
+
 
   def currentReInnit(): Future[WriteResult] = {
     currentCollection.map {
@@ -119,23 +133,3 @@ class MongoService @Inject()(
 
   }
 
-
-//
-//  def doesNotExist(username: String): Future[Boolean] = {
-//    findByUsername(username).map(user => user.isEmpty)
-//  }
-//
-//  def updateHighscore(username: String, highscore: Int): Future[Any] = {
-//    findByUsername(username).map{a =>
-////      println(a.head.highscore)
-//      val current = a.head.highscore
-//      if (highscore > current) {
-//        var user = a.head
-//        user.highscore = highscore
-//        collection.map(_.update.one(Json.obj("username" -> username), user))
-//      }
-//    }
-//  }
-//
-
-}

@@ -1,0 +1,78 @@
+@(form: Form[paymentForm],film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)(implicit messagesProvider: MessagesProvider)
+
+@main("Payment") {
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+            .icon-container {
+                margin-bottom: 20px;
+                padding: 7px 0;
+                font-size: 36px;
+            }
+    </style>
+
+    <div style="margin-left: 50px">
+    <h2>QA Cinema Payment</h2>
+    <h4>Movie Confirmations</h4>
+
+        <div>
+            <label for="mvUser">Name of booker:</label>
+            @name
+        </div>
+    <div>
+        <label for="mvName">Movie:</label>
+        @film
+    </div>
+    <div>
+        <label for="mvDate">Date:</label>
+        @date
+    </div>
+    <div>
+        <label for="mvTime">Time:</label>
+        @time
+    </div>
+
+    <div>
+        <label for="mvScreen">Screen Type:</label>
+        @screen
+    </div>
+    <div>
+        <label for="mvTickets">Tickets selected: </label> <br>
+        @if(adult.toInt>0) {
+            Adults: @adult <br>
+        }
+        @if(children.toInt>0) {
+            Children: @children <br>
+        }
+        @if(concession.toInt>0) {
+            Concessions: @concession <br>
+        }
+        <br>
+    </div>
+
+
+    <label for="fname">Accepted Cards:</label>
+    <div class="icon-container">
+        <i class="fa fa-cc-visa" style="color: navy;"></i>
+        <i class="fa fa-cc-paypal" style="color: blue;"></i>
+        <i class="fa fa-cc-mastercard" style="color: red;"></i>
+        <i class="fa fa-cc-amex" style="color: orange;"></i>
+    </div>
+    <br>
+    <h4>Please fill out the information below carefully.</h4>
+
+                    <div class="modal-body">
+                        <h1 class = "loginHeaders" style = "color: white">Please enter your details below:</h1>
+                        @helper.form(routes.MongoControllerService.createPay()) {
+                            @helper.inputText(form("name"), '_label -> "Full Name:", '_showConstraints -> false)
+                            @helper.inputText(form("number"), '_label -> "Credit card number:", '_showConstraints -> false)
+                            @helper.inputText(form("expDate"), '_label -> "Exp Year:", '_showConstraints -> false)
+                            @helper.inputText(form("cvc"), '_label -> "CVV:", '_showConstraints -> false)
+                            <button type="submit">Submit Payment</button>
+                            <button type="reset">Clear</button>
+                        }
+                    </div>
+
+</div>
+
+}
