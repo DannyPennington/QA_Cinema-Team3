@@ -1,82 +1,38 @@
-@(form: Form[paymentForm])(implicit messagesProvider: MessagesProvider)
+@(form: Form[paymentForm],film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)(implicit messagesProvider: MessagesProvider)
 
-@main("Create") {
+@main("Payment") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-            body {
-                font-family: Arial;
-                font-size: 17px;
-                padding: 8px;
-            }
 
-            * {
-                box-sizing: border-box;
-            }
-
-
-            input[type=text] {
-                width: 100%;
-                margin-bottom: 20px;
-                padding: 12px;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-            }
-
-            label {
-                margin-bottom: 10px;
-                display: block;
-            }
-
-            .icon-container {
-                margin-bottom: 20px;
-                padding: 7px 0;
-                font-size: 24px;
-            }
-
-            .btn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 12px;
-                margin: 10px 0;
-                border: none;
-                width: 100%;
-                border-radius: 3px;
-                cursor: pointer;
-                font-size: 17px;
-            }
-
-
-
-
-
-
-
-    </style>
-
+    <div style="margin-left: 50px">
     <h2>QA Cinema Payment</h2>
     <h4>Movie Confirmations</h4>
 
-
-
-
+        <div>
+            <label for="mvUser"></i>Name of booker:</label>
+            @name
+        </div>
     <div>
         <label for="mvName"></i>Movie:</label>
+        @film
     </div>
     <div>
         <label for="mvDate"></i>Date:</label>
+        @date
     </div>
     <div>
-        <label for="mvTime"></i>Time:</label>    </div>
+        <label for="mvTime"></i>Time:</label>
+        @time
+    </div>
 
     <div>
         <label for="mvScreen"></i>Screen Type:</label>
+        @screen
     </div>
     <div>
         <label for="mvTickets"></i>Tickets Selected:</label>
+        Adults @adult, Children @children, Concessions @concession
     </div>
-
-
 
 
     <label for="fname">Accepted Cards</label>
@@ -86,9 +42,8 @@
         <i class="fa fa-cc-mastercard" style="color: red;"></i>
         <i class="fa fa-cc-amex" style="color: orange;"></i>
     </div>
-
+    <br>
     <h4>Please fill out the information below carefully.</h4>
-
 
                     <div class="modal-body">
                         <h1 class = "loginHeaders" style = "color: white">Please enter your details below:</h1>
@@ -102,10 +57,6 @@
                         }
                     </div>
 
-                </div>
+</div>
 
-            </div>
-        </div>
-    </body>
-    </html>
 }
