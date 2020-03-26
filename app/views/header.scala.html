@@ -2,7 +2,7 @@
     <div class="icons" style="padding-bottom: 100px;">
         <a href="#" class="btn mb-3" style="background-color: navy;
             color: white; " >Bookings</a>
-        <a href="#" target="_blank"><i class="fa fa-list-alt fa-2x" style="color: navy;
+        <a href="@routes.ClassificationsController.classifications()" target="_self"><i class="fa fa-list-alt fa-2x" style="color: navy;
             margin-left: 20px;"></i>
         </a>
         <a href="https://twitter.com/?lang=en-gb" target="_blank"><i class="fab fa-twitter fa-2x" style="color: navy;
@@ -16,12 +16,12 @@
     <nav>
         <center>
             <ul>
-                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#about_section"><i class="fas fa-user-secret"></i> About</a></li>
-                <li><a href="#" target="_blank"><i class="fas fa-tasks"></i> Listings </a></li>
-                <li><a href="#" target="_blank"> <i class="fas fa-inbox"></i> Opening times </a></li>
-                <li><a href="#" target="_blank"> <i class="fas fa-envelope-open-text"></i> New Releases</a></li>
-                <li><a href="#" target="_blank"><i class="fas fa-desktop"></i> Screens </a></li>
+                <li><a href="@routes.HomeController.index()" target="_self"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="@routes.HomeController.index()#about_section" target="_self"><i class="fas fa-user-secret"></i> About</a></li>
+                <li><a href="@routes.ListingController.listingGallery()" target="_self"><i class="fas fa-tasks"></i> Listings</a></li>
+                <li><a href="@routes.OpeningController.opening()" target="_self"> <i class="fas fa-inbox"></i> Opening times </a></li>
+                <li><a href="@routes.ReleaseController.releaseGallery()" target="_self"> <i class="fas fa-envelope-open-text"></i> New Releases</a></li>
+                <li><a href="@routes.ScreensController.screens()" target="_self"><i class="fas fa-desktop"></i> Screens </a></li>
             </ul>
         </center>
     </nav>
