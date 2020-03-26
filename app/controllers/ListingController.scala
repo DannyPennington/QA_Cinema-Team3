@@ -25,6 +25,6 @@ class ListingController @Inject()(cc: ControllerComponents, val mongoService: Mo
   }
 
   def reInnit(): Action[AnyContent] = Action.async {
-    mongoService.reInnit().map(_ => Ok("ReInnit listing gallery"))
+    mongoService.currentReInnit().map(_ => Ok("ReInnit listing gallery"))
   }
 }

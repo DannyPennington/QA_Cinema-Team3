@@ -9,10 +9,11 @@ GET        /classifications        controllers.ClassificationsController.classif
 
 GET        /listingGallery         controllers.ListingController.listingGallery
 GET        /createMovie            controllers.ListingController.createMovie
-GET        /reinnit                controllers.ListingController.reInnit
+GET        /currentReInnit         controllers.ListingController.reInnit
 
 GET        /releaseGallery         controllers.ReleaseController.releaseGallery
 GET        /createRelease          controllers.ReleaseController.createRelease
+GET        /releaseReInnit         controllers.ReleaseController.reInnit
 
 GET        /openingTimes           controllers.OpeningController.opening
 
