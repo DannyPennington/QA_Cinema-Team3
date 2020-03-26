@@ -8,11 +8,9 @@ import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponent
 class LoginController @Inject()(cc: ControllerComponents) extends AbstractController(cc) with play.api.i18n.I18nSupport {
 
 
-
   def index() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
-
 
 
   def login(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>

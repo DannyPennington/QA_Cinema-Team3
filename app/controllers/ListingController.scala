@@ -10,7 +10,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class ListingController @Inject()(cc: ControllerComponents,authAction: AuthenticationAction, val mongoService: MongoService) extends AbstractController(cc) {
+class ListingController @Inject()(cc: ControllerComponents, authAction: AuthenticationAction, val mongoService: MongoService) extends AbstractController(cc) {
 
   def listingGallery(): Action[AnyContent] = authAction.async {
     mongoService.findCurrentMovies().map(listOfMovieInfo =>
