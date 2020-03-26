@@ -3,39 +3,55 @@
 @main("Payment") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+            .icon-container {
+                margin-bottom: 20px;
+                padding: 7px 0;
+                font-size: 36px;
+            }
+    </style>
 
     <div style="margin-left: 50px">
     <h2>QA Cinema Payment</h2>
     <h4>Movie Confirmations</h4>
 
         <div>
-            <label for="mvUser"></i>Name of booker:</label>
+            <label for="mvUser">Name of booker:</label>
             @name
         </div>
     <div>
-        <label for="mvName"></i>Movie:</label>
+        <label for="mvName">Movie:</label>
         @film
     </div>
     <div>
-        <label for="mvDate"></i>Date:</label>
+        <label for="mvDate">Date:</label>
         @date
     </div>
     <div>
-        <label for="mvTime"></i>Time:</label>
+        <label for="mvTime">Time:</label>
         @time
     </div>
 
     <div>
-        <label for="mvScreen"></i>Screen Type:</label>
+        <label for="mvScreen">Screen Type:</label>
         @screen
     </div>
     <div>
-        <label for="mvTickets"></i>Tickets Selected:</label>
-        Adults @adult, Children @children, Concessions @concession
+        <label for="mvTickets">Tickets selected: </label> <br>
+        @if(adult.toInt>0) {
+            Adults: @adult <br>
+        }
+        @if(children.toInt>0) {
+            Children: @children <br>
+        }
+        @if(concession.toInt>0) {
+            Concessions: @concession <br>
+        }
+        <br>
     </div>
 
 
-    <label for="fname">Accepted Cards</label>
+    <label for="fname">Accepted Cards:</label>
     <div class="icon-container">
         <i class="fa fa-cc-visa" style="color: navy;"></i>
         <i class="fa fa-cc-paypal" style="color: blue;"></i>
