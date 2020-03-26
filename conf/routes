@@ -20,3 +20,9 @@ POST       /booking                     controllers.BookingController.parseDetai
 
 GET        /movie                  controllers.MovieController.movie(title: String)
 GET        /release                controllers.FutureMovieController.movie(title: String)
+
+GET           /createPayment                controllers.HomeController.create
+
+POST          /submitPayment                controllers.MongoControllerService.createPay
+
+GET           /create                      controllers.HomeController.create

@@ -1,21 +1,26 @@
 package controllers
 
 import javax.inject.Inject
-import models.JsonFormats._
+
 import models.{FutureReleaseInfo, MovieInfo}
-import play.api.libs.json.Json
-import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
-import reactivemongo.api.Cursor
-import reactivemongo.api.commands.WriteResult
-import reactivemongo.play.json._
+
+import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
+import scala.concurrent.{ExecutionContext, Future}
+import reactivemongo.play.json._
+import collection._
+import models.paymentForm
+import models.JsonFormats._
+import play.api.libs.json.{JsValue, Json}
+import reactivemongo.api.Cursor
+import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
+import reactivemongo.api.commands.WriteResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 
 class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
-                            ) extends ReactiveMongoComponents {
+                            ) extends ReactiveMongoComponents  {
 
   def currentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("gallery"))
   def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
@@ -37,6 +42,13 @@ class MongoService @Inject()(
       )
     )
   }
+  def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
+
+  def createPaymentDetails(user: paymentForm): Future[WriteResult] = {
+    paymentCollection.flatMap(_.insert.one(user))
+  }
+
+
 
 
   def createFuture(futureReleaseInfo: FutureReleaseInfo): Future[WriteResult] = {
@@ -93,24 +105,3 @@ class MongoService @Inject()(
     futureUsersList
   }
 
-
-
-//
-//  def doesNotExist(username: String): Future[Boolean] = {
-//    findByUsername(username).map(user => user.isEmpty)
-//  }
-//
-//  def updateHighscore(username: String, highscore: Int): Future[Any] = {
-//    findByUsername(username).map{a =>
-////      println(a.head.highscore)
-//      val current = a.head.highscore
-//      if (highscore > current) {
-//        var user = a.head
-//        user.highscore = highscore
-//        collection.map(_.update.one(Json.obj("username" -> username), user))
-//      }
-//    }
-//  }
-//
-
-}
