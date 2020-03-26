@@ -26,3 +26,9 @@ GET        /release                controllers.FutureMovieController.movie(title
 POST       /submitPayment          controllers.MongoControllerService.createPay
 
 GET        /directions             controllers.DirectionsController.directions
+
+GET        /addUser                controllers.RegistrationController.addUser(username:String, email :String, password :String)
+
+GET        /register               controllers.RegistrationController.showRegistration
+POST       /register               controllers.RegistrationController.registerUser
+GET        /success                controllers.RegistrationController.success
