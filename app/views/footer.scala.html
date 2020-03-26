@@ -1,12 +1,12 @@
 <footer class="text-center">
     <nav>
         <ul class="pt-5 mx-auto">
-            <li><a href="#"> Home</a></li>
-            <li><a href="#about_section"> About</a></li>
-            <li><a href="#" target="_blank"> Listings</a></li>
-            <li><a href="#" target="_blank"> Opening times </a></li>
-            <li><a href="#" target="_blank"> New Releases</a></li>
-            <li><a href="#" target="_blank"> Screens </a></li>
+            <li><a href="@routes.HomeController.index()" target="_self"> Home</a></li>
+            <li><a href="@routes.HomeController.index()#about_section"> About</a></li>
+            <li><a href="@routes.ListingController.listingGallery()" target="_self"> Listings</a></li>
+            <li><a href="@routes.OpeningTime.opening()" target="_self"> Opening times </a></li>
+            <li><a href="@routes.ReleaseController.releaseGallery()" target="_self"> New Releases</a></li>
+            <li><a href="@routes.ScreensController.screens()" target="_self"> Screens </a></li>
         </ul>
     </nav>
     <p class="footerText"> All rights reserved QA Cinemas 2020 &copy;</p>
