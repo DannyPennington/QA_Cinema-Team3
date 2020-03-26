@@ -1,14 +1,12 @@
 @(movieInfos: List[MovieInfo])
 
 @main("Listing Gallery") {
-    <div style="text-align: center;">
-    <h2> Listing Gallery</h2>
-    </div>
+    <h2 style="text-align: center;"> Listing Gallery</h2>
     <div class="row justify-content-center" >
     @for(movieInfo <- movieInfos) {
         <div class="card" style="text-align:center" onclick="window.location.href = '@routes.MovieController.movie(movieInfo.title)';">
-            <h4>@movieInfo.title</h4>
-            <img src="@{movieInfo.url}" alt="poster" style="width: 400px;
+            <h4 class="card-title">@movieInfo.title</h4>
+            <img class="card-img-bottom" src="@{movieInfo.url}" alt="poster" style="width: 400px;
                 height: 600px;">
         </div>
     }

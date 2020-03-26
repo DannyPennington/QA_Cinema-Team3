@@ -406,6 +406,7 @@ footer li a:hover {
     text-align: left;
 
 }
+
 label, select, h1 {
     font-family: 'Lora', serif
 }
@@ -460,4 +461,18 @@ input[type=text], select, textarea {
 
 .sub:hover {
     background-color: #45a049;
+}
+
+.map-container-5{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-container-5 iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
 }
