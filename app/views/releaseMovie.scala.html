@@ -1,11 +1,11 @@
 @(futureReleaseInfo: FutureReleaseInfo)
 
 @main("Movie") {
-    <div class="row">
-        <div style="text-align: center;" class="col-6">
-            <img src="@{futureReleaseInfo.url}" alt="poster" style="width:200px;height:350px;">
+    <div class="row justify-content-center">
+        <div class="card">
+            <img src="@{futureReleaseInfo.url}" alt="poster" style="width:236px;height:350px;">
         </div>
-        <div style="text-align: center;" class="col-6">
+        <div class="card">
             <h4>@futureReleaseInfo.title</h4>
             <h5>Director: @futureReleaseInfo.director</h5>
             <h5>Actors: </h5>
