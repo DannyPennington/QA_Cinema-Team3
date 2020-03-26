@@ -19,12 +19,10 @@ header nav ul {
 
 }
 
-
 header nav ul li {
     border-right: 1px solid firebrick;
     display: inline;
     padding: 20px 20px;
-
 
 }
 
@@ -80,9 +78,9 @@ header li a:hover {
     background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0),
-rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0),
-rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
+    rgba(0, 0, 0, 100)), url(/assets/images/escalator.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -407,6 +405,62 @@ footer li a:hover {
     font-size: 1.4em;
     text-align: left;
 
+}
+
+label, select, h1 {
+    font-family: 'Lora', serif
+}
+input[type=text], select, textarea {
+    width: 25%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    font-family: Verdana, serif;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: darkgrey;
+}
+.checkmark:after {
+
+    content: "";
+    position: absolute;
+    display: none;
+}
+.container input:checked ~ .checkmark:after {
+
+    display: inline-block;
+}
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+.inline-block {
+    display: inline-block;
+}
+
+.sub {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.sub:hover {
+    background-color: #45a049;
 }
 
 .map-container-5{
