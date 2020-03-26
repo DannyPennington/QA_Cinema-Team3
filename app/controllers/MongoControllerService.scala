@@ -30,7 +30,7 @@ class MongoControllerService @Inject()(
       }
     }, { payDetails: paymentForm => {
       mongoService.createPaymentDetails(payDetails).map {
-        _ => Ok("Payment Submitted")
+        _ => Ok(views.html.details())
       }
     }
 
