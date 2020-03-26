@@ -4,7 +4,7 @@
     <h2> New Releases Gallery</h2>
 
     @for(movieInfo <- futureReleaseInfos) {
-        <div>
+        <div onclick="window.location.href='@routes.FutureMovieController.movie(movieInfo.title)';">
             <h4>@movieInfo.title</h4>
             <img src="@{movieInfo.url}" alt="poster">
             <h5>Director: @movieInfo.director</h5>

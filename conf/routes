@@ -14,3 +14,6 @@ GET        /releaseGallery         controllers.ReleaseController.releaseGallery
 GET        /createRelease          controllers.ReleaseController.createRelease
 
 GET        /openingTimes           controllers.OpeningTime.opening
+
+GET        /movie                  controllers.MovieController.movie(title: String)
+GET        /release                controllers.FutureMovieController.movie(title: String)
