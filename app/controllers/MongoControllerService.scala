@@ -24,7 +24,7 @@ class MongoControllerService @Inject()(
   implicit def ec: ExecutionContext = components.executionContext
 
 
-  def collection: Future[JSONCollection] = database.map(_.collection[JSONCollection]("payments"))
+  def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
 
 

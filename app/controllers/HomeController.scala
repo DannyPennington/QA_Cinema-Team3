@@ -1,5 +1,4 @@
 package controllers
-
 import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
 import javax.inject._
 import models.paymentForm
@@ -10,8 +9,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) with I18nSupport {
-
-
 
   def index: Action[AnyContent] = Action {
     Ok(views.html.index("Your new application is ready."))
