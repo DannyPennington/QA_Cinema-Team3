@@ -1,15 +1,37 @@
 @(movieInfos: List[MovieInfo])
 
 @main("Listing Gallery") {
-    <h2 style="text-align: center;"> Listing Gallery</h2>
-    <div class="row justify-content-center" >
-    @for(movieInfo <- movieInfos) {
-        <div class="card" style="text-align:center" onclick="window.location.href = '@routes.MovieController.movie(movieInfo.title)';">
-            <h4 class="card-title">@movieInfo.title</h4>
-            <img class="card-img-bottom" src="@{movieInfo.url}" alt="poster" style="width: 400px;
-                height: 600px;">
-        </div>
-    }
-    </div>
+    <section id="listing_gallery" class=" py-5 mt-5" style="margin-bottom: -40px">
+        <h1 class="title"> Listing Gallery </h1>
+        <center>
+            <div class="border"></div>
+        </center>
 
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para">
+                Welcome to the listing gallery!
+            </p>
+
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+
+
+            @for(movieInfo <- movieInfos) {
+                <div class="col-6 text-center">
+                    <div class="card mx-auto mt-3" style="text-align: center" onclick="window.location.href = '@routes.MovieController.movie(movieInfo.title)';">
+                        <img src="@{
+                            movieInfo.url
+                        }" alt="poster" width="100%" >
+                        <div class="mt-2" style="border-top: 1px solid black">
+                            <h1 class="cardHeader pt-3"> @movieInfo.title </h1>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+            </div>
+        </div>
+    </section>
 }
