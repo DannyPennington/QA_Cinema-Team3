@@ -21,10 +21,10 @@ class RegistrationController @Inject()(
   implicit def ec: ExecutionContext = components.executionContext
   val collection: Future[JSONCollection] = mongoService.userCollection
 
-  def searchHelper(email: String): Future[List[User]] = {
+  def searchHelper(category: String, value: String): Future[List[User]] = {
     val cursor: Future[Cursor[User]] = collection.map {
-      _.find(Json.obj("email" -> email)).
-        sort(Json.obj("email" -> -1)).
+      _.find(Json.obj(category -> value)).
+        sort(Json.obj(category -> -1)).
         cursor[User]()
     }
     val futureUsersList: Future[List[User]] =
@@ -39,9 +39,13 @@ class RegistrationController @Inject()(
 
   def addUser(username :String, email :String, password :String): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     val user = User(username, email, password)
-    val exists = Await.result(userExists(email), Duration.Inf)
+    val exists = Await.result(emailExists(email), Duration.Inf)
+    val usernameExists = Await.result(userExists(username), Duration.Inf)
     if (exists) {
-      Future(Redirect(routes.RegistrationController.showRegistration()).flashing("new" -> "no"))
+      Future(Redirect(routes.RegistrationController.showRegistration()).flashing("emailInUse" -> "yes"))
+    }
+    else if (usernameExists) {
+      Future(Redirect(routes.RegistrationController.showRegistration()).flashing("usernameInUse" -> "no"))
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
@@ -50,14 +54,11 @@ class RegistrationController @Inject()(
   }
 
   def showRegistration: Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
-    if (request.flash.get("new").isDefined) {
+    if (request.flash.get("emailInUse").isDefined) {
       Ok(views.html.registration(Registration.RegistrationForm, "Email address already registered with account!"))
     }
-    else if (request.flash.get("exists").isDefined) {
-      Ok(views.html.registration(Registration.RegistrationForm, "Please create an account!"))
-    }
-    else if (request.flash.get("home").isDefined) {
-      Ok(views.html.registration(Registration.RegistrationForm, "Please log in to see your homepage!"))
+    else if (request.flash.get("usernameInUse").isDefined) {
+      Ok(views.html.registration(Registration.RegistrationForm, "Username is already in use!"))
     }
     else{
       Ok(views.html.registration(Registration.RegistrationForm,""))
@@ -74,14 +75,14 @@ class RegistrationController @Inject()(
   }
 
   def findByEmail(email: String): Action[AnyContent] = Action.async {
-    val futureUsersList = searchHelper(email)
+    val futureUsersList = searchHelper("email",email)
     futureUsersList.map { persons =>
       Ok(persons.toString)
     }
   }
 
-  def userExists(email: String): Future[Boolean] = {
-    val futureUsersList = searchHelper(email)
+  def emailExists(email: String): Future[Boolean] = {
+    val futureUsersList = searchHelper("email", email)
     futureUsersList.map { person =>
       if (person.isEmpty) {
         false
@@ -91,6 +92,18 @@ class RegistrationController @Inject()(
       }
     }
   }
+  def userExists(username: String): Future[Boolean] = {
+    val futureUsersList = searchHelper("username", username)
+    futureUsersList.map { person =>
+      if (person.isEmpty) {
+        false
+      }
+      else {
+        true
+      }
+    }
+  }
+
   def success:Action[AnyContent] = Action {
     Ok(views.html.message("Thanks for registering!"))
   }
