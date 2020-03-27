@@ -49,7 +49,7 @@ class RegistrationController @Inject()(
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
-      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession("user" -> user.email))
+      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession(request.session + ("user" -> user.email)))
     }
   }
 
@@ -105,8 +105,8 @@ class RegistrationController @Inject()(
     }
   }
 
-  def success(): Action[AnyContent] = Action {
-    Ok(views.html.message("Thanks for registering!"))
+  def success(): Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
+    Ok(views.html.message("Thanks for registering! " + request.session.get("user")))
   }
 
   def reInnit(): Action[AnyContent] = Action.async {
