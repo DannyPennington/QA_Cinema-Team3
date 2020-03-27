@@ -19,6 +19,7 @@ class HomeControllerTest extends PlaySpec with Results with MockitoSugar {
       val result: Future[Result] = controller.index().apply(FakeRequest())
       contentType(result) mustBe Some("text/html")
       contentAsString(result) must include("About")
+      contentAsString(result) must include("Latest Releases")
     }
   }
 
