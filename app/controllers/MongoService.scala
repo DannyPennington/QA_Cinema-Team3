@@ -1,17 +1,14 @@
 package controllers
 
 import javax.inject.Inject
-
-import models.{FutureReleaseInfo, MovieInfo}
+import models.{FutureReleaseInfo, MovieInfo, User, paymentForm}
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.paymentForm
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
-
 import org.joda.time.LocalDateTime
 import play.api.libs.json.Json
 import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
@@ -133,5 +130,18 @@ class MongoService @Inject()(
     createFuture(FutureReleaseInfo("Star Wars: Episode 5", "Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons", List("Yoda","R2-D2", "C-3PO"),"05/04/2020","https://images-na.ssl-images-amazon.com/images/I/71tglII26nL._AC_SY679_.jpg"))
     createFuture(FutureReleaseInfo("Star Wars: Episode 6", "Tadas", List("Luke Skywalker","Chewie", "Slave Leia"),"06/04/2020","https://images-na.ssl-images-amazon.com/images/I/71fiCHdViHL._AC_SY879_.jpg"))
 
+  }
+
+  def findAllUsers(): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
   }
 }
