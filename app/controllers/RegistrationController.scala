@@ -4,7 +4,6 @@ import javax.inject._
 import play.api.mvc._
 import reactivemongo.play.json.collection.JSONCollection
 import reactivemongo.play.json._
-
 import scala.concurrent.{Await, ExecutionContext, Future}
 import models.{Registration, User}
 import models.JsonFormats._
@@ -50,7 +49,7 @@ class RegistrationController @Inject()(
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
-      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession(request.session + ("user" -> user.email)))
+      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession("user" -> user.email))
     }
   }
 
