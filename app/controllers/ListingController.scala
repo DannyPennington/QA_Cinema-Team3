@@ -3,7 +3,7 @@ package controllers
 import java.time._
 
 import javax.inject.{Inject, _}
-import models.{FutureReleaseInfo, MovieInfo}
+import models.{NewReleaseInfo, MovieInfo}
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
