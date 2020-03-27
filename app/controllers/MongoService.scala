@@ -1,17 +1,15 @@
 package controllers
 
 import javax.inject.Inject
-
-import models.{FutureReleaseInfo, MovieInfo}
+import models.{FutureReleaseInfo, MovieInfo, VenueInfo, paymentForm}
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
+
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.paymentForm
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
-
 import org.joda.time.LocalDateTime
 import play.api.libs.json.Json
 import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
@@ -30,6 +28,9 @@ class MongoService @Inject()(
   def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
 
   def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
+
+  def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
+
 
   def createCurrentMovie(movieInfo: MovieInfo): Future[WriteResult] = {
     currentCollection.flatMap(_.insert.one(movieInfo))
@@ -107,6 +108,41 @@ class MongoService @Inject()(
     futureUsersList
   }
 
+  def createVenue(venueInfo: VenueInfo): Future[WriteResult] = {
+    venueCollection.flatMap(_.insert.one(venueInfo))
+  }
+
+
+  def findVenues(): Future[List[VenueInfo]] = {
+    venueCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[VenueInfo]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[VenueInfo]]()
+      )
+    )
+  }
+
+  def findVenueByName(name: String): Future[List[VenueInfo]] = {
+    val cursor: Future[Cursor[VenueInfo]] = venueCollection.map {
+      _.find(Json.obj("name" -> name)).
+        sort(Json.obj("created" -> -1)).
+        cursor[VenueInfo]()
+    }
+
+    val futureUsersList: Future[List[VenueInfo]] =
+      cursor.flatMap(
+        _.collect[List](
+          -1,
+          Cursor.FailOnError[List[VenueInfo]]()
+        )
+      )
+    futureUsersList
+  }
+
 
   def currentMoviesReInnit(): Future[WriteResult] = {
     currentCollection.map {
@@ -131,5 +167,13 @@ class MongoService @Inject()(
     createNewRelease(FutureReleaseInfo("Star Wars: Episode 5", "Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons", List("Yoda","R2-D2", "C-3PO"),"05/04/2020","https://images-na.ssl-images-amazon.com/images/I/71tglII26nL._AC_SY679_.jpg"))
     createNewRelease(FutureReleaseInfo("Star Wars: Episode 6", "Tadas", List("Luke Skywalker","Chewie", "Slave Leia"),"06/04/2020","https://images-na.ssl-images-amazon.com/images/I/71fiCHdViHL._AC_SY879_.jpg"))
 
+  }
+
+  def venuesReInnit(): Future[WriteResult] =  {
+    venueCollection.map {
+      _.drop
+    }
+
+    createVenue(VenueInfo("Some Restaurant", "Restaurant", "Nice family restaurant with affordable prices within walking distance of the cinema", List("Sun-Thur 5pm-10.30pm, Fri&Sa 4pm - 12am"), List("user@testmail.ch", "0123456789"), List("50% off cinema tickets if you have a 2-course set menu", "10% off vegetarian main dishes on Fridays"), "https://images.reference.com/reference-production-images/question/aq/example-intangible-service-restaurant_dd58bcadec92f5a0.jpg?width=760&height=411&fit=crop"))
   }
 }

@@ -1,0 +1,37 @@
+@(venueInfo: VenueInfo)
+
+@main("Venue") {
+    <div class="row justify-content-center">
+        <div class="card">
+            <img src="@{
+                venueInfo.url
+            }" alt="poster" style="width: 236px;
+                height: 350px;">
+        </div>
+        <div class="card">
+            <h4>@venueInfo.name</h4>
+            <h5>Category: @venueInfo.category</h5>
+            <h5>@venueInfo.description</h5>
+            <h5>Contact Details: </h5>
+            <ul>
+            @for(contact <- venueInfo.contactDetails) {
+                <li>@contact</li>
+            }
+            </ul>
+
+            <h5>Opening Times: </h5>
+            <ul>
+            @for(openingTime <- venueInfo.openingTimes) {
+                <li>@openingTime</li>
+            }
+            </ul>
+
+            <h5>Offers: </h5>
+            <ul>
+                @for(offer <- venueInfo.offers) {
+                    <li>@offer</li>
+                }
+            </ul>
+        </div>
+    </div>
+}

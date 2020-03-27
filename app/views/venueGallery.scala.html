@@ -1,0 +1,18 @@
+@(venueInfos: List[VenueInfo])
+
+@main("Venue Gallery") {
+    <h2 style="text-align: center;"> Venues Gallery</h2>
+    <div class="row justify-content-center" >
+
+    @for(venueInfo <- venueInfos) {
+        <div class="card" style="text-align: center" onclick="window.location.href = '@routes.VenueController.venue(venueInfo.name)';">
+            <h4 class="card-title">@venueInfo.name</h4>
+            <img class="card-img-bottom" src="@{
+                venueInfo.url
+            }" alt="poster" style="width: 400px;
+                height: 600px;">
+            <footer>Category: @venueInfo.category </footer>
+        </div>
+    }
+    </div>
+}
