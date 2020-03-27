@@ -132,6 +132,17 @@ class MongoService @Inject()(
 
   }
 
+  def createUser(user: User): Future[WriteResult] = {
+    userCollection.flatMap(_.insert.one(user))
+  }
+
+  def usersReInnit(): Future[WriteResult] = {
+    userCollection.map {
+      _.drop(false)
+    }
+    createUser(User("admin", "admin@admin.com", "admin"))
+  }
+
   def findAllUsers(): Future[List[User]] = {
     userCollection.map {
       _.find(Json.obj())
