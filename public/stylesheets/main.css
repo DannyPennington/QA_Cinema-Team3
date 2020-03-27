@@ -10,12 +10,7 @@ header {
     padding: 30px 0px;
     width: 100%;
 }
-.logo{
-    position: absolute;
- z-index: 1;
-    top: 0px;
-    left: 500px;
-}
+
 header nav ul {
     list-style-type: none;
     margin: 0 auto;
