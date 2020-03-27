@@ -47,7 +47,7 @@ class MongoControllerService @Inject()(
       }
     }, { emailFormat: emailForm => {
       mongoService.createEmailDetails(emailFormat).map {
-        _ => Ok("User inserted")
+        _ => Ok("Email Submitted")
       }
     }
     })
