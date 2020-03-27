@@ -1,3 +1,28 @@
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-      
+GET     /                           controllers.HomeController.index
+
+GET        /screens                controllers.ScreensController.screens
+
+GET        /classifications        controllers.ClassificationsController.classifications
+
+
+GET        /listingGallery         controllers.ListingController.listingGallery
+GET        /createMovie            controllers.ListingController.createMovie
+GET        /currentReInnit         controllers.ListingController.reInnit
+
+GET        /releaseGallery         controllers.ReleaseController.releaseGallery
+GET        /createRelease          controllers.ReleaseController.createRelease
+GET        /releaseReInnit         controllers.ReleaseController.reInnit
+
+GET        /openingTimes           controllers.OpeningController.opening
+
+GET        /booking                controllers.BookingController.booking
+POST       /booking                controllers.BookingController.parseDetails
+
+GET        /movie                  controllers.MovieController.movie(title: String)
+GET        /release                controllers.FutureMovieController.movie(title: String)
+
+POST       /submitPayment          controllers.MongoControllerService.createPay
+
+GET        /directions             controllers.DirectionsController.directions
