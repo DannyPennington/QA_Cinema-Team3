@@ -1,17 +1,15 @@
 package controllers
 
 import javax.inject.Inject
-
-import models.{FutureReleaseInfo, MovieInfo}
+import models.{FutureReleaseInfo, MovieInfo, emailForm, paymentForm}
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
+
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
-import models.paymentForm
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
-
 import org.joda.time.LocalDateTime
 import play.api.libs.json.Json
 import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
@@ -30,6 +28,9 @@ class MongoService @Inject()(
   def releaseCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("releases"))
 
   def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
+
+  def emailCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("email"))
+
 
   def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
     currentCollection.flatMap(_.insert.one(movieInfo))
@@ -50,6 +51,10 @@ class MongoService @Inject()(
   }
 
   def createPaymentDetails(user: paymentForm): Future[WriteResult] = {
+    paymentCollection.flatMap(_.insert.one(user))
+  }
+
+  def createEmailDetails(user: emailForm): Future[WriteResult] = {
     paymentCollection.flatMap(_.insert.one(user))
   }
 
