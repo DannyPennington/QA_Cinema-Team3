@@ -12,8 +12,9 @@
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
             <select id="film" name="film" style="margin-left: 50px" onchange="getFilm()">
-                @for(film <- currentMovieList) {
-                    <option value="@film.title">@film.title</option>
+                @for(film <- currentMovieList.indices) {
+                    <option value="@film.toString">@currentMovieList(film).title</option>
+
                 }
             </select>
     </div>
@@ -38,13 +39,10 @@
 
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
-            <select id="time" name="time" style="margin-left: 50px">
-                @for(film <- currentMovieList) {
-                    @if(film.title.contains(request.session.data.getOrElse("selectedFilm", ""))) {
-                        @for(time <- film.showTimes) {
-                                <option value="@time">@time</option>
-                        }
-                }}
+            <select id="time" name="time" style="margin-left: 50px" >
+                @for(time <- currentMovieList(request.cookies.get("selectedFilm").get.value.toInt).showTimes) {
+                    <option value="@time">@time</option>
+                }
             </select>
     </div>
 
@@ -89,7 +87,7 @@
 
     <script type="text/javascript">
             function getFilm() {
-                sessionStorage.setItem("selectedFilm",document.getElementById("film").value);
+                document.cookie = "selectedFilm=" + document.getElementById("film").value;
             }
 
             var adults = 0;
