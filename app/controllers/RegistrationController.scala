@@ -19,6 +19,7 @@ class RegistrationController @Inject()(
                                   ) extends AbstractController(components) with play.api.i18n.I18nSupport {
 
   implicit def ec: ExecutionContext = components.executionContext
+
   val collection: Future[JSONCollection] = mongoService.userCollection
 
   def searchHelper(category: String, value: String): Future[List[User]] = {
@@ -37,7 +38,7 @@ class RegistrationController @Inject()(
     futureUsersList
   }
 
-  def addUser(username :String, email :String, password :String): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
+  def addUser(username: String, email: String, password: String): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     val user = User(username, email, password)
     val exists = Await.result(emailExists(email), Duration.Inf)
     val usernameExists = Await.result(userExists(username), Duration.Inf)
@@ -45,29 +46,29 @@ class RegistrationController @Inject()(
       Future(Redirect(routes.RegistrationController.showRegistration()).flashing("emailInUse" -> "yes"))
     }
     else if (usernameExists) {
-      Future(Redirect(routes.RegistrationController.showRegistration()).flashing("usernameInUse" -> "no"))
+      Future(Redirect(routes.RegistrationController.showRegistration()).flashing("usernameInUse" -> "yes"))
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
-      futureResult.map(_ => Redirect(routes.RegistrationController.success))
+      futureResult.map(_ => Redirect(routes.RegistrationController.success()))
     }
   }
 
-  def showRegistration: Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
+  def showRegistration: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     if (request.flash.get("emailInUse").isDefined) {
       Ok(views.html.registration(Registration.RegistrationForm, "Email address already registered with account!"))
     }
     else if (request.flash.get("usernameInUse").isDefined) {
       Ok(views.html.registration(Registration.RegistrationForm, "Username is already in use!"))
     }
-    else{
-      Ok(views.html.registration(Registration.RegistrationForm,""))
+    else {
+      Ok(views.html.registration(Registration.RegistrationForm, ""))
     }
   }
 
-  def registerUser: Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
+  def registerUser: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     Registration.RegistrationForm.bindFromRequest.fold({ formWithErrors =>
-      BadRequest(views.html.registration(formWithErrors,""))
+      BadRequest(views.html.registration(formWithErrors, ""))
     }, { register =>
       Redirect(routes.RegistrationController.addUser(register.username, register.email, register.password))
 
@@ -75,7 +76,7 @@ class RegistrationController @Inject()(
   }
 
   def findByEmail(email: String): Action[AnyContent] = Action.async {
-    val futureUsersList = searchHelper("email",email)
+    val futureUsersList = searchHelper("email", email)
     futureUsersList.map { persons =>
       Ok(persons.toString)
     }
@@ -92,6 +93,7 @@ class RegistrationController @Inject()(
       }
     }
   }
+
   def userExists(username: String): Future[Boolean] = {
     val futureUsersList = searchHelper("username", username)
     futureUsersList.map { person =>
@@ -104,8 +106,11 @@ class RegistrationController @Inject()(
     }
   }
 
-  def success:Action[AnyContent] = Action {
+  def success: Action[AnyContent] = Action {
     Ok(views.html.message("Thanks for registering!"))
   }
 
+  def reInnit(): Action[AnyContent] = Action.async {
+    mongoService.usersReInnit().map(_ => Ok("Reinitialised collection with admin user"))
+  }
 }
