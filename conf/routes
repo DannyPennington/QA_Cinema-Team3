@@ -32,3 +32,4 @@ GET        /addUser                controllers.RegistrationController.addUser(us
 GET        /register               controllers.RegistrationController.showRegistration
 POST       /register               controllers.RegistrationController.registerUser
 GET        /success                controllers.RegistrationController.success
+GET        /userReInnit            controllers.RegistrationController.reInnit
