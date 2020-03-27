@@ -1,7 +1,7 @@
 package controllers
 
 import javax.inject.Inject
-import models.{FutureReleaseInfo, MovieInfo, VenueInfo, paymentForm}
+import models.{NewReleaseInfo, MovieInfo, VenueInfo, paymentForm}
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
 
@@ -55,20 +55,20 @@ class MongoService @Inject()(
   }
 
 
-  def createNewRelease(futureReleaseInfo: FutureReleaseInfo): Future[WriteResult] = {
+  def createNewRelease(futureReleaseInfo: NewReleaseInfo): Future[WriteResult] = {
     releaseCollection.flatMap(_.insert.one(futureReleaseInfo))
   }
 
 
-  def findNewReleases(): Future[List[FutureReleaseInfo]] = {
+  def findNewReleases(): Future[List[NewReleaseInfo]] = {
     releaseCollection.map {
       _.find(Json.obj())
         .sort(Json.obj("created" -> -1))
-        .cursor[FutureReleaseInfo]()
+        .cursor[NewReleaseInfo]()
     }.flatMap(
       _.collect[List](
         -1,
-        Cursor.FailOnError[List[FutureReleaseInfo]]()
+        Cursor.FailOnError[List[NewReleaseInfo]]()
       )
     )
   }
@@ -80,32 +80,32 @@ class MongoService @Inject()(
         cursor[MovieInfo]()
     }
 
-    val futureUsersList: Future[List[MovieInfo]] =
+    val movieFuturesList: Future[List[MovieInfo]] =
       cursor.flatMap(
         _.collect[List](
           -1,
           Cursor.FailOnError[List[MovieInfo]]()
         )
       )
-    futureUsersList
+    movieFuturesList
   }
 
-  def findNewReleaseByTitle(title: String): Future[List[FutureReleaseInfo]] = {
-    val cursor: Future[Cursor[FutureReleaseInfo]] = releaseCollection.map {
+  def findNewReleaseByTitle(title: String): Future[List[NewReleaseInfo]] = {
+    val cursor: Future[Cursor[NewReleaseInfo]] = releaseCollection.map {
       _.find(Json.obj("title" -> title)).
         sort(Json.obj("created" -> -1)).
-        cursor[FutureReleaseInfo]()
+        cursor[NewReleaseInfo]()
     }
 
-    val futureUsersList: Future[List[FutureReleaseInfo]] =
+    val releaseFuturesList: Future[List[NewReleaseInfo]] =
       cursor.flatMap(
         _.collect[List](
           -1,
-          Cursor.FailOnError[List[FutureReleaseInfo]]()
+          Cursor.FailOnError[List[NewReleaseInfo]]()
         )
       )
 
-    futureUsersList
+    releaseFuturesList
   }
 
   def createVenue(venueInfo: VenueInfo): Future[WriteResult] = {
@@ -133,14 +133,14 @@ class MongoService @Inject()(
         cursor[VenueInfo]()
     }
 
-    val futureUsersList: Future[List[VenueInfo]] =
+    val venueFuturesList: Future[List[VenueInfo]] =
       cursor.flatMap(
         _.collect[List](
           -1,
           Cursor.FailOnError[List[VenueInfo]]()
         )
       )
-    futureUsersList
+    venueFuturesList
   }
 
 
@@ -160,12 +160,12 @@ class MongoService @Inject()(
       _.drop
     }
 
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 1", "Me", List("Qui-Gon Jinn","Double Saber Dude", "Jar Jar"),"01/04/2020","https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"))
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 2", "You", List("Boba Fett","Count Dooku"),"02/04/2020","https://m.media-amazon.com/images/M/MV5BMDAzM2M0Y2UtZjRmZi00MzVlLTg4MjEtOTE3NzU5ZDVlMTU5XkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_.jpg"))
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 3", "Them", List("The Senate","Mace Windu", "Dewit"),"03/04/2020","https://images-na.ssl-images-amazon.com/images/I/71MKj4j-isL._SL1200_.jpg"))
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 4", "Us", List("Darth Vadar","Han Solo"),"04/04/2020","https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg"))
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 5", "Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons", List("Yoda","R2-D2", "C-3PO"),"05/04/2020","https://images-na.ssl-images-amazon.com/images/I/71tglII26nL._AC_SY679_.jpg"))
-    createNewRelease(FutureReleaseInfo("Star Wars: Episode 6", "Tadas", List("Luke Skywalker","Chewie", "Slave Leia"),"06/04/2020","https://images-na.ssl-images-amazon.com/images/I/71fiCHdViHL._AC_SY879_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 1", "Me", List("Qui-Gon Jinn","Double Saber Dude", "Jar Jar"),"01/04/2020","https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 2", "You", List("Boba Fett","Count Dooku"),"02/04/2020","https://m.media-amazon.com/images/M/MV5BMDAzM2M0Y2UtZjRmZi00MzVlLTg4MjEtOTE3NzU5ZDVlMTU5XkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 3", "Them", List("The Senate","Mace Windu", "Dewit"),"03/04/2020","https://images-na.ssl-images-amazon.com/images/I/71MKj4j-isL._SL1200_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 4", "Us", List("Darth Vadar","Han Solo"),"04/04/2020","https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 5", "Daenerys of the House Targaryen, the First of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men, Queen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm, Lady Regent of the Seven Kingdoms, Breaker of Chains and Mother of Dragons", List("Yoda","R2-D2", "C-3PO"),"05/04/2020","https://images-na.ssl-images-amazon.com/images/I/71tglII26nL._AC_SY679_.jpg"))
+    createNewRelease(NewReleaseInfo("Star Wars: Episode 6", "Tadas", List("Luke Skywalker","Chewie", "Slave Leia"),"06/04/2020","https://images-na.ssl-images-amazon.com/images/I/71fiCHdViHL._AC_SY879_.jpg"))
 
   }
 
