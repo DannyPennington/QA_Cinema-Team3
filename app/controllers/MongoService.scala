@@ -55,7 +55,7 @@ class MongoService @Inject()(
   }
 
   def createEmailDetails(user: emailForm): Future[WriteResult] = {
-    paymentCollection.flatMap(_.insert.one(user))
+    emailCollection.flatMap(_.insert.one(user))
   }
 
 

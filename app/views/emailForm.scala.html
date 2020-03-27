@@ -1,1 +1,20 @@
+@import views.html.helper.style
 @(form: Form[emailForm])(implicit messagesProvider: MessagesProvider)
+
+
+
+
+<h2>Send a message</h2>
+<h4>Please fill out the information below carefully.</h4>
+<div class="container">
+    @helper.form(routes.MongoControllerService.createEmail()) {
+        @helper.inputText(form("email"), '_label -> "Email Address:", '_showConstraints -> false)
+        @helper.inputText(form("subject"), '_label -> "Subject:", '_showConstraints -> false)
+        @helper.inputText(form("message"), '_label -> "Message:", '_showConstraints -> false)
+        <button type="submit">Submit Email</button>
+        <button type="reset">Clear</button>
+    }
+
+
+
+</div>
