@@ -19,6 +19,7 @@ header nav ul {
 
 }
 
+
 header nav ul li {
     border-right: 1px solid firebrick;
     display: inline;
@@ -475,4 +476,91 @@ input[type=text], select, textarea {
     height:100%;
     width:100%;
     position:absolute;
+}
+#release_gallery{
+    margin: -32px 0px;
+    padding: 40px 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.9))),
+    url(/assets/images/spaceship.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/fspaceship.jpg);
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/spaceship.jpg);
+    background-image: -o-linear-gradient( top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/spaceship.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/spaceship.jpg);
+    background-image: -moz-linear-gradient(top,rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/spaceship.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+#listing_gallery{
+    margin: -32px 0px;
+    padding: 40px 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.9))),
+    url(/assets/images/film.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/film.jpg);
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/film.jpg);
+    background-image: -o-linear-gradient( top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/film.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/film.jpg);
+    background-image: -moz-linear-gradient(top,rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url(/assets/images/film.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+#opening_times{
+    margin: -32px 0px;
+    padding: 40px 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))),
+    url(/assets/images/fractal.jpg)
+;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/fractal.jpg)
+;
+
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/fractal.jpg)
+;
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/fractal.jpg)
+;
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/fractal.jpg)
+;
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/fractal.jpg)
+;
+    background-repeat: no-repeat
+;
+    background-size: cover
+;
+    background-position: center
+;
+    background-attachment: fixed
+;
+}
+.header_table{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+
+}
+.para_table{
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    font-size: 1em;
+    color: black;
+}
+.day_styling{
+    font-size: 1.2em;
 }
