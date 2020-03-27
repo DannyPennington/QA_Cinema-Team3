@@ -555,3 +555,17 @@ input[type=text], select, textarea {
     background-attachment: fixed
 ;
 }
+.header_table{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+
+}
+.para_table{
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    font-size: 1em;
+    color: black;
+}
+.day_styling{
+    font-size: 1.2em;
+}
