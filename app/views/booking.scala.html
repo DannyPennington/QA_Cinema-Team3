@@ -8,12 +8,19 @@
         <br> <br>
     </div>
 
+
     <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
+        <div>
+            @for(index <- currentMovieList.indices) {
+                <input type="hidden" id="@{ "times" + index.toString}" value="@currentMovieList(index).showTimes">
+            }
+        </div>
+
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
             <select id="film" name="film" style="margin-left: 50px" onchange="getFilm()">
-                @for(film <- currentMovieList.indices) {
-                    <option value="@film.toString">@currentMovieList(film).title</option>
+                @for(index <- currentMovieList.indices) {
+                    <option value="@index.toString">@currentMovieList(index).title</option>
 
                 }
             </select>
@@ -40,8 +47,7 @@
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
             <select id="time" name="time" style="margin-left: 50px" >
-                @for(time <- currentMovieList(request.cookies.get("selectedFilm").get.value.toInt).showTimes) {
-                    <option value="@time">@time</option>
+                    <option id="timeOption" value=""></option>
                 }
             </select>
     </div>
@@ -87,7 +93,9 @@
 
     <script type="text/javascript">
             function getFilm() {
-                document.cookie = "selectedFilm=" + document.getElementById("film").value;
+                var index = "times" + document.getElementById("film").value;
+                document.getElementById("timeOption").value = document.getElementById(index).value;
+                document.getElementById("timeOption").innerHTML = document.getElementById(index).value;
             }
 
             var adults = 0;
@@ -134,6 +142,3 @@
 
 
     </script>
-
-
-}
