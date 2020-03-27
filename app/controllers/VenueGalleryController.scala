@@ -1,9 +1,7 @@
 package controllers
 
-import java.time._
-
 import javax.inject.{Inject, _}
-import models.{MovieInfo, VenueInfo}
+import models.VenueInfo
 import play.api.mvc._
 
 import scala.concurrent.ExecutionContext.Implicits.global
