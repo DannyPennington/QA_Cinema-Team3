@@ -15,6 +15,4 @@ object emailForm {
       "message" -> nonEmptyText
     )(emailForm.apply)(emailForm.unapply)
   )
-
-
 }
