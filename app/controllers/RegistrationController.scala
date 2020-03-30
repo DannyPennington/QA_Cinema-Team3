@@ -60,6 +60,9 @@ class RegistrationController @Inject()(
     else if (request.flash.get("usernameInUse").isDefined) {
       Ok(views.html.registration(Registration.RegistrationForm, "Username is already in use!"))
     }
+    else if (request.flash.get("exists").isDefined) {
+      Ok(views.html.registration(Registration.RegistrationForm, "Please create an account!"))
+    }
     else {
       Ok(views.html.registration(Registration.RegistrationForm, ""))
     }
