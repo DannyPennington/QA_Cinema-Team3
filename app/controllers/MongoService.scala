@@ -148,8 +148,8 @@ class MongoService @Inject()(
     currentCollection.map {
       _.drop
     }
-    createCurrentMovie(MovieInfo("Mulan","Bob",List("A","B","C"),List(LocalDateTime.now().toString()),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
-    createCurrentMovie(MovieInfo("Pocahontas","Romeo",List("D","E","F"),List(LocalDateTime.now().plusHours(1).toString()),"https://lh3.googleusercontent.com/proxy/OJIQ61YFf7Pr1JOdo1fey-DFRHj1NEhin1aizcJJpQLWIqMuiieyXeHjpukcHxiVynaED7TUrlrql9NjhLzu7ap2cHJwfJUPy8KnGFxNArk"))
+    createCurrentMovie(MovieInfo("Mulan","Bob",List("A","B","C"),List(LocalDateTime.now().toString(),"11","54","1509"),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
+    createCurrentMovie(MovieInfo("Pocahontas","Romeo",List("D","E","F"),List(LocalDateTime.now().plusHours(1).toString(),"17"),"https://lh3.googleusercontent.com/proxy/OJIQ61YFf7Pr1JOdo1fey-DFRHj1NEhin1aizcJJpQLWIqMuiieyXeHjpukcHxiVynaED7TUrlrql9NjhLzu7ap2cHJwfJUPy8KnGFxNArk"))
     createCurrentMovie(MovieInfo("Pinocchio","Denice",List("G","H"),List(LocalDateTime.now().plusHours(2).toString()),"https://i.etsystatic.com/18324742/r/il/1109e0/1918068271/il_570xN.1918068271_atcj.jpg"))
     createCurrentMovie(MovieInfo("Brother Bear","Jarvis",List("I"),List(LocalDateTime.now().plusHours(3).toString()),"https://images.wolfgangsvault.com/m/xlarge/ZZZ060321-PO/brother-bear-poster-oct-31-2003.webp"))
     createCurrentMovie(MovieInfo("Ice Age","The Legend 27",List("J","K","L"),List(LocalDateTime.now().plusHours(4).toString()),"https://www.iceposter.com/thumbs/MOV_wmtybram_b.jpg"))
