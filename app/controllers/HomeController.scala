@@ -15,7 +15,7 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
   }
 
   def email: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.emailForm(EmailForm.email))
+    Ok(views.html.emailForm(EmailForm.Email))
   }
 
 

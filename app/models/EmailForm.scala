@@ -8,9 +8,9 @@ import play.api.libs.json.OFormat
 case class EmailForm(email: String, subject: String, message: String)
 
 object EmailForm {
-  val email: Form[EmailForm] = Form(
+  val Email: Form[EmailForm] = Form(
     mapping(
-      "email" -> nonEmptyText,
+      "email" -> email,
       "subject" -> nonEmptyText,
       "message" -> nonEmptyText
     )(EmailForm.apply)(EmailForm.unapply)

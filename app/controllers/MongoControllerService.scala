@@ -41,7 +41,7 @@ class MongoControllerService @Inject()(
 
 
   def createEmail = Action.async { implicit request: Request[AnyContent] =>
-    EmailForm.email.bindFromRequest.fold({ formWithErrors =>
+    EmailForm.Email.bindFromRequest.fold({ formWithErrors =>
       Future {
         BadRequest(views.html.emailForm(formWithErrors))
       }
