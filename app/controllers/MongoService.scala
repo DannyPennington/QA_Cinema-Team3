@@ -33,8 +33,6 @@ class MongoService @Inject()(
   def emailCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("email"))
 
 
-  def createMovie(movieInfo: MovieInfo): Future[WriteResult] = {
-
   def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
 
 
