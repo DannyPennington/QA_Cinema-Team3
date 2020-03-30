@@ -10,13 +10,13 @@ import play.api.test.Helpers._
 
 import scala.concurrent.Future
 
-class HomeControllerTest extends PlaySpec with Results with MockitoSugar {
+class ListingGalleryTest extends PlaySpec with Results with MockitoSugar {
 
-  "Page#index with template" should {
+  "Page#listingGallery with template" should {
     "should be valid" in {
       val mongoService = mock[MongoService]
-      val controller = new HomeController(Helpers.stubControllerComponents(), mongoService)
-      val result: Future[Result] = controller.index().apply(FakeRequest())
+      val controller = new ListingController(Helpers.stubControllerComponents(), mongoService)
+      val result: Future[Result] = controller.listingGallery().apply(FakeRequest())
       contentType(result) mustBe Some("text/html")
       contentAsString(result) must include("About")
       contentAsString(result) must include("Latest Releases")
