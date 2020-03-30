@@ -1,18 +1,44 @@
-@(futureReleaseInfos: List[FutureReleaseInfo])
+@(futureReleaseInfos: List[NewReleaseInfo])
 
 @main("Release Gallery") {
-    <h2 style="text-align: center;"> New Releases Gallery</h2>
-    <div class="row justify-content-center" >
+    <section id="release_gallery" class=" py-5 mt-5" style="margin-bottom: -40px;
+        padding-left: -40px">
+        <h1 class="title"> New Releases Gallery</h1>
+        <center>
+            <div class="border"></div>
+        </center>
 
-    @for(movieInfo <- futureReleaseInfos) {
-        <div class="card" style="text-align: center" onclick="window.location.href = '@routes.FutureMovieController.movie(movieInfo.title)';">
-            <h4 class="card-title">@movieInfo.title</h4>
-            <img class="card-img-bottom" src="@{
-                movieInfo.url
-            }" alt="poster" style="width: 400px;
-                height: 600px;">
-            <footer>Release Date: @movieInfo.releaseDate </footer>
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para">
+                Welcome to the new releases gallery!
+            </p>
+
         </div>
-    }
-    </div>
+        <div class="container">
+            <div class="row justify-content-center">
+
+            @for(movieInfo <- futureReleaseInfos) {
+                <div class="col-6 text-center">
+                    <div class="card mx-auto mt-3" style="text-align: center" onclick="window.location.href = '@routes.FutureMovieController.movie(movieInfo.title)';">
+                        <img src="@{
+                            movieInfo.url
+                        }" alt="poster" width="100%" >
+                        <div style="border-bottom: 1px solid black">
+                            <h1 class="cardHeader pt-3"> @movieInfo.title </h1>
+                        </div>
+                        <p class="para2 mt-2">
+                    Release Date: @movieInfo.releaseDate
+                </p>
+
+                    </div>
+                </div>
+            }
+
+            </div>
+        </div>
+
+
+    </section>
+
+
 }
