@@ -23,7 +23,6 @@ class MongoControllerService @Inject()(
   def collection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
 
-
   def createPay = Action.async { implicit request: Request[AnyContent] =>
     paymentForm.payments.bindFromRequest.fold({ formWithErrors =>
       Future {
