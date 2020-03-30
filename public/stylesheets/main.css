@@ -666,3 +666,16 @@ input[type=text], select, textarea {
      font-size: 0.9em;
      color: black;
  }
+.para_header_page{
+    font-family: 'Courgette', cursive;
+    font-size: 1.3em;
+    text-align: left;
+    color: navy;
+
+}
+.footer_header{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+    color: navy;
+
+}
