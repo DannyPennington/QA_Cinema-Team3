@@ -1,10 +1,15 @@
-
+@()(implicit request: Request[AnyContent])
 <header>
     <div class="account">
-        <a  href="@routes.RegistrationController.showRegistration()" class="btn mb-3" style="background-color: navy;
-            color: white;" >Sign up!</a>
-        <a  href="@routes.LoginController.login()" class="btn mb-3" style="background-color: navy;
-            color: white;" >Log in</a>
+        @if(!request.cookies.get("logged_in").isDefined) {
+            <a href="@routes.RegistrationController.showRegistration()" class="btn mb-3" style="background-color: navy;
+                color: white;" >Sign up!</a>
+            <a href="@routes.LoginController.login()" class="btn mb-3" style="background-color: navy;
+                color: white;" >Log in</a>
+        } else {Logged in as @request.cookies.get("logged_in").get.value
+        <a href="@routes.LoginController.logout()" class="btn mb-3" style="background-color: navy;
+            color: white;" >Log out</a>
+        }
     </div>
 
     <div class="icons" style="padding-bottom: 100px; ">
