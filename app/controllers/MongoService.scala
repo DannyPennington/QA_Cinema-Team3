@@ -155,4 +155,17 @@ class MongoService @Inject()(
       )
     )
   }
+
+  def findUserByUsername(username: String): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj("username" -> username))
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
+  }
 }
