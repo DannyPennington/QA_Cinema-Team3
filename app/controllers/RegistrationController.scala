@@ -49,7 +49,7 @@ class RegistrationController @Inject()(
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
-      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession(request.session + ("user" -> user.email)))
+      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession("user" -> user.username).withCookies(Cookie("logged_in", user.username)))
     }
   }
 
@@ -77,7 +77,7 @@ class RegistrationController @Inject()(
     })
   }
 
-  def findByEmail(email: String): Action[AnyContent] = Action.async {
+  def findByEmail(email: String): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     val futureUsersList = searchHelper("email", email)
     futureUsersList.map { persons =>
       Ok(persons.toString)
@@ -109,10 +109,10 @@ class RegistrationController @Inject()(
   }
 
   def success(): Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
-    Ok(views.html.message("Thanks for registering! " + request.session.get("user")))
+    Ok(views.html.message("Thanks for registering! " + request.cookies.get("logged_in").getOrElse("")))
   }
 
-  def reInnit(): Action[AnyContent] = Action.async {
+  def reInnit(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     mongoService.usersReInnit().map(_ => Ok("Reinitialised collection with admin user"))
   }
 }
