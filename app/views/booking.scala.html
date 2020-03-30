@@ -8,10 +8,11 @@
         <br> <br>
     </div>
 
-    <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
+    <form id="booking" name="booking" action="/booking" method="post" autocomplete="off" onsubmit="getTitle()">
         <div>
             @for(index <- currentMovieList.indices) {
                 <input type="hidden" id="@{ "times" + index.toString}" value="@currentMovieList(index).showTimes">
+                <input type="hidden" id="@{ "films" + index.toString}" value="@currentMovieList(index).title">
             }
         </div>
 
@@ -19,7 +20,7 @@
             <label for="film">Film to watch: </label>
             <select id="film" name="film" style="margin-left: 50px" onchange="getFilm()">
                 @for(index <- currentMovieList.indices) {
-                    <option value="@index.toString">@currentMovieList(index).title</option>
+                    <option id="filmOption" value="@index.toString">@currentMovieList(index).title</option>
 
                 }
             </select>
@@ -95,6 +96,12 @@
                 var index = "times" + document.getElementById("film").value;
                 document.getElementById("timeOption").value = document.getElementById(index).value;
                 document.getElementById("timeOption").innerHTML = document.getElementById(index).value;
+            }
+            function getTitle() {
+                var titleID = "films" + document.getElementById("film").value;
+                document.getElementById("filmOption").value = document.getElementById(titleID).value;
+                document.getElementById("film").value = document.getElementById(titleID).value;
+                document.getElementById("filmOption").innerHTML = document.getElementById(titleID).value;
             }
 
             var adults = 0;
