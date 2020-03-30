@@ -564,3 +564,105 @@ input[type=text], select, textarea {
 .day_styling{
     font-size: 1.2em;
 }
+.movies {
+    margin: -32px 0px;
+    padding: 40px 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8))),
+    url(/assets/images/planet.jpg)
+;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/planet.jpg)
+;
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/planet.jpg)
+;
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/planet.jpg)
+;
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/planet.jpg)
+;
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/planet.jpg)
+;
+    background-repeat: no-repeat
+;
+    background-size: cover
+;
+    background-position: center
+;
+    background-attachment: fixed
+;
+}
+.fade-in {
+    animation: fadeIn ease 7s;
+    -webkit-animation: fadeIn ease 7s;
+    -moz-animation: fadeIn ease 7s;
+    -o-animation: fadeIn ease 7s;
+    -ms-animation: fadeIn ease 7s;
+}
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.header_title{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+    text-align: left;
+    padding-left: 10px;
+
+}
+.para_title{
+    font-family: 'Courgette', cursive;
+    font-size: 0.9em;
+    color: black;
+}
+.para_title{
+    font-family: 'Courgette', cursive;
+    font-size: 1.2em;
+    color: black;
+}.header_para{
+     font-family: 'Courgette', cursive;
+     font-size: 0.9em;
+     color: black;
+ }

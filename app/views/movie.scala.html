@@ -1,29 +1,58 @@
 @(movieInfo: MovieInfo)
 
 @main("Movie") {
-    <div class="row justify-content-center">
-        <div class="card">
-            <img src="@{
-                movieInfo.url
-            }" alt="poster" style="width: 236px;
-                height: 350px;">
-        </div>
-        <div class="card">
-            <h4>@movieInfo.title</h4>
-            <h5>Director: @movieInfo.director</h5>
-            <h5>Actors: </h5>
-            <ul>
-            @for(actor <- movieInfo.actors) {
-                <li>@actor</li>
-            }
-            </ul>
+    <section class= "movies py-5 mt-5" style="margin-bottom: -40px">
+        <h1 class="title">Movie Description</h1>
+        <center>
+            <div class="border"></div>
+        </center>
 
-            <h5>Show Times: </h5>
-            <ul>
-            @for(showTime <- movieInfo.showTimes) {
-                <li>@showTime</li>
-            }
-            </ul>
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para">
+                These are details about the movie.
+            </p>
+
+
         </div>
-    </div>
+        <div class="row justify-content-center no-gutters pb-0">
+            <div class="col-5 d-flex justify-content-end pb-0">
+                <div class="card fade-in pb-0" style="min-width: 60%;">
+                    <img class="card-img-top" src="@{
+                        movieInfo.url
+                    }" alt="poster" style="width: 100%; height: 100%">
+                </div>
+            </div>
+            <div class="col-5 d-flex justify-content-start pb-0">
+                <div class="card fade-in" style="min-width: 60%">
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h1 class="cardHeader pt-3"> @movieInfo.title </h1>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">
+                            Director: <span style=" padding-left: 15px;">@movieInfo.director</span></h5>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">Actors: </h5>
+                        <ul class="list-group list-group-flush header_title">
+                        @for(actor <- movieInfo.actors) {
+                            <li class="list-group-item " style="text-align: center">@actor</li>
+                        }
+                        </ul>
+                    </div>
+                    <div class="mt-1">
+                        <h5 class="card-title header_title">Show Times: </h5>
+                        <ul class="list-group list-group-flush header_title">
+                        @for(showTime <- movieInfo.showTimes) {
+                            <li class="list-group-item " style="text-align: center">@showTime</li>
+                        }
+                        </ul>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
 }
