@@ -5,8 +5,8 @@
     <div style="margin-left: 50px; font-family: 'Lora', serif">
     @helper.form(routes.RegistrationController.registerUser()){
         @helper.inputText(form("username"), '_label -> "Username:", '_showConstraints -> false, 'autocomplete -> "off")
-        @helper.inputText(form("email"), '_label -> "Email", '_showConstraints -> false, 'autocomplete -> "off")
-        @helper.inputPassword(form("password"), '_label -> "Password", '_showConstraints -> false)
+        @helper.inputText(form("email"), '_label -> "Email:", '_showConstraints -> false, 'autocomplete -> "off")
+        @helper.inputPassword(form("password"), '_label -> "Password:", '_showConstraints -> false)
         <button type="submit" class="btn mb-3" style="background-color: navy;
             color: white;">Sign up</button>
     }
