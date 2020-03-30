@@ -1,7 +1,7 @@
 package controllers
 import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
 import javax.inject._
-import models.{emailForm, paymentForm}
+import models.{EmailForm, paymentForm}
 import play.api.i18n.I18nSupport
 import play.api.mvc._
 
@@ -15,7 +15,7 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
   }
 
   def email: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.emailForm(emailForm.email))
+    Ok(views.html.emailForm(EmailForm.email))
   }
 
 

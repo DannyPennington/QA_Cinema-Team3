@@ -1,7 +1,7 @@
 package controllers
 
 import javax.inject.Inject
-import models.{JsonFormats, emailForm, paymentForm}
+import models.{JsonFormats, EmailForm, paymentForm}
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc._
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
@@ -41,11 +41,11 @@ class MongoControllerService @Inject()(
 
 
   def createEmail = Action.async { implicit request: Request[AnyContent] =>
-    emailForm.email.bindFromRequest.fold({ formWithErrors =>
+    EmailForm.email.bindFromRequest.fold({ formWithErrors =>
       Future {
         BadRequest(views.html.emailForm(formWithErrors))
       }
-    }, { emailFormat: emailForm => {
+    }, { emailFormat: EmailForm => {
       mongoService.createEmailDetails(emailFormat).map {
         _ => Ok(views.html.emailconfirmation())
       }

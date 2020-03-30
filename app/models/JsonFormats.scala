@@ -12,5 +12,5 @@ object JsonFormats {
   implicit val movieInfoFormat: OFormat[MovieInfo] = Json.format[MovieInfo]
   implicit val futureReleaseInfoFormat: OFormat[FutureReleaseInfo] = Json.format[FutureReleaseInfo]
   implicit val paymentFormat: OFormat[paymentForm] = Json.format[paymentForm]
-  implicit val emailFormat: OFormat[emailForm] = Json.format[emailForm]
+  implicit val emailFormat: OFormat[EmailForm] = Json.format[EmailForm]
 }

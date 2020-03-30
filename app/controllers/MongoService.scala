@@ -1,7 +1,7 @@
 package controllers
 
 import javax.inject.Inject
-import models.{FutureReleaseInfo, MovieInfo, emailForm, paymentForm}
+import models.{FutureReleaseInfo, MovieInfo, EmailForm, paymentForm}
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
 
@@ -54,7 +54,7 @@ class MongoService @Inject()(
     paymentCollection.flatMap(_.insert.one(user))
   }
 
-  def createEmailDetails(user: emailForm): Future[WriteResult] = {
+  def createEmailDetails(user: EmailForm): Future[WriteResult] = {
     emailCollection.flatMap(_.insert.one(user))
   }
 
