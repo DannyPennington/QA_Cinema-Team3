@@ -31,3 +31,5 @@ GET        /venue                  controllers.VenueController.venue(name: Strin
 POST       /submitPayment          controllers.MongoControllerService.createPay
 
 GET        /directions             controllers.DirectionsController.directions
+
+GET        /scrum                  controllers.ScrumController.scrum
