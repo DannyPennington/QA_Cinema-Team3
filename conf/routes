@@ -31,3 +31,4 @@ GET        /directions             controllers.DirectionsController.directions
 
 GET           /email                      controllers.HomeController.email
 POST       /submitEmail          controllers.MongoControllerService.createEmail
+GET         /contactUs           controllers.ContactUsController.contact
