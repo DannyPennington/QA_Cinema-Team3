@@ -15,6 +15,9 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
     if (request.flash.get("invalid").isDefined) {
       Ok(views.html.login(LoginDetails.loginForm, "Invalid credentials"))
     }
+    else if (request.flash.get("authenticateFail").isDefined) {
+      Ok(views.html.login(LoginDetails.loginForm, "Please log in to view this page"))
+    }
     else {
       Ok(views.html.login(LoginDetails.loginForm, ""))
     }
