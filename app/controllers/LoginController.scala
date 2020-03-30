@@ -1,30 +1,38 @@
 package controllers
 
 import javax.inject.{Inject, Singleton}
-import models.LoginDetails
+import models.{LoginDetails, User}
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
 
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
+
 @Singleton
-class LoginController @Inject()(cc: ControllerComponents) extends AbstractController(cc) with play.api.i18n.I18nSupport {
-
-
-  def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
-  }
+class LoginController @Inject()(cc: ControllerComponents, val mongoService: MongoService ) extends AbstractController(cc) with play.api.i18n.I18nSupport {
 
 
   def login(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.login(LoginDetails.loginForm))
+    if (request.flash.get("invalid").isDefined) {
+      Ok(views.html.login(LoginDetails.loginForm, "Invalid credentials"))
+    }
+    else {
+      Ok(views.html.login(LoginDetails.loginForm, ""))
+    }
   }
 
   def loginSubmit(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
     LoginDetails.loginForm.bindFromRequest.fold({ formWithErrors =>
-      BadRequest(views.html.login(formWithErrors))
+      BadRequest(views.html.login(formWithErrors,""))
     }, { loginDetails =>
-      if (LoginDetails.checkIfUserIsValid(loginDetails))
+      val user = Await.result(mongoService.findUserByUsername(loginDetails.username),Duration.Inf)
+      if (user.isEmpty) {
+        Redirect(routes.RegistrationController.showRegistration()).flashing("exists" -> "no")
+      }
+      else if (user.head.password == loginDetails.password) {
         Redirect(routes.HomeController.index()).withSession(request.session + ("username" -> loginDetails.username))
+      }
       else
-        BadRequest("Incorrect username or password")
+        Redirect(routes.LoginController.login()).flashing("invalid" -> "yes")
     })
   }
 
