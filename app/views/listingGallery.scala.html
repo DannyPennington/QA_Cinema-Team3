@@ -1,4 +1,4 @@
-@(movieInfos: List[MovieInfo])
+@(movieInfos: List[MovieInfo])(implicit request: Request[AnyContent])
 
 @main("Listing Gallery") {
     <h2 style="text-align: center;"> Listing Gallery</h2>
