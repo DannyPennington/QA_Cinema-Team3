@@ -9,11 +9,18 @@
         <div>
             <h5>Current movies: </h5>
             @for(movie <- currentMoviesFound) {
-                Title: @movie.title <br>
-                Director: @movie.director <br>
-                Actors: @movie.actors <br>
-                Show times: @movie.showTimes <br>
-                <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
+
+                <div style="overflow: auto">
+                    <img src="@{movie.url}" alt="poster" style="float:right; width:100px; height: 150px; margin-right: 125vh;"> <br>
+                    Title: @movie.title <br>
+                    Director: @movie.director <br>
+                    Actors: @movie.actors <br>
+                    Show times: @movie.showTimes <br>
+                    <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
+                </div>
+
+
+
             }
 
         </div>
