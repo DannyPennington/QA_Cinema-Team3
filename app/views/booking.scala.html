@@ -8,12 +8,23 @@
         <br> <br>
     </div>
 
-    <form id="booking" name="booking" action="/booking" method="post" autocomplete="off">
+    <form id="booking" name="booking" action="/booking" method="post" autocomplete="off" onsubmit="getTitle()">
+        <div>
+            @for(index <- currentMovieList.indices) {
+                <input type="hidden" id="@{ "films" + index.toString}" value="@currentMovieList(index).title">
+                <input type="hidden" id="@{ "timeCount" + index.toString}" value="@currentMovieList(index).showTimes.length">
+                @for(time <- currentMovieList(index).showTimes.indices) {
+                    <input type="hidden" id="@{ "times" + index.toString + time.toString}" value="@currentMovieList(index).showTimes(time)">
+                }
+            }
+        </div>
+
     <div style="margin-left: 50px">
             <label for="film">Film to watch: </label>
-            <select id="film" name="film" style="margin-left: 50px" onchange="getFilm()">
-                @for(film <- currentMovieList) {
-                    <option value="@film.title">@film.title</option>
+            <select id="film" name="film" style="margin-left: 50px" onchange="generateTimes()">
+                @for(index <- currentMovieList.indices) {
+                    <option id="@{"filmOption" + index}" value="@index.toString">@currentMovieList(index).title</option>
+
                 }
             </select>
     </div>
@@ -38,13 +49,8 @@
 
     <div style="margin-left: 50px">
             <label for="time">Time of showing: </label>
-            <select id="time" name="time" style="margin-left: 50px">
-                @for(film <- currentMovieList) {
-                    @if(film.title.contains(request.session.data.getOrElse("selectedFilm", ""))) {
-                        @for(time <- film.showTimes) {
-                                <option value="@time">@time</option>
-                        }
-                }}
+            <select id="time" name="time" style="margin-left: 50px" >
+                <option id="timeOption0" value="@currentMovieList.head.showTimes">@currentMovieList.head.showTimes</option>
             </select>
     </div>
 
@@ -88,8 +94,30 @@
     </form>
 
     <script type="text/javascript">
-            function getFilm() {
-                sessionStorage.setItem("selectedFilm",document.getElementById("film").value);
+        window.onload = generateTimes()
+            function getTitle() {
+                var titleID = "films" + document.getElementById("film").value;
+                var optionID = "filmOption" + document.getElementById("film").value;
+                document.getElementById(optionID).value = document.getElementById(titleID).value;
+                document.getElementById(optionID).innerHTML = document.getElementById(titleID).value;
+                document.getElementById("film").value = document.getElementById(titleID).value;
+            }
+
+            function generateTimes() {
+                var element = document.getElementById("time"),
+                    filmChosen = document.getElementById("film").value,
+                    timeString = "times" + filmChosen,
+                    timeCount = document.getElementById("timeCount" + filmChosen).value
+                    newOption = document.createDocumentFragment();
+                document.getElementById("time").options.length = 0;
+                for (var i=0; i < timeCount; i++) {
+                    var option = document.createElement("option");
+                    option.value = document.getElementById(timeString + i).value;
+                    option.innerHTML = document.getElementById(timeString + i).value;
+                    option.id = "timeOption" + i.toString();
+                    newOption.appendChild(option)
+                }
+                element.appendChild(newOption)
             }
 
             var adults = 0;
@@ -133,9 +161,5 @@
                     document.getElementById(final).value = concession
                 }}
             }
-
-
     </script>
-
-
 }
