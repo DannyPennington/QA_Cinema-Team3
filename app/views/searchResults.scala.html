@@ -1,12 +1,18 @@
-@(search: String)(implicit request: Request[AnyContent])
+@(search: String, currentMoviesFound: List[MovieInfo])(implicit request: Request[AnyContent])
 
 @main("Results") {
     <section id="search_results" class=" py-5 mt-5" style="margin-bottom: -40px; margin-left: 50px">
         <div style="margin-top: -50px;">
-            <h4>Showing results for: @search</h4>
+            <h4>Showing results for: @search</h4> <br>
         </div>
 
         <div>
+            <h5>Current movies: </h5>
+            @for(movie <- currentMoviesFound) {
+                Title: @movie.title <br>
+                Show times: @movie.showTimes <br>
+                <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
+            }
 
         </div>
 
