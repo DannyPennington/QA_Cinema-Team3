@@ -666,3 +666,43 @@ input[type=text], select, textarea {
      font-size: 0.9em;
      color: black;
  }
+.para_header_page{
+    font-family: 'Courgette', cursive;
+    font-size: 1.3em;
+    text-align: left;
+    color: navy;
+
+}
+.footer_header{
+    font-family: 'Courgette', cursive;
+    font-size: 1.4em;
+    color: navy;
+
+}
+#location{
+    background-color: white;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+.location_header{
+    font-size: 2.4em;
+
+    text-align: center;
+    font-family: 'Kaushan Script', cursive;
+}
+
+.line_across {
+    height: 5px;
+    width: 120px;
+    background-color: crimson;
+}
+
+
+
+.border_line {
+    border-radius: 5px;
+    border: 1px solid dimgray;
+}
+
+.location_info {
+    width: 85%;
+}
