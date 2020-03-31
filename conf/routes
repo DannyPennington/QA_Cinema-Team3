@@ -1,6 +1,6 @@
-GET        /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
 
-GET        /                       controllers.HomeController.index
+GET     /                          controllers.HomeController.index
 
 GET        /screens                controllers.ScreensController.screens
 
@@ -24,17 +24,22 @@ GET        /openingTimes           controllers.OpeningController.opening
 GET        /booking                controllers.BookingController.booking
 POST       /booking                controllers.BookingController.parseDetails
 
-GET        /movie                  controllers.MovieController.movie(title: String)
-GET        /release                controllers.FutureMovieController.movie(title: String)
-GET        /venue                  controllers.VenueController.venue(name: String)
+GET         /discussion             controllers.DiscussionController.discussion
+POST        /discussion             controllers.DiscussionController.parseDetails
+
+GET         /movie                  controllers.MovieController.movie(title: String)
+GET         /release                controllers.FutureMovieController.movie(title: String)
+GET         /venue                  controllers.VenueController.venue(name: String)
 
 POST       /submitPayment          controllers.MongoControllerService.createPay
 
 GET        /directions             controllers.DirectionsController.directions
 
+GET         /email                 controllers.HomeController.email
+POST        /submitEmail           controllers.MongoControllerService.createEmail
+GET         /contactUs             controllers.ContactUsController.contact
 
-
-GET     /about                           controllers.HomeController.about
+GET         /about                 controllers.HomeController.about
 
 
 GET        /email                  controllers.HomeController.email
@@ -55,3 +60,4 @@ GET         /logout                controllers.LoginController.logout
 GET         /searchResults         controllers.SearchController.showResults
 POST        /searchResults         controllers.SearchController.search
 GET         /scrum                  controllers.ScrumController.scrum
+

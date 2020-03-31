@@ -32,9 +32,10 @@ class MongoService @Inject()(
 
   def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
 
+  def discussionCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("discussion"))
+
 
   def createCurrentMovie(movieInfo: MovieInfo): Future[WriteResult] = {
-
     currentCollection.flatMap(_.insert.one(movieInfo))
   }
 
@@ -219,6 +220,23 @@ class MongoService @Inject()(
       _.collect[List](
         -1,
         Cursor.FailOnError[List[User]]()
+      )
+    )
+  }
+
+  def createDiscussion(discussionEntry: DiscussionEntry): Future[WriteResult] = {
+    currentCollection.flatMap(_.insert.one(discussionEntry))
+  }
+
+  def findDiscussions(): Future[List[DiscussionEntry]] = {
+    discussionCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[DiscussionEntry]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[DiscussionEntry]]()
       )
     )
   }
