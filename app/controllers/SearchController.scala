@@ -11,8 +11,7 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
   }
 
   def search:Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
-    val body = request.body.asFormUrlEncoded
-    val search = body.get("search").head
+    val search = request.body.asFormUrlEncoded.get("search").head
     Ok(views.html.searchResults(search))
   }
 
