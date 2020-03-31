@@ -10,6 +10,7 @@
             <h5>Current movies: </h5>
             @for(movie <- currentMoviesFound) {
                 Title: @movie.title <br>
+                Actors: @movie.actors <br>
                 Show times: @movie.showTimes <br>
                 <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
             }
