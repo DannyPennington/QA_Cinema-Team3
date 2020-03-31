@@ -1,7 +1,14 @@
 @(search: String)(implicit request: Request[AnyContent])
 
 @main("Results") {
-    Well done you nonce <br>
-    You searched for: @search
+    <section id="search_results" class=" py-5 mt-5" style="margin-bottom: -40px; margin-left: 50px">
+        <div style="margin-top: -50px;">
+            <h4>Showing results for: @search</h4>
+        </div>
+
+
+    </section>
+
+
 
 }
