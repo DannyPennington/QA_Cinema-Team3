@@ -2,7 +2,7 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 import models.{LoginDetails, User}
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Cookie, DiscardingCookie, Request}
+import play.api.mvc._
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
