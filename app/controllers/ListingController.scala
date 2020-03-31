@@ -2,7 +2,6 @@ package controllers
 
 import java.time._
 
-import authentication.AuthenticationAction
 import javax.inject.{Inject, _}
 import models.{FutureReleaseInfo, MovieInfo}
 import play.api.mvc._
@@ -10,7 +9,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class ListingController @Inject()(cc: ControllerComponents, authAction: AuthenticationAction, val mongoService: MongoService) extends AbstractController(cc) {
+class ListingController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
 
   def listingGallery(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
     mongoService.findCurrentMovies().map(listOfMovieInfo =>

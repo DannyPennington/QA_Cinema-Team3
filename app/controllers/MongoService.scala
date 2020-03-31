@@ -10,8 +10,6 @@ import collection._
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import org.joda.time.LocalDateTime
-import play.api.libs.json.Json
-import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.Cursor
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.commands.WriteResult
