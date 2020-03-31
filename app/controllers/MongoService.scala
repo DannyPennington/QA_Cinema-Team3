@@ -1,18 +1,15 @@
 package controllers
 
 import javax.inject.Inject
-import models.{NewReleaseInfo, MovieInfo, VenueInfo, paymentForm}
+import models._
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
-
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import org.joda.time.LocalDateTime
-import play.api.libs.json.Json
-import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.Cursor
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.commands.WriteResult
@@ -29,10 +26,15 @@ class MongoService @Inject()(
 
   def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
+  def userCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("users"))
+
+  def emailCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("email"))
+
   def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
 
 
   def createCurrentMovie(movieInfo: MovieInfo): Future[WriteResult] = {
+
     currentCollection.flatMap(_.insert.one(movieInfo))
   }
 
@@ -52,6 +54,10 @@ class MongoService @Inject()(
 
   def createPaymentDetails(user: paymentForm): Future[WriteResult] = {
     paymentCollection.flatMap(_.insert.one(user))
+  }
+
+  def createEmailDetails(user: EmailForm): Future[WriteResult] = {
+    emailCollection.flatMap(_.insert.one(user))
   }
 
 
@@ -148,17 +154,20 @@ class MongoService @Inject()(
     currentCollection.map {
       _.drop
     }
-    createCurrentMovie(MovieInfo("Mulan","Bob",List("A","B","C"),List(LocalDateTime.now().toString()),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
-    createCurrentMovie(MovieInfo("Pocahontas","Romeo",List("D","E","F"),List(LocalDateTime.now().plusHours(1).toString()),"https://lh3.googleusercontent.com/proxy/OJIQ61YFf7Pr1JOdo1fey-DFRHj1NEhin1aizcJJpQLWIqMuiieyXeHjpukcHxiVynaED7TUrlrql9NjhLzu7ap2cHJwfJUPy8KnGFxNArk"))
+
+    createCurrentMovie(MovieInfo("Mulan","Bob",List("A","B","C"),List(LocalDateTime.now().toString(),"11","54","1509"),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
+    createCurrentMovie(MovieInfo("Pocahontas","Romeo",List("D","E","F"),List(LocalDateTime.now().plusHours(1).toString(),"17"),"https://lh3.googleusercontent.com/proxy/OJIQ61YFf7Pr1JOdo1fey-DFRHj1NEhin1aizcJJpQLWIqMuiieyXeHjpukcHxiVynaED7TUrlrql9NjhLzu7ap2cHJwfJUPy8KnGFxNArk"))
     createCurrentMovie(MovieInfo("Pinocchio","Denice",List("G","H"),List(LocalDateTime.now().plusHours(2).toString()),"https://i.etsystatic.com/18324742/r/il/1109e0/1918068271/il_570xN.1918068271_atcj.jpg"))
     createCurrentMovie(MovieInfo("Brother Bear","Jarvis",List("I"),List(LocalDateTime.now().plusHours(3).toString()),"https://images.wolfgangsvault.com/m/xlarge/ZZZ060321-PO/brother-bear-poster-oct-31-2003.webp"))
     createCurrentMovie(MovieInfo("Ice Age","The Legend 27",List("J","K","L"),List(LocalDateTime.now().plusHours(4).toString()),"https://www.iceposter.com/thumbs/MOV_wmtybram_b.jpg"))
+
   }
 
   def releaseReInnit(): Future[WriteResult] = {
     releaseCollection.map {
       _.drop
     }
+
 
     createNewRelease(NewReleaseInfo("Star Wars: Episode 1", "Me", List("Qui-Gon Jinn","Double Saber Dude", "Jar Jar"),"01/04/2020","https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"))
     createNewRelease(NewReleaseInfo("Star Wars: Episode 2", "You", List("Boba Fett","Count Dooku"),"02/04/2020","https://m.media-amazon.com/images/M/MV5BMDAzM2M0Y2UtZjRmZi00MzVlLTg4MjEtOTE3NzU5ZDVlMTU5XkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_.jpg"))
@@ -175,5 +184,42 @@ class MongoService @Inject()(
     }
 
     createVenue(VenueInfo("Some Restaurant", "Restaurant", "Nice family restaurant with affordable prices within walking distance of the cinema", List("Sun-Thur 5pm-10.30pm, Fri&Sa 4pm - 12am"), List("user@testmail.ch", "0123456789"), List("50% off cinema tickets if you have a 2-course set menu", "10% off vegetarian main dishes on Fridays"), "https://images.reference.com/reference-production-images/question/aq/example-intangible-service-restaurant_dd58bcadec92f5a0.jpg?width=760&height=411&fit=crop"))
+  }
+
+  def createUser(user: User): Future[WriteResult] = {
+    userCollection.flatMap(_.insert.one(user))
+  }
+
+  def usersReInnit(): Future[WriteResult] = {
+    userCollection.map {
+      _.drop(false)
+    }
+    createUser(User("admin", "admin@admin.com", "admin"))
+  }
+
+  def findAllUsers(): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
+  }
+
+  def findUserByUsername(username: String): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj("username" -> username))
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
   }
 }

@@ -11,13 +11,13 @@ import scala.concurrent.ExecutionContext.Implicits.global
 @Singleton
 class VenueGalleryController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) {
 
-  def venueGallery(): Action[AnyContent] = Action.async {
+  def venueGallery(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     mongoService.findVenues().map(listOfVenueInfo =>
       Ok(views.html.venueGallery(listOfVenueInfo))
     )
   }
 
-  def createVenue(): Action[AnyContent] = Action.async {
+  def createVenue(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     val name = "Test Restaurant"
     val openingTimes = List("Mon-Sun, 5.30pm - 11.30pm")
     val contactDetails = List("myemail@emailprovider.com", "0987654321")
@@ -26,7 +26,7 @@ class VenueGalleryController @Inject()(cc: ControllerComponents, val mongoServic
     futureResult.map(_ => Ok("Venue created"))
   }
 
-  def reInnit(): Action[AnyContent] = Action.async {
+  def reInnit(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     mongoService.venuesReInnit().map(_ => Ok("ReInnit venue gallery"))
   }
 

@@ -1,6 +1,6 @@
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /                           controllers.HomeController.index
+GET     /                          controllers.HomeController.index
 
 GET        /screens                controllers.ScreensController.screens
 
@@ -33,5 +33,24 @@ POST       /submitPayment          controllers.MongoControllerService.createPay
 GET        /directions             controllers.DirectionsController.directions
 
 
+
 GET     /about                           controllers.HomeController.about
+
+
+GET        /email                  controllers.HomeController.email
+POST       /submitEmail            controllers.MongoControllerService.createEmail
+GET        /contactUs              controllers.ContactUsController.contact
+
+GET        /addUser                controllers.RegistrationController.addUser(username:String, email :String, password :String)
+
+GET        /register               controllers.RegistrationController.showRegistration
+POST       /register               controllers.RegistrationController.registerUser
+GET        /success                controllers.RegistrationController.success
+GET        /userReInnit            controllers.RegistrationController.reInnit
+
+GET         /login                 controllers.LoginController.login
+POST        /login                 controllers.LoginController.loginSubmit
+GET         /logout                controllers.LoginController.logout
+
+GET        /scrum                  controllers.ScrumController.scrum
 

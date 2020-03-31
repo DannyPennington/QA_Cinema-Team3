@@ -1,0 +1,44 @@
+@()(implicit request: Request[AnyContent])
+@main("Contact Us") {
+    <section id="contact" class="py-5 mt-5" style="margin-bottom: -40px">
+        <h1 class="title">Contact Us</h1>
+        <center>
+            <div class="border"></div>
+        </center>
+
+        <center>
+            <br>
+            <h2 class=" qa_header"> QA Cinemas</h2>
+            <br>
+            <p class="contact_para"><b>Our Address</b><br>Anchorage Quay<br>Salford Quays<br>Manchester<br>M50 3YJ
+            </p>
+            <br>
+            <p class="contact_para"><b>Tel:</b> 01942 527 010
+            </p>
+            <br>
+            <h4 class="contact_header"> Local Information   </h4><br>
+            <p class="contact_para"><b>  Opening Hours </b><br> 9:00am -17:30pm
+            </p>
+
+            <p class="contact_para"><b>Parking </b><br>The Lowry Car Park is nearby
+            </p>
+            <p class="contact_para"><b>Train </b><br>Manchester Piccadilly Station<br> 1hr walk
+            </p>
+            <p class="contact_para"><b>Hotel </b><br>Holiday Inn Manchester MediaCityUK
+            </p>
+            <p class="contact_para"><b>Cafes </b><br>The Lowery is close by which has many food places
+            </p>
+            <br>
+
+
+            <h4 class="contact_header">Get in touch</h4><br>
+            <p class="contact_para"><b>Email Hours</b><br>9:00am - 17:30pm
+            </p>
+            <br>
+            <a class = "btn-lg btn-light" href="@routes.HomeController.email()" style="padding: 20px;">Email Us Now</a>
+
+
+        </center>
+    </section>
+
+}

@@ -1,4 +1,4 @@
-@(movieInfos: List[MovieInfo])
+@(movieInfos: List[MovieInfo])(implicit request: Request[AnyContent])
 
 @main("Listing Gallery") {
     <section id="listing_gallery" class=" py-5 mt-5" style="margin-bottom: -40px">

@@ -1,11 +1,41 @@
 <footer class="text-center">
+    <section class="pt-5 pb-4">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col d-flex flex-column" style="color: navy">
+                    <h4 class="footer_header">EXPLORE QA CINEMAS</h4>
+                    <a href="@routes.DirectionsController.directions()" style="color: navy">Getting There</a>
+                    <a href="@routes.VenueGalleryController.venueGallery" style="color: navy">Places to Go</a>
+                    <a href="#" style="color: navy">Discussion Board</a>
+
+
+                </div>
+                <div class="col d-flex flex-column" style="color: navy">
+                    <h4 class="footer_header">ABOUT QA CINEMAS</h4>
+                    <a href="#" style="color: navy">About Us</a>
+                    <a href="@routes.ContactUsController.contact" style="color: navy">Contact Us</a>
+                    <a href="#" style="color: navy">Scrum</a>
+
+                </div>
+                <div class="col d-flex flex-column">
+                    <h4 class="footer_header">SOCIAL MEDIA</h4>
+                    <a href="https://www.instagram.com/" style="color: navy">Instagram</a>
+                    <a href="https://twitter.com/?lang=en-gb" style="color: navy">Twitter</a>
+                    <a href="https://en-gb.facebook.com/" style="color: navy">Facebook</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
     <nav>
         <ul class="pt-5 mx-auto">
             <li><a href="@routes.HomeController.index()" target="_self"> Home</a></li>
-            <li><a href="@routes.HomeController.index()#about_section"> About</a></li>
             <li><a href="@routes.ListingController.listingGallery()" target="_self"> Listings</a></li>
             <li><a href="@routes.OpeningController.opening()" target="_self"> Opening times </a></li>
             <li><a href="@routes.ReleaseController.releaseGallery()" target="_self"> New Releases</a></li>
+            <li><a href="@routes.ClassificationsController.classifications()"> Classifications</a></li>
             <li><a href="@routes.ScreensController.screens()" target="_self"> Screens </a></li>
         </ul>
     </nav>

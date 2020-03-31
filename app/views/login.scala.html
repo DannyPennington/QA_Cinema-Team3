@@ -1,0 +1,15 @@
+@(form: Form[LoginDetails], message: String)(implicit messagesProvider: MessagesProvider, request: Request[AnyContent])
+
+@main("Login") {
+
+    <div style="margin-left: 50px; font-family: 'Lora', serif">
+        @message
+        @helper.form(routes.LoginController.loginSubmit()){
+        @helper.inputText(form("username"), '_label -> "Username:", '_showConstraints -> false)
+        @helper.inputPassword(form("password"), '_label -> "Password:", '_showConstraints -> false)
+        <button type="submit" class="btn mb-3" style="background-color: navy;
+            color: white;">Log In</button>
+    }
+    </div>
+
+}

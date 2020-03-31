@@ -1,16 +1,13 @@
 package controllers
-import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
 import javax.inject._
-import models.paymentForm
+import models.EmailForm
 import play.api.i18n.I18nSupport
 import play.api.mvc._
-
-import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
 class HomeController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) with I18nSupport {
 
-  def index: Action[AnyContent] = Action {
+  def index: Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
     Ok(views.html.index())
   }
 
@@ -22,5 +19,11 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
   //def create: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
   //  Ok(views.html.payment(paymentForm.payments))
   //}
+
+  def email: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.emailForm(EmailForm.Email))
+  }
+
+
 
 }

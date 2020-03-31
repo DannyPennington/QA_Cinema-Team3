@@ -1,4 +1,4 @@
-@(form: Form[paymentForm],film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)(implicit messagesProvider: MessagesProvider)
+@(form: Form[paymentForm],film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)(implicit messagesProvider: MessagesProvider, request: Request[AnyContent])
 
 @main("Payment") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +59,7 @@
         <i class="fa fa-cc-amex" style="color: orange;"></i>
     </div>
     <br>
-    <h4>Please fill out the information below carefully.</h4>
+        <h4>Please fill out the information below carefully.</h4>
 
                     <div class="modal-body">
                         <h1 class = "loginHeaders" style = "color: white">Please enter your details below:</h1>

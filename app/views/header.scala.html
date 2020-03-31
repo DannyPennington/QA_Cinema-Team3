@@ -1,24 +1,52 @@
+@()(implicit request: Request[AnyContent])
 <header>
     <div class="d-flex justify-content-between text-center">
-        <div style="margin-right: 200px">
+        <div class="account mt-3" style="margin-right: 200px">
+                @if(!request.cookies.get("logged_in").isDefined) {
+                    <a href="@routes.RegistrationController.showRegistration()" class="btn mb-3 mx-3" style="background-color: navy;
+                        color: white;" >Sign up!</a>
+                    <a href="@routes.LoginController.login()" class="btn mb-3" style="background-color: navy;
+                        color: white;" >Log in</a>
+                } else {Logged in as @request.cookies.get("logged_in").get.value
+                    <a href="@routes.LoginController.logout()" class="btn mb-3" style="background-color: navy;
+                        color: white;" >Log out</a>
+                }
 
         </div>
         <div style="margin-bottom: 25px">
             <img src="@routes.Assets.versioned("images/logo.jpg")" alt="logo" class= "logo" width="75%" height="80%">
         </div>
-        <div class="icons" style="padding-bottom: 100px;">
-            <a href="@routes.BookingController.booking" class="btn mb-3" style="background-color: navy;
-                color: white; " >Bookings</a>
-            <a href="@routes.ClassificationsController.classifications()" target="_self"><i class="fa fa-list-alt fa-2x" style="color: navy;
-                margin-left: 20px;"></i>
-            </a>
-            <a href="https://twitter.com/?lang=en-gb" target="_blank"><i class="fab fa-twitter fa-2x" style="color: navy;
-                margin: 0px 20px;"></i>
-            </a>
-            <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook-f fa-2x" style="color: navy; "></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x" style="color: navy;
-                margin-left: 20px;"></i>
-            </a>
+        <div class="icons no-gutters mt-1 " style="padding-bottom: 100px;">
+
+            <div class="col d-flex justify-content end mb-3">
+                <a href="@routes.BookingController.booking" class="btn my-2 " style="background-color: navy;
+                    color: white; " >Bookings</a>
+                <form class="form-inline my-2 my-lg-0 ml-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn  my-2 my-sm-0" type="submit" style="background-color: navy; color: white">Search</button>
+                </form>
+            </div>
+            <div class="row no-gutters justify-content-center" style="text-align: left">
+                <div class="col my-auto">
+                    <p class="my-auto para_header_page text-center" > Reach us here at: </p>
+                </div>
+                <div class="col d-flex justify-content-start" style="font-size: 25px;">
+                    <a href="@routes.ContactUsController.contact" target="_self"><i class="fas fa-phone" style="color: navy"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram" style="color: navy;
+                        margin-left: 20px; "></i>
+                    </a>
+                    <a href="https://twitter.com/?lang=en-gb" target="_blank"><i class="fab fa-twitter " style="color: navy;
+                        margin: 0px 20px; "></i>
+                    </a>
+                    <a href="https://en-gb.facebook.com/" target="_blank"><i class="fab fa-facebook-f " style="color: navy;"></i></a>
+
+                </div>
+
+            </div>
+
+
+
         </div>
 
     </div>
@@ -27,9 +55,6 @@
         <center>
             <ul>
                 <li><a href="@routes.HomeController.index()" target="_self"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="@routes.HomeController.index()#about_section" target="_self"><i class="fas fa-user-secret"></i>
-                    About</a>
-                </li>
                 <li><a href="@routes.ListingController.listingGallery()" target="_self"><i class="fas fa-tasks"></i>
                     Listings</a>
                 </li>
@@ -38,6 +63,9 @@
                 </li>
                 <li><a href="@routes.ReleaseController.releaseGallery()" target="_self"> <i class="fas fa-envelope-open-text"></i>
                     New Releases</a>
+                </li>
+                <li><a href="@routes.ClassificationsController.classifications()" target="_self"><i class="fa fa-list-alt "></i>
+                    Classifications</a>
                 </li>
                 <li><a href="@routes.ScreensController.screens()" target="_self"><i class="fas fa-desktop"></i>
                     Screens </a>
