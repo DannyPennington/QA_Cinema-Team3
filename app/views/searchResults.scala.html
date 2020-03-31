@@ -1,4 +1,4 @@
-@(search: String, currentMoviesFound: List[MovieInfo])(implicit request: Request[AnyContent])
+@(search: String, currentMoviesFound: List[MovieInfo], futureMoviesFound: List[NewReleaseInfo])(implicit request: Request[AnyContent])
 
 @main("Results") {
     <section id="search_results" class=" py-5 mt-5" style="margin-bottom: -40px; margin-left: 50px">
@@ -14,13 +14,32 @@
                     <img src="@{movie.url}" alt="poster" style="float:right; width:100px; height: 150px; margin-right: 125vh;"> <br>
                     Title: @movie.title <br>
                     Director: @movie.director <br>
-                    Actors: @movie.actors <br>
+                    Actors: @for(actor <- movie.actors) {
+                    @actor
+                    } <br>
                     Show times: @movie.showTimes <br>
                     <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
                 </div>
+            }
 
+        </div>
 
+        <br> <br>
 
+        <div>
+            <h5>Future releases: </h5>
+            @for(movie <- futureMoviesFound) {
+
+                <div style="overflow: auto">
+                    <img src="@{movie.url}" alt="poster" style="float:right; width:100px; height: 150px; margin-right: 125vh;"> <br>
+                    Title: @movie.title <br>
+                    Director: @movie.director <br>
+                    Actors: @for(actor <- movie.actors) {
+                        @actor
+                    } <br>
+                    Release date: @movie.releaseDate <br>
+                    <a href="@{ "/release?title=" + movie.title}" >Go to movie info</a> <br> <br>
+                </div>
             }
 
         </div>
