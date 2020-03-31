@@ -17,11 +17,29 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
 
   def search:Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
     val search = request.body.asFormUrlEncoded.get("search").head
-    val currentMoviesFound = searchCurrentMovies(search)
+    val currentMoviesFound = currentMovieSearchHelper(search, "actor")
     Ok(views.html.searchResults(search,currentMoviesFound))
   }
 
-  def searchCurrentMovies(title: String): List[MovieInfo] = {
+  def currentMovieSearchHelper(value: String, search: String): List[MovieInfo] ={
+    val finalMovies = ArrayBuffer.empty[MovieInfo]
+    val movies = Await.result(mongoService.findCurrentMovies(),Duration.Inf)
+    search match {
+      case "title" => for (movie <- movies) {
+        if (movie.title.toLowerCase.contains(value.toLowerCase) && !finalMovies.contains(movie)) {
+          finalMovies.append(movie)
+        }
+      }
+      case "actor" =>  for (movie <- movies) {
+        if (movie.actors.exists(actor => actor.toLowerCase.contains(value.toLowerCase)) && !finalMovies.contains(movie)) {
+          finalMovies.append(movie)
+        }
+      }
+    }
+    finalMovies.toList.sortWith(_.title < _.title)
+  }
+
+  def searchCurrentMovieTitles(title: String): List[MovieInfo] = {
     val finalMovies = ArrayBuffer.empty[MovieInfo]
     val movies = Await.result(mongoService.findCurrentMovies(),Duration.Inf)
     for (movie <- movies) {
