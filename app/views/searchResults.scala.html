@@ -17,7 +17,9 @@
                     Actors: @for(actor <- movie.actors) {
                     @actor
                     } <br>
-                    Show times: @movie.showTimes <br>
+                    Show times: @for(time <- movie.showTimes) {
+                    @time
+                    } <br>
                     <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
                 </div>
             }
