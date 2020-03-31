@@ -46,3 +46,6 @@ GET        /userReInnit            controllers.RegistrationController.reInnit
 GET         /login                 controllers.LoginController.login
 POST        /login                 controllers.LoginController.loginSubmit
 GET         /logout                controllers.LoginController.logout
+
+GET         /searchResults         controllers.SearchController.showResults
+POST        /searchResults         controllers.SearchController.search
