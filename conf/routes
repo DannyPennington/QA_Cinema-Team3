@@ -46,3 +46,5 @@ GET        /userReInnit            controllers.RegistrationController.reInnit
 GET         /login                 controllers.LoginController.login
 POST        /login                 controllers.LoginController.loginSubmit
 GET         /logout                controllers.LoginController.logout
+
+GET        /scrum                  controllers.ScrumController.scrum
