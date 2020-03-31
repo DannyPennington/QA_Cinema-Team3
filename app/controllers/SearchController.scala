@@ -19,7 +19,9 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
     val search = request.body.asFormUrlEncoded.get("search").head
     val currentMoviesFoundTitle = currentMovieSearchHelper(search, "title")
     val currentMoviesFoundActor = currentMovieSearchHelper(search, "actor")
-    val currentMoviesFound = currentMoviesFoundActor.union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
+    val currentMoviesFoundDirector = currentMovieSearchHelper(search, "director")
+    val currentMoviesFoundTemp = currentMoviesFoundDirector.union(currentMoviesFoundActor)
+    val currentMoviesFound = currentMoviesFoundTemp.union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
     Ok(views.html.searchResults(search,currentMoviesFound))
   }
 
@@ -34,6 +36,11 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
       }
       case "actor" =>  for (movie <- movies) {
         if (movie.actors.exists(actor => actor.toLowerCase.contains(value.toLowerCase)) && !finalMovies.contains(movie)) {
+          finalMovies.append(movie)
+        }
+      }
+      case "director" =>  for (movie <- movies) {
+        if (movie.director.toLowerCase.contains(value.toLowerCase) && !finalMovies.contains(movie)) {
           finalMovies.append(movie)
         }
       }
