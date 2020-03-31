@@ -20,8 +20,7 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
     val currentMoviesFoundTitle = currentMovieSearchHelper(search, "title")
     val currentMoviesFoundActor = currentMovieSearchHelper(search, "actor")
     val currentMoviesFoundDirector = currentMovieSearchHelper(search, "director")
-    val currentMoviesFoundTemp = currentMoviesFoundDirector.union(currentMoviesFoundActor)
-    val currentMoviesFound = currentMoviesFoundTemp.union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
+    val currentMoviesFound = currentMoviesFoundDirector.union(currentMoviesFoundActor).union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
     Ok(views.html.searchResults(search,currentMoviesFound))
   }
 
