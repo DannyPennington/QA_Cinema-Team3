@@ -33,5 +33,5 @@ POST       /submitPayment          controllers.MongoControllerService.createPay
 GET        /directions             controllers.DirectionsController.directions
 
 
-
+GET     /about                           controllers.HomeController.about
 
