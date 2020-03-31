@@ -17,11 +17,7 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
 
   def search:Action[AnyContent] = Action {implicit request:Request[AnyContent] =>
     val search = request.body.asFormUrlEncoded.get("search").head
-    val currentMoviesFoundTitle = currentMovieSearchHelper(search, "title")
-    val currentMoviesFoundActor = currentMovieSearchHelper(search, "actor")
-    val currentMoviesFoundDirector = currentMovieSearchHelper(search, "director")
-    val currentMoviesFound = currentMoviesFoundDirector.union(currentMoviesFoundActor).union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
-    Ok(views.html.searchResults(search,currentMoviesFound))
+    Ok(views.html.searchResults(search,currentMovieSearch(search)))
   }
 
   def currentMovieSearchHelper(value: String, search: String): Set[MovieInfo] ={
@@ -45,6 +41,13 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
       }
     }
     finalMovies.toSet
+  }
+
+  def currentMovieSearch(search: String): List[MovieInfo] = {
+    val currentMoviesFoundTitle = currentMovieSearchHelper(search, "title")
+    val currentMoviesFoundActor = currentMovieSearchHelper(search, "actor")
+    val currentMoviesFoundDirector = currentMovieSearchHelper(search, "director")
+    currentMoviesFoundDirector.union(currentMoviesFoundActor).union(currentMoviesFoundTitle).toList.sortWith(_.title < _.title)
   }
 
 
