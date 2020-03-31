@@ -63,6 +63,11 @@ header li a:hover {
     padding-right: 20px;
 }
 
+.account {
+    text-align: left;
+    padding-right: 20px;
+}
+
 
 .escalator {
     background-image: -webkit-gradient(linear,

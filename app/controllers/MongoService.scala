@@ -1,18 +1,15 @@
 package controllers
 
 import javax.inject.Inject
-import models.{NewReleaseInfo, MovieInfo,EmailForm, VenueInfo, paymentForm}
+import models._
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
-
 import scala.concurrent.{ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
 import models.JsonFormats._
 import play.api.libs.json.{JsValue, Json}
 import org.joda.time.LocalDateTime
-import play.api.libs.json.Json
-import play.modules.reactivemongo.{ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.Cursor
 import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMongoComponents}
 import reactivemongo.api.commands.WriteResult
@@ -29,9 +26,9 @@ class MongoService @Inject()(
 
   def paymentCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("payments"))
 
+  def userCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("users"))
 
   def emailCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("email"))
-
 
   def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
 
@@ -186,7 +183,43 @@ class MongoService @Inject()(
       _.drop
     }
 
-
     createVenue(VenueInfo("Some Restaurant", "Restaurant", "Nice family restaurant with affordable prices within walking distance of the cinema", List("Sun-Thur 5pm-10.30pm, Fri&Sa 4pm - 12am"), List("user@testmail.ch", "0123456789"), List("50% off cinema tickets if you have a 2-course set menu", "10% off vegetarian main dishes on Fridays"), "https://images.reference.com/reference-production-images/question/aq/example-intangible-service-restaurant_dd58bcadec92f5a0.jpg?width=760&height=411&fit=crop"))
+  }
+
+  def createUser(user: User): Future[WriteResult] = {
+    userCollection.flatMap(_.insert.one(user))
+  }
+
+  def usersReInnit(): Future[WriteResult] = {
+    userCollection.map {
+      _.drop(false)
+    }
+    createUser(User("admin", "admin@admin.com", "admin"))
+  }
+
+  def findAllUsers(): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
+  }
+
+  def findUserByUsername(username: String): Future[List[User]] = {
+    userCollection.map {
+      _.find(Json.obj("username" -> username))
+        .sort(Json.obj("email" -> -1))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    )
   }
 }

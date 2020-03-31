@@ -1,4 +1,4 @@
-@(movieInfo: MovieInfo)
+@(movieInfo: MovieInfo)(implicit request: Request[AnyContent])
 
 @main("Movie") {
     <section class= "movies py-5 mt-5" style="margin-bottom: -40px">
