@@ -5,7 +5,7 @@
         <div style="margin-top: -50px;">
             <h4>Showing results for: @search</h4> <br>
         </div>
-
+        @if(currentMoviesFound.nonEmpty){
         <div>
             <h5>Current movies: </h5>
             @for(movie <- currentMoviesFound) {
@@ -25,7 +25,8 @@
         </div>
 
         <br> <br>
-
+        }
+        @if(futureMoviesFound.nonEmpty) {
         <div>
             <h5>Future releases: </h5>
             @for(movie <- futureMoviesFound) {
@@ -43,6 +44,7 @@
             }
 
         </div>
+        }
 
     </section>
 
