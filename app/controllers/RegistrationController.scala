@@ -109,7 +109,7 @@ class RegistrationController @Inject()(
   }
 
   def success(): Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
-    Ok(views.html.message("Thanks for registering! " + request.cookies.get("logged_in").getOrElse("")))
+    Ok(views.html.message("Thanks for registering! "))
   }
 
   def reInnit(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
