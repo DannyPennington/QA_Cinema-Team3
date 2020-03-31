@@ -12,7 +12,7 @@ class HomeController @Inject()(cc: ControllerComponents, val mongoService: Mongo
   }
 
 
-  def about: Action[AnyContent] = Action {
+  def about: Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
     Ok(views.html.about())
   }
 
