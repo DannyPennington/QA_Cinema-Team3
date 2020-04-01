@@ -5,6 +5,7 @@ import models.{DiscussionEntry, MovieInfo, paymentForm}
 import play.api.i18n.I18nSupport
 import play.api.mvc.{AbstractController, ControllerComponents, _}
 
+import scala.collection.mutable.ListBuffer
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -17,8 +18,13 @@ class DiscussionController @Inject()(cc: ControllerComponents, val mongoService:
   }
 
   def parseDetails: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    val badWords = List("shit","fuck")
     val body = request.body.asFormUrlEncoded
-    mongoService.createDiscussion(DiscussionEntry(body.get("film").head, body.get("rating").head.toInt, body.get("review").head)).map(
+    val review = body.get("review").head.split(" ")
+    var safeReview = new ListBuffer[String]()
+    review.foreach(word => if (badWords.contains(word)) safeReview += (word.replaceAll("[a-zA-Z]","*")) else safeReview += word)
+
+    mongoService.createDiscussion(DiscussionEntry(body.get("film").head, body.get("rating").head.toInt, safeReview.toList.mkString(" "))).map(
       _ => Redirect(routes.DiscussionController.discussion())
     )
   }
