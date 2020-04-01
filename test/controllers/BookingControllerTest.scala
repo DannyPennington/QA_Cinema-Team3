@@ -1,6 +1,5 @@
 package controllers
 
-import akka.stream.Materializer
 import models.{MovieInfo, paymentForm}
 import org.scalatestplus.mockito.MockitoSugar
 import play.api.mvc.Results
@@ -10,7 +9,6 @@ import play.api.test._
 import play.api.test.Helpers._
 import org.scalatest._
 import org.mockito.Mockito._
-import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 
