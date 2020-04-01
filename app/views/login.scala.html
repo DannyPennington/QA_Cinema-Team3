@@ -16,23 +16,14 @@
                         @helper.form(routes.LoginController.loginSubmit()) {
                             <center>
                                 <div class="col d-flex mx-auto justify-content-center">
-                                    <i class="fas fa-user fa-2x my-auto " style="border:1px solid grey;
-                                        padding: 4px 8px;
-
-                                        font-size: 2.1em;
-                                        background-color: gainsboro;"></i>
+                                    <i class="fas fa-user fa-2x my-auto " style="border:1px solid grey;  padding: 4px 8px;  font-size: 2.1em;  background-color: gainsboro;"></i>
                                     @helper.inputText(form("username"), '_label -> "", '_showConstraints -> false,'id->"userform", 'placeholder->"Username")
                                 </div>
 
 
 
                                 <div class="col d-flex mx-auto justify-content-center">
-                                    <i class="fas fa-key fa-2x my-auto " style="border: 1px solid grey;
-
-                                        padding: 4px 8px;
-                                        font-size: 2em;
-
-                                        background-color: gainsboro;"></i>
+                                    <i class="fas fa-key fa-2x my-auto " style="border: 1px solid grey;  padding: 4px 8px;  font-size: 2em;  background-color: gainsboro;"></i>
                                     @helper.inputPassword(form("password"), '_label -> "", '_showConstraints -> false, 'id->"passwordform", 'placeholder->"Password")
                                 </div>
 
