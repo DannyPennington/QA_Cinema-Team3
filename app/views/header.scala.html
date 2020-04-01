@@ -2,12 +2,12 @@
 <header>
     <div class="d-flex justify-content-between text-center">
         <div class="account mt-3" style="margin-right: 200px">
-                @if(!request.cookies.get("logged_in").isDefined) {
+                @if(request.session.get("username").isEmpty) {
                     <a href="@routes.RegistrationController.showRegistration()" class="btn mb-3 mx-3" style="background-color: navy;
                         color: white;" >Sign up!</a>
                     <a href="@routes.LoginController.login()" class="btn mb-3" style="background-color: navy;
                         color: white;" >Log in</a>
-                } else {Logged in as @request.cookies.get("logged_in").get.value
+                } else {Logged in as @request.session.get("username")
                     <a href="@routes.LoginController.logout()" class="btn mb-3" style="background-color: navy;
                         color: white;" >Log out</a>
                 }

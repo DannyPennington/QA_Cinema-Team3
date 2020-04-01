@@ -24,7 +24,7 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
   }
 
   def logout(): Action[AnyContent] = Action { implicit request:Request[AnyContent] =>
-    Redirect(routes.HomeController.index()).withNewSession.discardingCookies(DiscardingCookie("logged_in"))
+    Redirect(routes.HomeController.index()).withNewSession
   }
 
   def loginSubmit(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
@@ -36,7 +36,7 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
         Redirect(routes.RegistrationController.showRegistration()).flashing("exists" -> "no")
       }
       else if (user.head.password == loginDetails.password) {
-        Redirect(routes.HomeController.index()).withSession("username" -> loginDetails.username).withCookies(Cookie("logged_in", loginDetails.username))
+        Redirect(routes.HomeController.index()).withSession("username" -> loginDetails.username)
       }
       else
         Redirect(routes.LoginController.login()).flashing("invalid" -> "yes")
