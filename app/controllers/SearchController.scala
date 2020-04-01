@@ -54,17 +54,17 @@ class SearchController @Inject()(cc: ControllerComponents, val mongoService: Mon
     val finalMovies = ArrayBuffer.empty[NewReleaseInfo]
     val movies = Await.result(mongoService.findNewReleases(), Duration.Inf)
     search match {
-      case "title" => for (movie <- movies) {
+      case "title" => for {movie <- movies} {
         if (movie.title.toLowerCase.contains(value.toLowerCase) && !finalMovies.contains(movie)) {
           finalMovies.append(movie)
         }
       }
-      case "actor" => for (movie <- movies) {
+      case "actor" => for {movie <- movies} {
         if (movie.actors.exists(actor => actor.toLowerCase.contains(value.toLowerCase)) && !finalMovies.contains(movie)) {
           finalMovies.append(movie)
         }
       }
-      case "director" => for (movie <- movies) {
+      case "director" => for {movie <- movies} {
         if (movie.director.toLowerCase.contains(value.toLowerCase) && !finalMovies.contains(movie)) {
           finalMovies.append(movie)
         }
