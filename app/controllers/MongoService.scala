@@ -4,7 +4,8 @@ import javax.inject.Inject
 import models._
 import play.api.mvc._
 import reactivemongo.play.json.collection.{JSONCollection, _}
-import scala.concurrent.{ExecutionContext, Future}
+
+import scala.concurrent.{Await, ExecutionContext, Future}
 import reactivemongo.play.json._
 import collection._
 import models.JsonFormats._
@@ -15,6 +16,7 @@ import play.modules.reactivemongo.{MongoController, ReactiveMongoApi, ReactiveMo
 import reactivemongo.api.commands.WriteResult
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration.Duration
 
 class MongoService @Inject()(
                               val reactiveMongoApi: ReactiveMongoApi
@@ -223,6 +225,19 @@ class MongoService @Inject()(
       )
     )
   }
+
+  def findUserOption(username: String): Option[User] = {
+    Await.result(userCollection.map {
+      _.find(Json.obj("username" -> username))
+        .cursor[User]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[User]]()
+      )
+    ), Duration.Inf).headOption
+    }
+
 
   def createDiscussion(discussionEntry: DiscussionEntry): Future[WriteResult] = {
     discussionCollection.flatMap(_.insert.one(discussionEntry))

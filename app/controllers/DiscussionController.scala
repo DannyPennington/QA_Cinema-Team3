@@ -1,5 +1,6 @@
 package controllers
 
+import authentication.AuthenticationAction
 import javax.inject.Inject
 import models.{DiscussionEntry, MovieInfo, paymentForm}
 import play.api.i18n.I18nSupport
@@ -12,9 +13,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.io.Source
 
 
-class DiscussionController @Inject()(cc: ControllerComponents, val mongoService: MongoService) extends AbstractController(cc) with I18nSupport {
+class DiscussionController @Inject()(cc: ControllerComponents, val mongoService: MongoService, val authAction: AuthenticationAction) extends AbstractController(cc) with I18nSupport {
 
-  def discussion: Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+  def discussion: Action[AnyContent] = authAction { implicit request: Request[AnyContent] =>
     Ok(views.html.discussion(currentMovieList, discussionList))
   }
 
