@@ -13,6 +13,7 @@ import scala.concurrent.{Await, ExecutionContext, Future}
 
 class MongoControllerService @Inject()(
                                         components: ControllerComponents,
+                                        val reactiveMongoApi: ReactiveMongoApi,
                                         val mongoService: MongoService
                                       ) extends AbstractController(components)
   with MongoController with ReactiveMongoComponents with play.api.i18n.I18nSupport {
