@@ -735,20 +735,23 @@ input[type=text], select, textarea {
     font-family: 'ZCOOL XiaoWei', serif;
 
 }
-.qa_header{
+
+.qa_header {
     font-size: 2.1em;
     font-family: 'Courgette', cursive;
 }
-.contact_para{
+
+.contact_para {
     font-size: 1.5em;
 }
-.contact_header{
+
+.contact_header {
     font-size: 2em;
 
     font-family: 'Courgette', cursive;
 }
 
-.button{
+.button {
 
 }
 
@@ -773,19 +776,22 @@ input[type=text], select, textarea {
     font-family: 'ZCOOL XiaoWei', serif;
 
 }
-.qa_header{
+
+.qa_header {
     font-size: 2.1em;
     font-family: 'Courgette', cursive;
 }
-.about_para{
+
+.about_para {
     font-size: 1.2em;
 }
-.about_header{
+
+.about_header {
     font-size: 2em;
 
     font-family: 'Courgette', cursive;
 }
 
-.button{
+.button {
 
 }
