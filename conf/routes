@@ -1,63 +1,59 @@
-GET     /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file           controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /                          controllers.HomeController.index
+GET         /                       controllers.HomeController.index
+GET         /email                  controllers.HomeController.email
+GET         /about                  controllers.HomeController.about
 
-GET        /screens                controllers.ScreensController.screens
+GET         /screens                controllers.ScreensController.screens
 
-GET        /classifications        controllers.ClassificationsController.classifications
+GET         /classifications        controllers.ClassificationsController.classifications
 
+GET         /listingGallery         controllers.ListingController.listingGallery
+GET         /createMovie            controllers.ListingController.createMovie
+GET         /currentReInnit         controllers.ListingController.reInnit
 
-GET        /listingGallery         controllers.ListingController.listingGallery
-GET        /createMovie            controllers.ListingController.createMovie
-GET        /currentReInnit         controllers.ListingController.reInnit
+GET         /releaseGallery         controllers.ReleaseController.releaseGallery
+GET         /createRelease          controllers.ReleaseController.createRelease
+GET         /releaseReInnit         controllers.ReleaseController.reInnit
 
-GET        /releaseGallery         controllers.ReleaseController.releaseGallery
-GET        /createRelease          controllers.ReleaseController.createRelease
-GET        /releaseReInnit         controllers.ReleaseController.reInnit
+GET         /venueGallery           controllers.VenueGalleryController.venueGallery
+GET         /createVenue            controllers.VenueGalleryController.createVenue
+GET         /venueReInnit           controllers.VenueGalleryController.reInnit
 
-GET        /venueGallery           controllers.VenueGalleryController.venueGallery
-GET        /createVenue            controllers.VenueGalleryController.createVenue
-GET        /venueReInnit           controllers.VenueGalleryController.reInnit
+GET         /openingTimes           controllers.OpeningController.opening
 
-GET        /openingTimes           controllers.OpeningController.opening
-
-GET        /booking                controllers.BookingController.booking
-POST       /booking                controllers.BookingController.parseDetails
+GET         /booking                controllers.BookingController.booking
+POST        /booking                controllers.BookingController.parseDetails
 
 GET         /discussion             controllers.DiscussionController.discussion
 POST        /discussion             controllers.DiscussionController.parseDetails
 
 GET         /movie                  controllers.MovieController.movie(title: String)
+
 GET         /release                controllers.FutureMovieController.movie(title: String)
+
 GET         /venue                  controllers.VenueController.venue(name: String)
 
-POST       /submitPayment          controllers.MongoControllerService.createPay
+POST        /submitPayment          controllers.MongoControllerService.createPay
 
-GET        /directions             controllers.DirectionsController.directions
+GET         /directions             controllers.DirectionsController.directions
 
-GET         /email                 controllers.HomeController.email
-POST        /submitEmail           controllers.MongoControllerService.createEmail
-GET         /contactUs             controllers.ContactUsController.contact
+POST        /submitEmail            controllers.MongoControllerService.createEmail
 
-GET         /about                 controllers.HomeController.about
+GET         /contactUs              controllers.ContactUsController.contact
 
+GET         /addUser                controllers.RegistrationController.addUser(username:String, email :String, password :String)
+GET         /register               controllers.RegistrationController.showRegistration
+POST        /register               controllers.RegistrationController.registerUser
+GET         /success                controllers.RegistrationController.success
+GET         /userReInnit            controllers.RegistrationController.reInnit
 
-GET        /email                  controllers.HomeController.email
-POST       /submitEmail            controllers.MongoControllerService.createEmail
-GET        /contactUs              controllers.ContactUsController.contact
+GET         /login                  controllers.LoginController.login
+POST        /login                  controllers.LoginController.loginSubmit
+GET         /logout                 controllers.LoginController.logout
 
-GET        /addUser                controllers.RegistrationController.addUser(username:String, email :String, password :String)
+GET         /searchResults          controllers.SearchController.showResults
+POST        /searchResults          controllers.SearchController.search
 
-GET        /register               controllers.RegistrationController.showRegistration
-POST       /register               controllers.RegistrationController.registerUser
-GET        /success                controllers.RegistrationController.success
-GET        /userReInnit            controllers.RegistrationController.reInnit
-
-GET         /login                 controllers.LoginController.login
-POST        /login                 controllers.LoginController.loginSubmit
-GET         /logout                controllers.LoginController.logout
-
-GET         /searchResults         controllers.SearchController.showResults
-POST        /searchResults         controllers.SearchController.search
 GET         /scrum                  controllers.ScrumController.scrum
 
