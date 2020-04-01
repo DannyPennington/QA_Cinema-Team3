@@ -1,0 +1,95 @@
+@(currentMovieList: List[MovieInfo], reviews: List[DiscussionEntry])(implicit request: Request[AnyContent])
+
+@main("Discussion Board") {
+    <div style="margin-left: 50px;
+        margin-top: 50px">
+        <h2>
+            Discussion Board
+        </h2>
+        <br> <br>
+    </div>
+
+    <form id="discussion" name="discussion" action="/discussion" method="post" autocomplete="off">
+        <div style="margin-left: 50px">
+            <label for="film">Film to review: </label>
+            <select id="film" name="film" style="margin-left: 50px">
+            @for(movie <- currentMovieList) {
+                <option id="@{
+                    movie.title
+                }">@movie.title</option>
+            }
+            </select>
+        </div>
+
+        <div class="rating" style="margin-left: 50px;
+            margin-top: 50px">
+            <label>
+                <input type="radio" name="rating" value="1"/>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="rating" value="2" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="rating" value="3" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="rating" value="4" />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+            <label>
+                <input type="radio" name="rating" value="5" checked="checked"/>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+            </label>
+        </div>
+
+
+@*        <div style="margin-left: 50px">*@
+@*            Rating:*@
+@*            <input type="radio" id="one" value="1" name="rating"><label for="one">1</label>*@
+@*            <input type="radio" id="two" value="2" name="rating"><label for="two">2</label>*@
+@*            <input type="radio" id="three" value="3" name="rating"><label for="three">3</label>*@
+@*            <input type="radio" id="four" value="4" name="rating"><label for="four">4</label>*@
+@*            <input type="radio" id="five" value="5" name="rating"><label for="five">5</label>*@
+@*        </div>*@
+
+        <div style="margin-left: 50px">
+            <label>Review:
+                <textarea rows="4" cols="500" name="review" form="discussion" placeholder="Put your review in here..." required></textarea>
+            </label>
+        </div>
+
+        <div style="margin-left: 50px">
+            <input type="submit" value="Submit review">
+        </div>
+    </form>
+
+    <div style="margin-left: 50px">
+        <h2>
+            Reviews:
+        </h2>
+        <br> <br>
+        @for(review <- reviews) {
+            <div style="margin-left: 50px" class="box">
+                <p>Title: @review.title <br>
+                    Rating: @review.rating <br>
+                    Review: @review.review
+                </p>
+            </div>
+        }
+
+    </div>
+
+}

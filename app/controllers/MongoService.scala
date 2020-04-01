@@ -32,9 +32,10 @@ class MongoService @Inject()(
 
   def venueCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("venues"))
 
+  def discussionCollection: Future[JSONCollection] = reactiveMongoApi.database.map(_.collection[JSONCollection]("discussion"))
+
 
   def createCurrentMovie(movieInfo: MovieInfo): Future[WriteResult] = {
-
     currentCollection.flatMap(_.insert.one(movieInfo))
   }
 
@@ -155,11 +156,11 @@ class MongoService @Inject()(
       _.drop
     }
 
-    createCurrentMovie(MovieInfo("Mulan","Bob",List("A","B","C"),List(LocalDateTime.now().toString(),"11","54","1509"),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
-    createCurrentMovie(MovieInfo("Pocahontas","Romeo",List("D","E","F"),List(LocalDateTime.now().plusHours(1).toString(),"17"),"https://lh3.googleusercontent.com/proxy/OJIQ61YFf7Pr1JOdo1fey-DFRHj1NEhin1aizcJJpQLWIqMuiieyXeHjpukcHxiVynaED7TUrlrql9NjhLzu7ap2cHJwfJUPy8KnGFxNArk"))
-    createCurrentMovie(MovieInfo("Pinocchio","Denice",List("G","H"),List(LocalDateTime.now().plusHours(2).toString()),"https://i.etsystatic.com/18324742/r/il/1109e0/1918068271/il_570xN.1918068271_atcj.jpg"))
-    createCurrentMovie(MovieInfo("Brother Bear","Jarvis",List("I"),List(LocalDateTime.now().plusHours(3).toString()),"https://images.wolfgangsvault.com/m/xlarge/ZZZ060321-PO/brother-bear-poster-oct-31-2003.webp"))
-    createCurrentMovie(MovieInfo("Ice Age","The Legend 27",List("J","K","L"),List(LocalDateTime.now().plusHours(4).toString()),"https://www.iceposter.com/thumbs/MOV_wmtybram_b.jpg"))
+    createCurrentMovie(MovieInfo("Mulan","Tony Bancroft",List("Ming-Na Wen","Eddie Murphy","BD Wong"),List("10:00","11:30","14:00","17:30"),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"))
+    createCurrentMovie(MovieInfo("Pocahontas","Mike Gabriel",List("Mel Gibson","Linda Hunt","Christian Bale"),List("10:30","11:45","13:30","16:00"),"https://54disneyreviews.files.wordpress.com/2014/09/pocahontas-poster.jpg"))
+    createCurrentMovie(MovieInfo("Pinocchio","Norman Ferguson",List("Dickie Jones","Christian Rub", "Mel Blanc"),List("08:45","10:30","12:00","15:45", "18:00"),"https://i.etsystatic.com/18324742/r/il/1109e0/1918068271/il_570xN.1918068271_atcj.jpg"))
+    createCurrentMovie(MovieInfo("Brother Bear","Aaron Blaise",List("Joaquin Phoenix", "Jeremy Suarez", "Rick Moranis"),List("10:00","12:30","14:15","17:45","20:00"),"https://images.wolfgangsvault.com/m/xlarge/ZZZ060321-PO/brother-bear-poster-oct-31-2003.webp"))
+    createCurrentMovie(MovieInfo("Ice Age","The Legend 27",List("Denis Leary","John Leguizamo","Ray Romano"),List("09:00","11:15","14:00","00:00"),"https://www.iceposter.com/thumbs/MOV_wmtybram_b.jpg"))
 
   }
 
@@ -219,6 +220,23 @@ class MongoService @Inject()(
       _.collect[List](
         -1,
         Cursor.FailOnError[List[User]]()
+      )
+    )
+  }
+
+  def createDiscussion(discussionEntry: DiscussionEntry): Future[WriteResult] = {
+    discussionCollection.flatMap(_.insert.one(discussionEntry))
+  }
+
+  def findDiscussions(): Future[List[DiscussionEntry]] = {
+    discussionCollection.map {
+      _.find(Json.obj())
+        .sort(Json.obj("created" -> -1))
+        .cursor[DiscussionEntry]()
+    }.flatMap(
+      _.collect[List](
+        -1,
+        Cursor.FailOnError[List[DiscussionEntry]]()
       )
     )
   }

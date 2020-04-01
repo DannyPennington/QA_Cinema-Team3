@@ -1,0 +1,55 @@
+@(search: String, currentMoviesFound: List[MovieInfo], futureMoviesFound: List[NewReleaseInfo])(implicit request: Request[AnyContent])
+
+@main("Results") {
+    <section id="search_results" class=" py-5 mt-5" style="margin-bottom: -40px; margin-left: 50px">
+        <div style="margin-top: -50px;">
+            <h4>Showing results for: @search</h4> <br>
+        </div>
+        @if(currentMoviesFound.nonEmpty){
+        <div>
+            <h5>Current movies: </h5>
+            @for(movie <- currentMoviesFound) {
+
+                <div style="overflow: auto">
+                    <img src="@{movie.url}" alt="poster" style="float:right; width:100px; height: 150px; margin-right: 125vh;"> <br>
+                    Title: @movie.title <br>
+                    Director: @movie.director <br>
+                    Actors: @for(actor <- movie.actors) {
+                    @actor
+                    } <br>
+                    Show times: @for(time <- movie.showTimes) {
+                    @time
+                    } <br>
+                    <a href="@{ "/movie?title=" + movie.title}" >Go to movie info</a> <br> <br>
+                </div>
+            }
+
+        </div>
+
+        <br> <br>
+        }
+        @if(futureMoviesFound.nonEmpty) {
+        <div>
+            <h5>Future releases: </h5>
+            @for(movie <- futureMoviesFound) {
+
+                <div style="overflow: auto">
+                    <img src="@{movie.url}" alt="poster" style="float:right; width:100px; height: 150px; margin-right: 125vh;"> <br>
+                    Title: @movie.title <br>
+                    Director: @movie.director <br>
+                    Actors: @for(actor <- movie.actors) {
+                        @actor
+                    } <br>
+                    Release date: @movie.releaseDate <br>
+                    <a href="@{ "/release?title=" + movie.title}" >Go to movie info</a> <br> <br>
+                </div>
+            }
+
+        </div>
+        }
+
+    </section>
+
+
+
+}
