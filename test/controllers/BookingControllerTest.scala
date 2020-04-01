@@ -36,10 +36,9 @@ class BookingControllerTest extends PlaySpec with Results with MockitoSugar with
 
   "Parse details" should {
     "parse the http body for form information and send it to the payment page" in {
-      val action: EssentialAction = Action { request =>
-        val value = (request.body.asFormUrlEncoded)
-        Ok(views.html.payment(paymentForm.payments,film,user,time,date,screen,adult,children,concession))
-      }
+      val mockBody ="film=Mulan&date=Thu+Apr+02+2020&screen_type=Standard&time=11%3A30&adultFinal=3&childrenFinal=0&concessionFinal=0&user=Jason"
+      val request = FakeRequest(POST, "/booking").withFormUrlEncodedBody((mockBody ,mockBody))
+      val controller = new
     }
   }
 
