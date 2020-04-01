@@ -35,8 +35,11 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
       if (user.isEmpty) {
         Redirect(routes.RegistrationController.showRegistration()).flashing("exists" -> "no")
       }
-      else if (user.head.password == loginDetails.password) {
+      else if (user.head.password == loginDetails.password && request.flash.get("authenticateFail").isEmpty) {
         Redirect(routes.HomeController.index()).withSession("username" -> loginDetails.username)
+      }
+      else if (user.head.password == loginDetails.password && request.flash.get("authenticateFail").isDefined) {
+        Redirect(routes.DiscussionController.discussion()).withSession("username" -> loginDetails.username)
       }
       else
         Redirect(routes.LoginController.login()).flashing("invalid" -> "yes")
