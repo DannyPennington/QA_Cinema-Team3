@@ -225,7 +225,7 @@ class MongoService @Inject()(
   }
 
   def createDiscussion(discussionEntry: DiscussionEntry): Future[WriteResult] = {
-    currentCollection.flatMap(_.insert.one(discussionEntry))
+    discussionCollection.flatMap(_.insert.one(discussionEntry))
   }
 
   def findDiscussions(): Future[List[DiscussionEntry]] = {
