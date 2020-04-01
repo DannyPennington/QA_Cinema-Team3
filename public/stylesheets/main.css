@@ -748,6 +748,54 @@ input[type=text], select, textarea {
     font-family: 'Courgette', cursive;
 }
 
-.button{
 
+#login{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))),
+    url(/assets/images/login_image.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+
+.min_height {
+    min-height: 100vh;
+
+}
+
+.reg_btn {
+    font-size: 1.2em;
+    -webkit-transition: 0.1s;
+    transition: 0.1s
+}
+
+.reg_btn:hover {
+    font-size: 1.21em;
+    opacity: 0.9;
+}
+#userform{
+    margin-top: 15px;
+    width: 408px;
+    height:43px;
+    padding-left: 10px;
+
+    font-size: 1em;
+}
+#passwordform{
+
+    width: 405px;
+    height:43px;
+    font-size: 1.1em;
+    padding-left: 10px;
 }
