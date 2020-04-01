@@ -1,6 +1,7 @@
 package controllers
 
-import models.MovieInfo
+import akka.stream.Materializer
+import models.{MovieInfo, paymentForm}
 import org.scalatestplus.mockito.MockitoSugar
 import play.api.mvc.Results
 import org.scalatestplus.play._
@@ -9,10 +10,11 @@ import play.api.test._
 import play.api.test.Helpers._
 import org.scalatest._
 import org.mockito.Mockito._
+import org.scalatestplus.play.guice.GuiceOneAppPerSuite
 
 import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 
-class BookingControllerTest extends PlaySpec with Results with MockitoSugar {
+class BookingControllerTest extends PlaySpec with Results with MockitoSugar with GuiceOneAppPerSuite {
 
   implicit val ec: ExecutionContextExecutor = ExecutionContext.global
 
@@ -25,6 +27,19 @@ class BookingControllerTest extends PlaySpec with Results with MockitoSugar {
       val result: Future[Result] = controller.booking().apply(FakeRequest())
       contentType(result) mustBe Some("text/html")
 
+    }
+  }
+
+  implicit lazy val materializer: Materializer = app.materializer
+  implicit lazy val Action                     = app.injector.instanceOf(classOf[DefaultActionBuilder])
+
+
+  "Parse details" should {
+    "parse the http body for form information and send it to the payment page" in {
+      val action: EssentialAction = Action { request =>
+        val value = (request.body.asFormUrlEncoded)
+        Ok(views.html.payment(paymentForm.payments,film,user,time,date,screen,adult,children,concession))
+      }
     }
   }
 
