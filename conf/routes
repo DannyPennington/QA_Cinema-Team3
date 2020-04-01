@@ -32,6 +32,11 @@ POST       /submitPayment          controllers.MongoControllerService.createPay
 
 GET        /directions             controllers.DirectionsController.directions
 
+
+
+GET     /about                           controllers.HomeController.about
+
+
 GET        /email                  controllers.HomeController.email
 POST       /submitEmail            controllers.MongoControllerService.createEmail
 GET        /contactUs              controllers.ContactUsController.contact
@@ -48,3 +53,4 @@ POST        /login                 controllers.LoginController.loginSubmit
 GET         /logout                controllers.LoginController.logout
 
 GET        /scrum                  controllers.ScrumController.scrum
+
