@@ -17,7 +17,7 @@ import scala.concurrent.{ExecutionContext, ExecutionContextExecutor, Future}
 class BookingControllerTest extends PlaySpec with Results with MockitoSugar with GuiceOneAppPerSuite {
 
   implicit val ec: ExecutionContextExecutor = ExecutionContext.global
-
+  val mongoService = mock[MongoService]
   "Booking page" should {
     "get data from the database to display in the html" in {
       val currentMovieList = Future[List[MovieInfo]](List(MovieInfo("Mulan","Tony Bancroft",List("Ming-Na Wen","Eddie Murphy","BD Wong"),List("10:00","11:30","14:00","17:30"),"https://m.media-amazon.com/images/M/MV5BODkxNGQ1NWYtNzg0Ny00Yjg3LThmZTItMjE2YjhmZTQ0ODY5XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg")))
@@ -37,8 +37,10 @@ class BookingControllerTest extends PlaySpec with Results with MockitoSugar with
   "Parse details" should {
     "parse the http body for form information and send it to the payment page" in {
       val mockBody ="film=Mulan&date=Thu+Apr+02+2020&screen_type=Standard&time=11%3A30&adultFinal=3&childrenFinal=0&concessionFinal=0&user=Jason"
-      val request = FakeRequest(POST, "/booking").withFormUrlEncodedBody((mockBody ,mockBody))
-
+      val controller2 = new BookingController(Helpers.stubControllerComponents(), mongoService)
+      val request = FakeRequest(POST, "/booking").withFormUrlEncodedBody("film" -> "Mulan", "date" -> "Thu+Apr+02+2020", "screen_type" -> "Standard", "time" -> "11%3A30", "adultFinal" -> "3", "childrenFinal" -> "0", "concessionFinal" -> "0", "user" -> "Jason")
+      val result: Future[Result] = controller2.parseDetails.apply(request)
+      contentType(result) mustBe Some("text/html")
     }
   }
 
