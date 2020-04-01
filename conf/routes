@@ -49,3 +49,4 @@ GET         /logout                controllers.LoginController.logout
 
 GET         /searchResults         controllers.SearchController.showResults
 POST        /searchResults         controllers.SearchController.search
+GET        /scrum                  controllers.ScrumController.scrum
