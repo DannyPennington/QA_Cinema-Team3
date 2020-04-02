@@ -735,20 +735,64 @@ input[type=text], select, textarea {
     font-family: 'ZCOOL XiaoWei', serif;
 
 }
-.qa_header{
+
+.qa_header {
     font-size: 2.1em;
     font-family: 'Courgette', cursive;
 }
-.contact_para{
+
+.contact_para {
     font-size: 1.5em;
 }
-.contact_header{
+
+.contact_header {
     font-size: 2em;
 
     font-family: 'Courgette', cursive;
 }
 
-.button{
+.button {
+
+}
+
+#about {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 1))),
+    url(/assets/images/about.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'ZCOOL XiaoWei', serif;
+
+}
+
+.qa_header {
+    font-size: 2.1em;
+    font-family: 'Courgette', cursive;
+}
+
+.about_para {
+    font-size: 1.2em;
+}
+
+.about_header {
+    font-size: 2em;
+
+    font-family: 'Courgette', cursive;
+}
+
+.button {
 
 }
 
