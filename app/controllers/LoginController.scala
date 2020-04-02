@@ -12,6 +12,7 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
 
 
   def login(): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+    val flash = request.flash.data.getOrElse("authenticateFail", "")
     if (request.flash.get("invalid").isDefined) {
       Ok(views.html.login(LoginDetails.loginForm, "Invalid credentials"))
     }
@@ -35,11 +36,8 @@ class LoginController @Inject()(cc: ControllerComponents, val mongoService: Mong
       if (user.isEmpty) {
         Redirect(routes.RegistrationController.showRegistration()).flashing("exists" -> "no")
       }
-      else if (user.head.password == loginDetails.password && request.flash.get("authenticateFail").isEmpty) {
+      else if (user.head.password == loginDetails.password) {
         Redirect(routes.HomeController.index()).withSession("username" -> loginDetails.username)
-      }
-      else if (user.head.password == loginDetails.password && request.flash.get("authenticateFail").isDefined) {
-        Redirect(routes.DiscussionController.discussion()).withSession("username" -> loginDetails.username)
       }
       else
         Redirect(routes.LoginController.login()).flashing("invalid" -> "yes")
