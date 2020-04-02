@@ -24,7 +24,7 @@ class AuthenticationAction @Inject()(val parser: BodyParsers.Default, val mongoS
     request.session.get("username")
       .flatMap(username => mongoService.findUserOption(username))
       .map(user => block(new AuthenticatedRequest(user.username, request)))
-      .getOrElse(Future.successful(Results.Redirect(routes.LoginController.login()).flashing("authenticateFail" -> "fail")))
+      .getOrElse(Future.successful(Results.Redirect(routes.LoginController.login()).flashing("authenticateFail" -> "fail").withCookies(Cookie("authenticateFail","fail"))))
   }
 
 }
