@@ -37,4 +37,5 @@ class MongoControllerServiceTest extends PlaySpec with Results with MockitoSugar
 
     }
   }
+
 }
