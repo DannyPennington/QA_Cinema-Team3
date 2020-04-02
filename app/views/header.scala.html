@@ -7,9 +7,17 @@
                         color: white;" >Sign up!</a>
                     <a href="@routes.LoginController.login()" class="btn mb-3" style="background-color: navy;
                         color: white;" >Log in</a>
-                } else {Logged in as @request.cookies.get("logged_in").get.value
-                    <a href="@routes.LoginController.logout()" class="btn mb-3" style="background-color: navy;
-                        color: white;" >Log out</a>
+                } else {
+                    <div class="row ml-3">
+                        <i class="fas fa-user my-auto mr-2" style="color: white; background-color: navy; border:1px solid navy;
+                            padding-bottom: -70px; font-size: 1.9em;
+
+
+         "></i><p class="para my-auto" style="color: navy">@request.cookies.get("logged_in").get.value</p>
+                        <a href="@routes.LoginController.logout()" class="btn my-auto ml-4" style="background-color: navy;
+                            color: white;">Log out</a>
+                    </div>
+
                 }
 
         </div>

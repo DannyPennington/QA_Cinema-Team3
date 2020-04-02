@@ -1,4 +1,4 @@
-@(form: Form[paymentForm],film:String, name:String, time: String, date: String, screen: String,adult: String, children: String, concession:String)(implicit messagesProvider: MessagesProvider, request: Request[AnyContent])
+@(form: Form[paymentForm], film: String, name: String, time: String, date: String, screen: String, adult: String, children: String, concession: String)(implicit messagesProvider: MessagesProvider, request: Request[AnyContent])
 
 @main("Payment") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,69 +10,103 @@
                 font-size: 36px;
             }
     </style>
+    <section class="py-5 mt-5" style="margin-bottom: -40px;
+        border-bottom: 1px solid dimgray;
+        border-top: 1px solid dimgray;">
+        <h1 class="title text-dark">QA Cinema Payment</h1>
+        <center>
+            <div class="border" style="background-color: crimson"></div>
+        </center>
 
-    <div style="margin-left: 50px">
-    <h2>QA Cinema Payment</h2>
-    <h4>Movie Confirmations</h4>
-
-        <div>
-            <label for="mvUser">Name of booker:</label>
-            @name
+        <div class="about_body mx-auto" style="padding: 40px 0px;
+            max-width: 40%">
+            <p class="para text-dark">
+                Make payment by completing the fields below and clicking on the submit payment button.</p>
         </div>
-    <div>
-        <label for="mvName">Movie:</label>
-        @film
-    </div>
-    <div>
-        <label for="mvDate">Date:</label>
-        @date
-    </div>
-    <div>
-        <label for="mvTime">Time:</label>
-        @time
-    </div>
-
-    <div>
-        <label for="mvScreen">Screen Type:</label>
-        @screen
-    </div>
-    <div>
-        <label for="mvTickets">Tickets selected: </label> <br>
-        @if(adult.toInt>0) {
-            Adults: @adult <br>
-        }
-        @if(children.toInt>0) {
-            Children: @children <br>
-        }
-        @if(concession.toInt>0) {
-            Concessions: @concession <br>
-        }
-        <br>
-    </div>
-
-
-    <label for="fname">Accepted Cards:</label>
-    <div class="icon-container">
-        <i class="fa fa-cc-visa" style="color: navy;"></i>
-        <i class="fa fa-cc-paypal" style="color: blue;"></i>
-        <i class="fa fa-cc-mastercard" style="color: red;"></i>
-        <i class="fa fa-cc-amex" style="color: orange;"></i>
-    </div>
-    <br>
-        <h4>Please fill out the information below carefully.</h4>
-
-                    <div class="modal-body">
-                        <h1 class = "loginHeaders" style = "color: white">Please enter your details below:</h1>
-                        @helper.form(routes.MongoControllerService.createPay()) {
-                            @helper.inputText(form("name"), '_label -> "Full Name:", '_showConstraints -> false)
-                            @helper.inputText(form("number"), '_label -> "Credit card number:", '_showConstraints -> false)
-                            @helper.inputText(form("expDate"), '_label -> "Exp Year:", '_showConstraints -> false)
-                            @helper.inputText(form("cvc"), '_label -> "CVV:", '_showConstraints -> false)
-                            <button type="submit">Submit Payment</button>
-                            <button type="reset">Clear</button>
-                        }
+        <div class="row">
+            <div class="col-5">
+                <div style="margin-left: 50px">
+                    <div class="row mb-4">
+                        <h1 class="h3" style="color: navy">Booking Summary</h1>
                     </div>
 
-</div>
+
+                    <div class="row">
+                        <label for="mvUser" class="header_table mr-3" style="font-size: 1.2em;">Name of booker: </label>
+                        <p class="para text-dark" style="font-size: 1.2em;">@name</p>
+                    </div>
+                    <div class="row" >
+                        <label for="mvName" class="header_table mr-3" style="font-size: 1.2em;" >Movie:</label>
+                        <p class="para text-dark" style="font-size: 1.2em;"> @film</p>
+
+                    </div>
+                    <div class="row">
+                        <label for="mvDate" class="header_table mr-3" style="font-size: 1.2em;">Date:</label>
+                        <p class="para text-dark" style="font-size: 1.2em;">@date</p>
+
+                    </div>
+                    <div class="row">
+                        <label for="mvTime" class="header_table mr-3" style="font-size: 1.2em;">Time:</label>
+                        <p class="para text-dark" style="font-size: 1.2em;"> @time</p>
+
+                    </div>
+
+                    <div class="row">
+                        <label for="mvScreen" class="header_table mr-3" style="font-size: 1.2em;">Screen Type:</label>
+                        <p class="para text-dark" style="font-size: 1.2em;">@screen</p>
+
+                    </div>
+                    <div class="row flex-column">
+                        <label for="mvTickets" class="header_table mr-3" style="font-size: 1.2em; margin-bottom: -10px;" >
+                            Tickets selected: </label> <br>
+                        @if(adult.toInt > 0) {
+                            <p class="para text-dark" style="font-size: 1.2em;
+                                text-align: left"> Adults: @adult </p>
+                        }
+                        @if(children.toInt > 0) {
+                            <p class="para text-dark" style="font-size: 1.2em;
+                                text-align: left"> Children: @children</p>
+                        }
+                        @if(concession.toInt > 0) {
+                            <p class="para text-dark" style="font-size: 1.2em;
+                                text-align: left"> Concessions: @concession</p>
+                        }
+                        <br>
+                    </div>
+
+                    <div class="row">
+                        <label for="fname"class="header_table">Accepted Cards:</label>
+                    </div>
+
+                    <div class="row icon-container">
+                        <i class="fa fa-cc-paypal mr-2" style="color: blue;"></i>
+                        <i class="fa fa-cc-mastercard mr-2" style="color: red;"></i>
+                        <i class="fa fa-cc-amex" style="color: orange;"></i>
+                    </div>
+            </div>
+        </div>
+            <div class="col-7">
+                <h1 class="h3" style="color: navy">Please fill your payment details carefully.</h1>
+
+                <div class="modal-body" style="width: 100%">
+
+                    @helper.form(routes.MongoControllerService.createPay()) {
+                        @helper.inputText(form("name"), '_label -> "Full Name:", '_showConstraints -> false, 'id->"full_name")
+                        @helper.inputText(form("number"), '_label -> "Credit card number:", '_showConstraints -> false ,'id->"number")
+                        @helper.inputText(form("expDate"), '_label -> "Exp Year:", '_showConstraints -> false, 'id->"expDate")
+                        @helper.inputText(form("cvc"), '_label -> "CVV:", '_showConstraints -> false, 'id->"cvc")
+                        <button type="submit"class="btn mr-2" style="background-color: navy;
+                            color: white;">Submit Payment</button>
+                        <button type="reset" class="btn" style="background-color: navy;
+                            color: white;">Clear</button>
+                    }
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
 
 }

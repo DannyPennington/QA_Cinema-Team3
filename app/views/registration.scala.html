@@ -1,15 +1,62 @@
 @(form: Form[Registration], other: String)(implicit messagesProvider: MessagesProvider, request: Request[AnyContent])
 
 @main("Register") {
-    @other
-    <div style="margin-left: 50px; font-family: 'Lora', serif">
-    @helper.form(routes.RegistrationController.registerUser()){
-        @helper.inputText(form("username"), '_label -> "Username:", '_showConstraints -> false, 'autocomplete -> "off")
-        @helper.inputText(form("email"), '_label -> "Email:", '_showConstraints -> false, 'autocomplete -> "off")
-        @helper.inputPassword(form("password"), '_label -> "Password:", '_showConstraints -> false)
-        <button type="submit" class="btn mb-3" style="background-color: navy;
-            color: white;">Sign up</button>
-    }
-    </div>
+    <section class="py-5 mt-5" style="margin-bottom: -40px;border-bottom: 1px solid dimgray;border-top: 1px solid dimgray;">
+        <h1 class="title text-dark" >Register!</h1>
+        <center>
+            <div class="border" style="background-color: crimson"></div>
+        </center>
 
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para text-dark">
+                Already have an account? <span> <a href="@routes.LoginController.login()">Log in</a></span></p>
+        </div>
+        <div class="col-7 py-3 mx-auto text-center d-flex justify-content-around">
+            <div class="reg_bord bg-dark my-4"></div>
+            <p class="text-uppercase lead text-dark reg_title my-1">Create Account Here </p>
+            <div class="reg_bord bg-dark my-4"></div>
+
+        </div>
+        @other
+        <div class="col-6 py-4 mx-auto">
+        @helper.form(routes.RegistrationController.registerUser()) {
+            <center>
+                <div class="col d-flex mx-auto justify-content-center">
+                    <i class="fas fa-user fa-2x my-auto " style="border:1px solid grey;
+                        padding: 4px 8px;
+
+                        font-size: 2.1em;
+                        background-color: gainsboro;"></i>
+                    @helper.inputText(form("username"), '_label -> "", '_showConstraints -> false,'id->"reguserform", 'placeholder->"Username", 'autocomplete -> "off")
+                </div>
+                <div class="col d-flex mx-auto justify-content-center" style="margin-top: -16px;">
+                    <i class="fas fa-envelope fa-2x my-auto " style="border:1px solid grey;
+                        padding: 4px 8px;
+
+                        font-size: 2.1em;
+                        background-color: gainsboro;"></i>
+                    @helper.inputText(form("email"), '_label -> "", '_showConstraints -> false,'id->"regemailform", 'placeholder->"Email",'autocomplete -> "off")
+                </div>
+
+
+
+                <div class="col d-flex mx-auto justify-content-center">
+                    <i class="fas fa-key fa-2x my-auto " style="border: 1px solid grey;
+
+                        padding: 4px 8px;
+                        font-size: 2em;
+
+                        background-color: gainsboro;"></i>
+                    @helper.inputPassword(form("password"), '_label -> "", '_showConstraints -> false, 'id->"regpasswordform", 'placeholder->"Password")
+                </div>
+
+
+
+            </center>
+
+            <button type="submit" class="btn mb-3 col-9 mx-auto reg_btn" style="background-color: navy;
+                color: white; display: block; width: 100% ; margin-top: 48px;">Sign In</button>
+        }
+        </div>
+    </section>
 }
