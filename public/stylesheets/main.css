@@ -835,6 +835,7 @@ input[type=text], select, textarea {
 
 }
 .rating {
+    margin-left: 50px;
     display: inline-block;
     position: relative;
     height: 50px;
@@ -898,4 +899,27 @@ input[type=text], select, textarea {
 .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: #000;
     text-shadow: 0 0 5px #09f;
+}
+
+.discussionBoard {
+    margin-left: 50px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.review * {
+    vertical-align: top;
+}
+
+.review label {
+    text-align: center;
+    width: 150px;
+}
+.filmOption label {
+    text-align: center;
+    width: 150px;
+}
+
+.discussionSubmit input {
+    direction: rtl;
 }
