@@ -1,37 +1,70 @@
 @(venueInfo: VenueInfo)(implicit request: Request[AnyContent])
 
 @main("Venue") {
-    <div class="row justify-content-center">
-        <div class="card">
-            <img src="@{
-                venueInfo.url
-            }" alt="poster" style="width: 236px;
-                height: 350px;">
-        </div>
-        <div class="card">
-            <h4>@venueInfo.name</h4>
-            <h5>Category: @venueInfo.category</h5>
-            <h5>@venueInfo.description</h5>
-            <h5>Contact Details: </h5>
-            <ul>
-            @for(contact <- venueInfo.contactDetails) {
-                <li>@contact</li>
-            }
-            </ul>
+    <section id="latest_releases" class= " py-5 mt-5" style="margin-bottom: -40px">
+        <h1 class="title">Venue Description</h1>
+        <center>
+            <div class="border"></div>
+        </center>
 
-            <h5>Opening Times: </h5>
-            <ul>
-            @for(openingTime <- venueInfo.openingTimes) {
-                <li>@openingTime</li>
-            }
-            </ul>
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para">
+                These are details about the venue.
+            </p>
 
-            <h5>Offers: </h5>
-            <ul>
-                @for(offer <- venueInfo.offers) {
-                    <li>@offer</li>
-                }
-            </ul>
+
         </div>
-    </div>
+        <div class="row justify-content-center no-gutters pb-0">
+            <div class="col-5 d-flex justify-content-end pb-0">
+                <div class="card fade-in pb-0" style="min-width: 100%;">
+                    <img class="card-img-top" src="@{venueInfo.url}" alt="poster" style="width: 100%; height: 100%">
+                </div>
+            </div>
+            <div class="col-5 d-flex justify-content-start pb-0">
+                <div class="card fade-in" style="min-width: 90%">
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h1 class="cardHeader pt-3"> @venueInfo.name </h1>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">
+                            Category: <span style=" padding-left: 15px;">@venueInfo.category</span></h5>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">
+                            Description: <span style=" padding-left: 15px;">@venueInfo.description</span></h5>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">Contact Details:  </h5>
+                        <ul class="list-group list-group-flush header_title">
+                        @for(contact <- venueInfo.contactDetails) {
+                            <li class="list-group-item " style="text-align: center">@contact</li>
+                        }
+                        </ul>
+                    </div>
+                    <div class="mt-1" style="border-bottom: 1px solid black">
+                        <h5 class="card-title header_title">Opening Times:   </h5>
+                        <ul class="list-group list-group-flush header_title">
+                        @for(openingTime <- venueInfo.openingTimes) {
+                            <li class="list-group-item " style="text-align: center">@openingTime</li>
+                        }
+                        </ul>
+                    </div>
+                    <div class="mt-1">
+                        <h5 class="card-title header_title">Offers:   </h5>
+                        <ul class="list-group list-group-flush header_title">
+                        @for(offer <- venueInfo.offers) {
+                            <li class="list-group-item " style="text-align: center">@offer</li>
+                        }
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
+
 }
