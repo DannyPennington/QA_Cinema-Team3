@@ -49,7 +49,7 @@ class RegistrationController @Inject()(
     }
     else {
       val futureResult = collection.flatMap(_.insert.one(user))
-      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession("user" -> user.username).withCookies(Cookie("logged_in", user.username)))
+      futureResult.map(_ => Redirect(routes.RegistrationController.success()).withSession("username" -> user.username))
     }
   }
 

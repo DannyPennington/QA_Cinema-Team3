@@ -21,16 +21,10 @@ class AuthenticationAction @Inject()(val parser: BodyParsers.Default, val mongoS
 //  }
 
   override def invokeBlock[A](request: Request[A], block: AuthenticatedRequest[A] => Future[Result]): Future[Result] = {
-    if (request.cookies.get("logged_in").isDefined) {
-      request.cookies.get("logged_in").get.value
-        .flatMap(username => Await.result(mongoService.findUserByUsername(username.toString), Duration.Inf)
-          .map(user => block(new AuthenticatedRequest(user.username, request)))
-        ).head
-    }
-    else {
-      Future.successful(Results.Redirect(routes.LoginController.login()).flashing("authenticateFail" -> "fail"))
-    }
-
-
+    request.session.get("username")
+      .flatMap(username => mongoService.findUserOption(username))
+      .map(user => block(new AuthenticatedRequest(user.username, request)))
+      .getOrElse(Future.successful(Results.Redirect(routes.LoginController.login()).flashing("authenticateFail" -> "fail").withCookies(Cookie("authenticateFail","fail"))))
   }
+
 }
