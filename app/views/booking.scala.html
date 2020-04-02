@@ -1,12 +1,16 @@
 @(currentMovieList:List[MovieInfo])(implicit request: Request[AnyContent])
 
 @main("Booking") {
-    <div style="margin-left: 50px; margin-top: 50px">
-        <h2>
-            Booking time
-        </h2>
-        <br> <br>
-    </div>
+    <section class="py-5 mt-5" style="margin-bottom: -40px;border-bottom: 1px solid dimgray;border-top: 1px solid dimgray;">
+        <h1 class="title text-dark">Make a booking</h1>
+        <center>
+            <div class="border" style="background-color: crimson"></div>
+        </center>
+
+        <div class="about_body mx-auto" style="padding: 40px 0px; max-width: 40%">
+            <p class="para text-dark">
+                Make a reservation by completing the fields below and proceeding to payment.</p>
+        </div>
 
     <form id="booking" name="booking" action="/booking" method="post" autocomplete="off" onsubmit="getTitle()">
         <div>
@@ -88,10 +92,11 @@
         <input type="text" id="user" name="user" placeholder="Your name here">
     </div>
 
-    <div>
-        <input type="submit" value="Proceed to payment" class="sub">
+    <div class="mx-auto col-7 mt-4">
+        <input type="submit" value="Proceed to payment" class="sub  mx-auto">
     </div>
     </form>
+    </section>
 
     <script type="text/javascript">
         window.onload = generateTimes()
