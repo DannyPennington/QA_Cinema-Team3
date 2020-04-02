@@ -30,8 +30,7 @@ class DiscussionController @Inject()(cc: ControllerComponents, val mongoService:
     val review = body.get("review").head.split(" ")
     var safeReview = new ListBuffer[String]()
     review.foreach(word => if (badWords.contains(word.toLowerCase)) safeReview += (word.replaceAll("[a-zA-Z]","*")) else safeReview += word)
-
-    mongoService.createDiscussion(DiscussionEntry(body.get("film").head, body.get("rating").head.toInt, safeReview.toList.mkString(" "))).map(
+    mongoService.createDiscussion(DiscussionEntry(body.get("film").head, request.session.get("username").getOrElse("someone"), body.get("rating").head.toInt, safeReview.toList.mkString(" "))).map(
       _ => Redirect(routes.DiscussionController.discussion())
     )
   }
@@ -42,5 +41,9 @@ class DiscussionController @Inject()(cc: ControllerComponents, val mongoService:
 
   def discussionList: List[DiscussionEntry] = {
     Await.result(mongoService.findDiscussions(), Duration.Inf)
+  }
+
+  def reInnit(): Action[AnyContent] = Action.async { implicit request:Request[AnyContent] =>
+    mongoService.dropDiscussions().map(_ => Ok("All discussions deleted"))
   }
 }

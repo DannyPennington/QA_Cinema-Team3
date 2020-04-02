@@ -255,4 +255,8 @@ class MongoService @Inject()(
       )
     )
   }
+
+  def dropDiscussions(): Future[Unit] = {
+    discussionCollection.map(_.drop)
+  }
 }

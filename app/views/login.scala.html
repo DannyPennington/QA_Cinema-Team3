@@ -2,14 +2,59 @@
 
 @main("Login") {
 
-    <div style="margin-left: 50px; font-family: 'Lora', serif">
-        @message
-        @helper.form(routes.LoginController.loginSubmit()){
-        @helper.inputText(form("username"), '_label -> "Username:", '_showConstraints -> false)
-        @helper.inputPassword(form("password"), '_label -> "Password:", '_showConstraints -> false)
-        <button type="submit" class="btn mb-3" style="background-color: navy;
-            color: white;">Log In</button>
-    }
-    </div>
+    <section id="login" class="py-5 mt-5" style="margin-bottom: -40px">
+        <div class="container">
+            <div class="row min_height  align-items-center">
+                <div class="col-9 mx-auto ">
+                    <div class="card mx-auto" style="min-width: 80%">
+                        <div class="card-header d-flex justify-content-between px-4">
+                            <h4 class="text-dark my-4 mx-auto login_header">
+                                Login to Your Account
+                            </h4>
+                        </div>
+                        <div class="card-body my-2 text-center">
+                        @helper.form(routes.LoginController.loginSubmit()) {
+                            <center>
+                                <div class="col d-flex mx-auto justify-content-center">
+                                    <i class="fas fa-user fa-2x my-auto " style="border:1px solid grey;
+                                        padding: 4px 8px;
+
+                                        font-size: 2.1em;
+                                        background-color: gainsboro;"></i>
+                                    @helper.inputText(form("username"), '_label -> "", '_showConstraints -> false,'id->"userform", 'placeholder->"Username")
+                                </div>
+
+
+
+                                <div class="col d-flex mx-auto justify-content-center">
+                                    <i class="fas fa-key fa-2x my-auto " style="border: 1px solid grey;
+
+                                        padding: 4px 8px;
+                                        font-size: 2em;
+
+                                        background-color: gainsboro;"></i>
+                                    @helper.inputPassword(form("password"), '_label -> "", '_showConstraints -> false, 'id->"passwordform", 'placeholder->"Password")
+                                </div>
+
+
+
+                            </center>
+
+                            <button type="submit" class="btn mb-3 col-9 mx-auto reg_btn" style="background-color: navy;
+                                color: white; display: block; width: 100% ; margin-top: 48px;">Log In</button>
+                        }
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 }

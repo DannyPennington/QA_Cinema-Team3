@@ -458,7 +458,7 @@ input[type=text], select, textarea {
 }
 
 .sub {
-    background-color: #4CAF50;
+    background-color: navy;
     color: white;
     padding: 12px;
     margin: 10px 0;
@@ -470,7 +470,9 @@ input[type=text], select, textarea {
 }
 
 .sub:hover {
-    background-color: #45a049;
+
+    font-size: 18px;
+    opacity: 0.9;
 }
 
 .map-container-5 {
@@ -735,20 +737,64 @@ input[type=text], select, textarea {
     font-family: 'ZCOOL XiaoWei', serif;
 
 }
-.qa_header{
+
+.qa_header {
     font-size: 2.1em;
     font-family: 'Courgette', cursive;
 }
-.contact_para{
+
+.contact_para {
     font-size: 1.5em;
 }
-.contact_header{
+
+.contact_header {
     font-size: 2em;
 
     font-family: 'Courgette', cursive;
 }
 
-.button{
+.button {
+
+}
+
+#about {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 1))),
+    url(/assets/images/about.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
+    url(/assets/images/about.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'ZCOOL XiaoWei', serif;
+
+}
+
+.qa_header {
+    font-size: 2.1em;
+    font-family: 'Courgette', cursive;
+}
+
+.about_para {
+    font-size: 1.2em;
+}
+
+.about_header {
+    font-size: 2em;
+
+    font-family: 'Courgette', cursive;
+}
+
+.button {
 
 }
 
@@ -791,6 +837,7 @@ input[type=text], select, textarea {
 
 }
 .rating {
+    margin-left: 50px;
     display: inline-block;
     position: relative;
     height: 50px;
@@ -854,4 +901,108 @@ input[type=text], select, textarea {
 .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: #000;
     text-shadow: 0 0 5px #09f;
+}
+#login{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))),
+    url(/assets/images/login_image.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/images/login_image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+
+.min_height {
+    min-height: 100vh;
+
+}
+
+.reg_btn {
+    font-size: 1.2em;
+    -webkit-transition: 0.1s;
+    transition: 0.1s
+}
+
+.reg_btn:hover {
+    font-size: 1.21em;
+    opacity: 0.9;
+}
+#userform, #reguserform, #regemailform{
+    margin-top: 16px;
+    width: 408px;
+    height:43px;
+    padding-left: 10px;
+
+    font-size: 1em;
+}
+
+#passwordform, #regpasswordform{
+
+    width: 405px;
+    height:43px;
+    font-size: 1.1em;
+    padding-left: 10px;
+}
+#regemailform{
+
+    width: 408px;
+    height:43px;
+    padding-left: 10px;
+
+    font-size: 1em;
+}
+.reg_bord {
+    height: 1px;
+    width: 190px;
+
+}
+.reg_title{
+
+    color: white;
+    font-size: 1.5em;
+
+
+    font-family: 'Kaushan Script', cursive;
+
+}
+#full_name, #number{
+    width: 70%;
+}
+ #expDate{
+    width: 13%;
+}
+#cvc{
+    width: 10%;
+}
+.discussionBoard {
+    margin-left: 50px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.review * {
+    vertical-align: top;
+}
+
+.review label {
+    text-align: center;
+    width: 150px;
+}
+.filmOption label {
+    text-align: center;
+    width: 150px;
+}
+
+.discussionSubmit input {
+    direction: rtl;
 }

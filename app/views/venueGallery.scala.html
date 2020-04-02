@@ -1,18 +1,42 @@
 @(venueInfos: List[VenueInfo])(implicit request: Request[AnyContent])
 
 @main("Venue Gallery") {
-    <h2 style="text-align: center;"> Venues Gallery</h2>
-    <div class="row justify-content-center" >
+    <section class=" movies py-5 mt-5" style="margin-bottom: -40px;
+        padding-left: -40px">
+        <h1 class="title"> Venues Gallery</h1>
+        <center>
+            <div class="border"></div>
+        </center>
 
-    @for(venueInfo <- venueInfos) {
-        <div class="card" style="text-align: center" onclick="window.location.href = '@routes.VenueController.venue(venueInfo.name)';">
-            <h4 class="card-title">@venueInfo.name</h4>
-            <img class="card-img-bottom" src="@{
-                venueInfo.url
-            }" alt="poster" style="width: 400px;
-                height: 600px;">
-            <footer>Category: @venueInfo.category </footer>
+        <div class="about_body mx-auto" style="padding: 40px 0px">
+            <p class="para">
+                Welcome to the venues gallery!
+            </p>
+
         </div>
-    }
-    </div>
+        <div class="container">
+            <div class="row justify-content-center">
+
+            @for(venueInfo <- venueInfos) {
+                <div class="col-6 text-center">
+                    <div class="card mx-auto mt-3 " style="text-align: center; min-width: 90%" onclick="window.location.href = '@routes.VenueController.venue(venueInfo.name)';">
+                        <img src="@{
+                            venueInfo.url
+                        }" alt="poster" width="100%" >
+                        <div style="border-bottom: 1px solid black">
+                            <h1 class="cardHeader pt-3"> @venueInfo.name </h1>
+                        </div>
+                        <p class="para2 mt-2">
+                    Category: @venueInfo.category
+                </p>
+
+                    </div>
+                </div>
+            }
+
+            </div>
+        </div>
+
+
+    </section>
 }
