@@ -1,14 +1,11 @@
 package controllers
 
 import org.scalatestplus.mockito.MockitoSugar
-import org.scalatestplus.play.PlaySpec
-import play.api.mvc.Results
 import org.scalatestplus.play._
 import play.api.mvc._
 import play.api.test._
 import play.api.test.Helpers._
-
-import scala.concurrent.Future
+import scala.concurrent._
 
 class OpeningControllerTest extends PlaySpec with Results with MockitoSugar {
 
