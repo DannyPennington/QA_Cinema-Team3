@@ -20,7 +20,7 @@ class MongoControllerServiceTest extends PlaySpec with Results with MockitoSugar
   val reactiveMongoApi = mock[ReactiveMongoApi]
 
   "createPay method" should {
-    "take data from form, verify it's correct and store data in database and take you to nice thanks for booking screen" in {
+    "re-display the form with errors if filled in incorrectly" in {
       val controller = new MongoControllerService(Helpers.stubControllerComponents(),  reactiveMongoApi,  mongoService)
       val request = FakeRequest(POST, "/submitPayment")
       val result: Future[Result] = controller.createPay().apply(request)
