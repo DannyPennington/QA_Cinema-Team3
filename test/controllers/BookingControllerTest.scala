@@ -2,7 +2,6 @@ package controllers
 
 import models.{MovieInfo, paymentForm}
 import org.scalatestplus.mockito.MockitoSugar
-import play.api.mvc.Results
 import org.scalatestplus.play._
 import play.api.mvc._
 import play.api.test._
