@@ -13,7 +13,7 @@
                             padding-bottom: -70px; font-size: 1.9em;
 
 
-         "></i><p class="para my-auto" style="color: navy">@request.cookies.get("logged_in").get.value</p>
+         "></i><p class="para my-auto" style="color: navy">@request.session.get("username")</p>
                         <a href="@routes.LoginController.logout()" class="btn my-auto ml-4" style="background-color: navy;
                             color: white;">Log out</a>
                     </div>
