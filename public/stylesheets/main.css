@@ -890,7 +890,7 @@ input[type=text], select, textarea {
 }
 
 .rating label:last-child .icon {
-    color: #000;
+    color: white;
 }
 
 .rating:not(:hover) label input:checked ~ .icon,
@@ -899,7 +899,7 @@ input[type=text], select, textarea {
 }
 
 .rating label input:focus:not(:checked) ~ .icon:last-child {
-    color: #000;
+    color: white;
     text-shadow: 0 0 5px #09f;
 }
 #login{
@@ -1005,4 +1005,22 @@ input[type=text], select, textarea {
 
 .discussionSubmit input {
     direction: rtl;
+}
+#discussion{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))),
+    url(/assets/images/discussion.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/discussion.jpg);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/discussion.jpg);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/discussion.jpg);
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/discussion.jpg);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(/assets/images/discussion.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }

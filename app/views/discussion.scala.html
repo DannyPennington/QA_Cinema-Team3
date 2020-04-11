@@ -1,91 +1,124 @@
 @(currentMovieList: List[MovieInfo], reviews: List[DiscussionEntry])(implicit request: Request[AnyContent])
 
 @main("Discussion Board") {
-    <div class="discussionBoard">
-        <div>
-            <h2>
-                Discussion Board
-            </h2>
-            <br> <br>
+    <section id="discussion" class="py-5 mt-5" style="margin-bottom: -40px;
+        background-color: navy">
+        <div class="container">
+            <h1 class="discussionBoard title" style="margin-left: 0px;
+                margin-top: 0px;"> Discussion Board</h1>
+            <center>
+                <div class="border"></div>
+            </center>
+
+            <div class="about_body mx-auto" style="padding: 40px 0px">
+                <p class="para">
+                    Write a film review below.</p>
+
+
+            </div>
+
+
+            <form id="discussion" name="discussion" action="/discussion" method="post" autocomplete="off">
+                <div class="filmOption mb-3">
+                    <div class="row justify-content-center mr-1">
+                        <label for="film" class="para mt-2" style=" width: 15%">Film to review: </label>
+                        <select id="film" name="film">
+                        @for(movie <- currentMovieList) {
+                            <option id="@{
+                                movie.title
+                            }">@movie.title</option>
+                        }
+                        </select>
+                    </div>
+
+                </div>
+                <center class="ml-3">
+                    <div class="rating">
+                        <label>
+                            <input type="radio" name="rating" value="1"/>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="2" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="3" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="4" />
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="rating" value="5" checked="checked"/>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                            <span class="icon">★</span>
+                        </label>
+                    </div>
+                </center>
+                <div class="review my-4">
+                    <div class="row justify-content-center">
+                        <label for="textArea" class="para mt-2" style=" width: 15%">Review: </label>
+                        <textarea id="textArea" class="mr-3" rows="4" cols="500" name="review" form="discussion" placeholder="Put your review in here..." required></textarea>
+
+                    </div>
+
+
+                </div>
+
+                <div class="row justify-content-center ml-1">
+                    <input class="discussionSubmit btn-lg btn-light ml-4 mb-5" type="submit" value="Submit review">
+                </div>
+            </form>
+
+
+            <div class="mt-2 d-flex flex-column justify-content-center" style="margin-left: 50px;">
+                <h2 class="title" style="font-size: 2.2em;">
+                    Reviews:
+                </h2>
+                <br>
+                @if(reviews.length == 0) {
+                    <div style="margin-left: 50px">
+                        <h4 class= "card-title header_card">No reviews yet!</h4>
+                    </div>
+                } else {
+                    @for(review <- reviews) {
+                        <div style="margin-left: 50px;
+                            min-width: 55%" class="card mx-auto" >
+                            <ul class="list-group list-group-flush" style="border-bottom: 10px solid black">
+                                <li class="list-group-item">
+                                    <h5 class="card-title header_card" style="text-align: left">Film: @review.title</h5>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6 class="card-subtitle mb-2 para_card" style="text-align: left;
+                                        color: black;
+                                        font-size: 1.2em"
+                                    >@review.rating/5 rating by @review.username</h6>
+                                </li>
+                                <li class="list-group-item" >
+                                    <p class="card-text header_card" style="font-size: 1.3em;
+                                        max-width: 80%;
+                                        text-align: left">Comment: @review.review</p>
+                                </li>
+                            </ul>
+
+                        </div>
+                    }
+                }
+            </div>
+
         </div>
 
-        <form id="discussion" name="discussion" action="/discussion" method="post" autocomplete="off">
-            <div class="filmOption">
-                <label for="film">Film to review: </label>
-                <select id="film" name="film">
-                @for(movie <- currentMovieList) {
-                    <option id="@{
-                        movie.title
-                    }">@movie.title</option>
-                }
-                </select>
-            </div>
 
-            <div class="rating">
-                <label>
-                    <input type="radio" name="rating" value="1"/>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="rating" value="2" />
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="rating" value="3" />
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="rating" value="4" />
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="rating" value="5" checked="checked"/>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-            </div>
-
-            <div class="review">
-                <label for="textArea">Review: </label>
-                <textarea id="textArea" rows="4" cols="500" name="review" form="discussion" placeholder="Put your review in here..." required></textarea>
-
-            </div>
-
-            <div>
-                <input class="discussionSubmit" type="submit" value="Submit review">
-            </div>
-        </form>
-    </div>
-
-
-
-    <div style="margin-left: 50px">
-        <h2>
-            Reviews:
-        </h2>
-        <br>
-        @if(reviews.length == 0) {
-            <div style="margin-left: 50px">
-                <h4>No reviews yet!</h4>
-            </div>
-        } else {
-            @for(review <- reviews) {
-                <div style="margin-left: 50px" class="card">
-                    <h5 class="card-title">@review.title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">@review.rating/5 - @review.username</h6>
-                    <p class="card-text">@review.review</p>
-                </div>
-            }
-        }
-    </div>
-
+    </section>
 }
